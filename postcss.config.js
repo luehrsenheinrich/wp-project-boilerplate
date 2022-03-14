@@ -10,9 +10,11 @@ module.exports = {
                 features: {
                     'custom-media-queries': {
                         preserve: false,
+                        importFrom: './theme/src/css/vars/_media-queries.css',
                     },
                     'custom-properties': {
                         preserve: true,
+                        importFrom: './theme/src/css/vars.css',
                     },
                 },
             }

@@ -3,6 +3,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const ThemeFrontendJs = glob.sync('./theme/src/js/*.js').reduce(function (obj, el) {
 	obj['js/' + path.parse(el).name + '.min'] = el;
@@ -11,7 +12,7 @@ const ThemeFrontendJs = glob.sync('./theme/src/js/*.js').reduce(function (obj, e
 }, {});
 
 const ThemeFrontendCSS = glob.sync('./theme/src/css/*.css').reduce(function (obj, el) {
-	obj['css/' + path.parse(el).name] = el;
+	obj['css/' + path.parse(el).name + '.min'] = el;
 	return obj;
 }, {});
 
@@ -28,6 +29,9 @@ const defaultConfig = {
 		modules: ['node_modules'],
 	},
     plugins: [
+        new LiveReloadPlugin({
+            useSourceHash: true,
+        }),
         new RemoveEmptyScriptsPlugin(),
         new MiniCssExtractPlugin({
             filename: "[name].css",
