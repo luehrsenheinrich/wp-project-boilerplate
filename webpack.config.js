@@ -30,6 +30,11 @@ const defaultConfig = {
 			}),
 		],
 	},
+    output: {
+        path: path.resolve(__dirname, 'theme/dist'),
+        clean: true,
+        filename: '[name].js',
+    },
 	resolve: {
 		modules: ['node_modules'],
 	},
@@ -42,6 +47,36 @@ const defaultConfig = {
             filename: "[name].css",
         }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            import: false,
+                            url: false,
+                            sourceMap: true,
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.php$/,
+                loader: 'raw-loader',
+            }
+        ],
+    },
 };
 
 module.exports = [
@@ -54,12 +89,12 @@ module.exports = [
             ...ThemePhp,
         },
         output: {
+            ...defaultConfig.output,
             path: path.resolve(__dirname, 'theme/dist'),
-            clean: true,
-            filename: '[name].js',
         },
         module: {
             rules: [
+                ...defaultConfig.module.rules,
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
@@ -70,32 +105,7 @@ module.exports = [
                         },
                     },
                 },
-                {
-                    test: /\.css$/i,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: false,
-                                import: false,
-                                url: false,
-                                sourceMap: true,
-                                importLoaders: 1,
-                            },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                            },
-                        },
-                    ],
-                },
-                {
-                    test: /\.php$/,
-                    loader: 'raw-loader',
-                }
+
             ]
         }
     }
