@@ -16,6 +16,11 @@ const ThemeFrontendCSS = glob.sync('./theme/src/css/*.css').reduce(function (obj
 	return obj;
 }, {});
 
+const ThemePhp = glob.sync('./theme/**/*.php').reduce(function (obj, el) {
+    obj['php/' + path.parse(el).name] = el;
+    return obj;
+}, {});
+
 const defaultConfig = {
 	mode: 'production',
 	optimization: {
@@ -46,6 +51,7 @@ module.exports = [
         entry: {
             ...ThemeFrontendJs,
             ...ThemeFrontendCSS,
+            ...ThemePhp,
         },
         output: {
             path: path.resolve(__dirname, 'theme/dist'),
@@ -83,9 +89,13 @@ module.exports = [
                             options: {
                                 sourceMap: true,
                             },
-                        }
+                        },
                     ],
                 },
+                {
+                    test: /\.php$/,
+                    loader: 'null-loader',
+                }
             ]
         }
     }
