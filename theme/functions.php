@@ -8,11 +8,11 @@
  */
 
 if ( ! defined( 'LHPBPT_SLUG' ) ) {
-	define( 'LHPBPT_SLUG', '<%= pkg.slug %>' );
+	define( 'LHPBPT_SLUG', 'lhpbpt' );
 }
 
 if ( ! defined( 'LHPBPT_VERSION' ) ) {
-	define( 'LHPBPT_VERSION', '<%= pkg.version %>' );
+	define( 'LHPBPT_VERSION', '0.0.1' );
 }
 
 require get_template_directory() . '/vendor/autoload.php';

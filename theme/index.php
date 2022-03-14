@@ -19,7 +19,7 @@ get_header();
 
 <div id="primary" class="content-area">
 	<?php wp_lhpbpt()->print_styles( 'lhpbpt-blocks' ); ?>
-	<main id="main" class="site-main stack">Test2
+	<main id="main" class="site-main stack">
 		<?php
 		if ( have_posts() ) :
 			while ( have_posts() ) :

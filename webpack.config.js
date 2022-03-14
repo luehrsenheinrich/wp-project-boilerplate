@@ -94,7 +94,7 @@ module.exports = [
                 },
                 {
                     test: /\.php$/,
-                    loader: 'null-loader',
+                    loader: 'raw-loader',
                 }
             ]
         }
