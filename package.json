@@ -1,5 +1,6 @@
 {
   "name": "wp-project-boilerplate",
+  "title": "WordPress Project Boilerplate",
   "version": "0.0.1",
   "description": "A base boilerplate for Luehrsen // Heinrich WordPress projects. ",
   "scripts": {
@@ -8,11 +9,12 @@
     "start": "npx wp-env start",
     "stop": "npx wp-env stop",
     "clean": "npx wp-env clean all",
-    "schemas": "node schemas/updateThemeJsonSchema.js",
+    "schemas": "node bin/updateThemeJsonSchema.js",
     "prestart": "npm install && composer install && npm run schemas && npm run webpack",
     "lint": "composer run lint"
   },
   "author": "Luehrsen // Heinrich",
+  "authorUrl": "https://www.luehrsen-heinrich.de",
   "license": "GPLv2",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
