@@ -32,7 +32,8 @@ fs.readFile(`./plugin/${pkg.slug}.php`, (err, data) => {
     newData = newData.replace(versionRegex, newVersionConstant);
 
     // Write the new content to the file.
-    fs.writeFile('./plugin/lhpbp.php', newData, (err) => {
+    fs.writeFile(`./plugin/${pkg.slug}.php`, newData, (err) => {
+        console.log( `Plugin version in ${pkg.slug}.php updated.` );
         if (err) {
             console.error(err);
             return;

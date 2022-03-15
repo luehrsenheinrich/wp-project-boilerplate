@@ -27,6 +27,7 @@ fs.readFile(`./theme/style.css`, (err, data) => {
 
     // Write the new content to the file.
     fs.writeFile('./theme/style.css', newData, (err) => {
+        console.log( 'Theme version in style.css updated.' );
         if (err) {
             console.error(err);
             return;
@@ -57,6 +58,7 @@ fs.readFile('./theme/functions.php', (err, data) => {
 
     // Write the new content to the file.
     fs.writeFile('./theme/functions.php', newData, (err) => {
+        console.log( 'Theme version in functions.php updated.' );
         if (err) {
             console.error(err);
             return;
