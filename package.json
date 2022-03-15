@@ -10,8 +10,9 @@
     "start": "npx wp-env start",
     "stop": "npx wp-env stop",
     "clean": "npx wp-env clean all",
-    "schemas": "node bin/updateThemeJsonSchema.js",
-    "prestart": "npm install && composer install && npm run schemas && npm run webpack",
+    "update:schemas": "node bin/updateThemeJsonSchema.js",
+    "update:versions": "node bin/updatePluginVersion.js && node bin/updateThemeVersion.js",
+    "prestart": "npm install && composer install && npm run update:schemas && npm run webpack",
     "lint": "composer run lint"
   },
   "author": "Luehrsen // Heinrich",
