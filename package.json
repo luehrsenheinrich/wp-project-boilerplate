@@ -3,7 +3,13 @@
   "version": "0.0.1",
   "description": "A base boilerplate for Luehrsen // Heinrich WordPress projects. ",
   "scripts": {
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "watch": "webpack --watch",
+    "start": "npx wp-env start",
+    "stop": "npx wp-env stop",
+    "clean": "npx wp-env clean all",
+    "schemas": "node schemas/updateThemeJsonSchema.js",
+    "prestart": "npm install && composer install && npm run schemas && npm run webpack"
   },
   "author": "Luehrsen // Heinrich",
   "license": "GPLv2",
@@ -24,6 +30,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.2",
     "raw-loader": "^4.0.2",
+    "request": "^2.88.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.70.0",
