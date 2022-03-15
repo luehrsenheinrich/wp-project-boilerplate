@@ -1,3 +1,9 @@
+/**
+ * We need to update the plugin version in the main plugin file.
+ * This is done by reading the plugin file, finding the lines that
+ * contains the version number, and replacing it with the new version.
+ */
+
 const fs = require('fs');
 const pkg = require('../package.json');
 

@@ -1,3 +1,9 @@
+/**
+ * We need to update the theme version in the main theme files.
+ * This is done by reading the theme files, finding the lines that
+ * contains the version number, and replacing it with the new version.
+ */
+
 const fs = require('fs');
 const pkg = require('../package.json');
 
