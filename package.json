@@ -9,7 +9,8 @@
     "stop": "npx wp-env stop",
     "clean": "npx wp-env clean all",
     "schemas": "node schemas/updateThemeJsonSchema.js",
-    "prestart": "npm install && composer install && npm run schemas && npm run webpack"
+    "prestart": "npm install && composer install && npm run schemas && npm run webpack",
+    "lint": "composer run lint"
   },
   "author": "Luehrsen // Heinrich",
   "license": "GPLv2",
