@@ -24,7 +24,6 @@
 		<exclude name="WordPress.PHP.YodaConditions" />
 	</rule>
 	<rule ref="WordPress-Docs"/>
-	<rule ref="WPThemeReview"/>
 
 	<arg name="extensions" value="php"/>
 
