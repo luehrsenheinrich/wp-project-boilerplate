@@ -4,8 +4,10 @@
 
 # THEME
 /theme/dist
+/theme/admin/dist
 /theme/vendor
 
 # PLUGIN
 /plugin/dist
-/theme/vendor
+/plugin/admin/dist
+/plugin/vendor
