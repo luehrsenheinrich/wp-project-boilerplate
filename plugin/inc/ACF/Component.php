@@ -65,15 +65,6 @@ class Component implements Component_Interface {
 	}
 
 	/**
-	 * Hide the acf admin
-	 *
-	 * @return void
-	 */
-	private function hide_acf_admin() {
-		add_filter( 'acf/settings/show_admin', '__return_false' );
-	}
-
-	/**
 	 * Add a theme options page.
 	 */
 	public function add_options_page() {

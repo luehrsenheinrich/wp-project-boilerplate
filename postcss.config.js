@@ -1,5 +1,14 @@
+const colorPaletteGenerator = require('./bin/colorPaletteGenerator');
+
 module.exports = {
     plugins: [
+        [
+            '@luehrsenheinrich/postcss-wp-global-styles',
+            {
+                themeJson: './theme/theme.json',
+                colorPaletteGenerator,
+            }
+        ],
         [
             'postcss-import',
         ],

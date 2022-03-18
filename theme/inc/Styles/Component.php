@@ -207,8 +207,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Stylesheets that are global are enqueued. All other stylesheets are only registered, to be enqueued later.
 	 */
 	public function action_enqueue_styles() {
-
-
 		$css_uri = get_theme_file_uri( '/dist/css/' );
 
 		$preloading_styles_enabled = $this->preloading_styles_enabled();
@@ -284,7 +282,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 */
 	public function action_print_preloaded_styles() {
 
-		$css_uri = get_theme_file_uri( '/css/' );
+		$css_uri = get_theme_file_uri( '/dist/css/' );
 
 		$css_files = $this->get_css_files();
 		foreach ( $css_files as $handle => $data ) {
@@ -309,7 +307,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Enqueue assets directly for the editor.
 	 */
 	public function enqueue_block_editor_assets() {
-		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/css/vars.min.css' ), array(), LHPBPT_VERSION );
+		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/dist/css/vars.min.css' ), array(), LHPBPT_VERSION );
 	}
 
 	/**
