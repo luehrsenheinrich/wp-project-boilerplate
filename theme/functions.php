@@ -8,11 +8,21 @@
  */
 
 if ( ! defined( 'LHPBPT_SLUG' ) ) {
+	/**
+	 * The theme slug.
+	 *
+	 * @var string
+	 */
 	define( 'LHPBPT_SLUG', 'lhpbpt' );
 }
 
 if ( ! defined( 'LHPBPT_VERSION' ) ) {
-	define( 'LHPBPT_VERSION', '0.0.1' );
+	/**
+	 * The theme version.
+	 *
+	 * @var string
+	 */
+	define( 'LHPBPT_VERSION', wp_get_theme()->get( 'Version' ) );
 }
 
 require get_template_directory() . '/vendor/autoload.php';

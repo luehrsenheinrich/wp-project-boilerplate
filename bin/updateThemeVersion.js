@@ -40,35 +40,3 @@ fs.readFile(`./theme/style.css`, (err, data) => {
         }
     });
 });
-
-fs.readFile('./theme/functions.php', (err, data) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    // Generate the uppercase slug.
-    const uppercaseSlug = pkg.slug.toUpperCase();
-
-    // Find the version constant.
-    const versionRegex = new RegExp("define\\( '" + uppercaseSlug + "T_VERSION', '(.*)' \\);");
-
-    // Extract the existing version constant.
-    const versionConstant = data.toString().match(versionRegex)[0];
-
-    // Build the new version constant.
-    const newVersionConstant = `define( '${uppercaseSlug}T_VERSION', '${pkg.version}' );`;
-
-    // Replace the existing version constant.
-    let newData = data.toString().replace(versionRegex, newVersionConstant);
-
-    // Write the new content to the file.
-    fs.writeFile('./theme/functions.php', newData, (err) => {
-        console.log( 'Theme version in functions.php updated.' );
-        if (err) {
-            console.error(err);
-            return;
-        }
-    });
-
-});
