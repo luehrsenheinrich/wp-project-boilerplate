@@ -18,7 +18,7 @@ get_header();
 ?>
 
 <div id="primary" class="content-area">
-	<?php wp_lhpbpt()->styles->print_styles( 'lhpbpt-blocks' ); ?>
+	<?php lh_theme()->styles()->print_styles( 'lhpbpt-blocks' ); ?>
 	<main id="main" class="site-main stack">
 		<?php
 		if ( have_posts() ) :

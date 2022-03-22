@@ -2,32 +2,32 @@
 /**
  * Lhplugin\ACF\Component class
  *
- * @package lhpbpt
+ * @package lhpbpp
  */
 
-namespace WpMunich\lhpbpt\ACF;
-use WpMunich\lhpbpt\Component;
+namespace WpMunich\lhpbpp\ACF;
+use WpMunich\lhpbpp\Component;
 use function add_action;
 use function wp_get_environment_type;
 use function acf_add_options_page;
+use function WpMunich\lhpbpp\wp_lhpbpp;
 
 /**
  * A class to handle acf related logic..
  */
 class ACF extends Component {
-
 	/**
 	 * {@inheritDoc}
 	 */
-	public function add_actions() {
+	protected function add_actions() {
 		add_action( 'acf/init', array( $this, 'add_options_page' ) );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function add_filters() {
-		if ( wp_get_environment_type() === 'development' && defined( 'LH_CURRENTLY_EDITING' ) && LH_CURRENTLY_EDITING === 'lhpbpt' ) {
+	protected function add_filters() {
+		if ( wp_get_environment_type() === 'development' && defined( 'LH_CURRENTLY_EDITING' ) && LH_CURRENTLY_EDITING === 'lhpbp' ) {
 			add_filter( 'acf/settings/save_json', array( $this, 'acf_json_save_point' ) );
 		}
 
@@ -42,7 +42,7 @@ class ACF extends Component {
 	 * @return string       Save path.
 	 */
 	public function acf_json_save_point( $path ) {
-		$path = get_template_directory() . '/acf-json';
+		$path = LHPBPP_PATH . 'acf-json';
 		return $path;
 	}
 
@@ -54,7 +54,7 @@ class ACF extends Component {
 	 * @return array        An array of paths.
 	 */
 	public function acf_json_load_point( $paths ) {
-		$paths[] = get_template_directory() . '/acf-json';
+		$paths[] = LHPBPP_PATH . 'acf-json';
 
 		return $paths;
 	}
@@ -69,9 +69,10 @@ class ACF extends Component {
 
 		$option_page = acf_add_options_page(
 			array(
-				'page_title' => __( 'Theme Settings', 'lhpbpt' ),
-				'menu_title' => __( 'Theme Settings', 'lhpbpt' ),
-				'menu_slug'  => 'lhpbpt-plugin-general-settings',
+				'page_title' => __( 'Plugin Settings', 'lhpbpp' ),
+				'menu_title' => __( 'Plugin Settings', 'lhpbpp' ),
+				'menu_slug'  => 'lhpbpp-plugin-general-settings',
+				'icon_url'   => wp_lhpbpp()->svg->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
 				'redirect'   => false,
 			)

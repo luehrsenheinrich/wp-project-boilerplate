@@ -15,60 +15,77 @@ namespace WpMunich\lhpbpt;
 class Theme {
 
 	/**
-	 * The ACF component.
-	 *
-	 * @var ACF\ACF
-	 */
-	public $acf;
-
-	/**
 	 * The i18n component.
 	 *
 	 * @var i18n\I18N
 	 */
-	public $i18n;
+	protected $i18n;
 
 	/**
 	 * The Nav Menus component.
 	 *
 	 * @var Nav_Menus\Nav_Menus
 	 */
-	public $nav_menus;
+	protected $nav_menus;
 
 	/**
 	 * Scripts component.
 	 *
 	 * @var Scripts\Scripts
 	 */
-	public $scripts;
+	protected $scripts;
 
 	/**
 	 * Styles component.
 	 *
 	 * @var Styles\Styles
 	 */
-	public $styles;
+	protected $styles;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param ACF\ACF             $acf ACF component.
 	 * @param i18n\I18N           $i18n I18N component.
 	 * @param Nav_Menus\Nav_Menus $nav_menus Nav_Menus component.
 	 * @param Scripts\Scripts     $scripts Scripts component.
 	 * @param Styles\Styles       $styles Styles component.
 	 */
 	public function __construct(
-		ACF\ACF $acf,
 		i18n\I18N $i18n,
 		Nav_Menus\Nav_Menus $nav_menus,
 		Scripts\Scripts $scripts,
 		Styles\Styles $styles
 	) {
-		$this->acf       = $acf;
 		$this->i18n      = $i18n;
 		$this->nav_menus = $nav_menus;
 		$this->scripts   = $scripts;
 		$this->styles    = $styles;
+	}
+
+	/**
+	 * Get the Nav Menus component.
+	 *
+	 * @return Nav_Menus\Nav_Menus Nav Menus component.
+	 */
+	public function nav_menus() {
+		return $this->nav_menus;
+	}
+
+	/**
+	 * Get the Scripts component.
+	 *
+	 * @return Scripts\Scripts Scripts component.
+	 */
+	public function scripts() {
+		return $this->scripts;
+	}
+
+	/**
+	 * Get the Styles component.
+	 *
+	 * @return Styles\Styles Styles component.
+	 */
+	public function styles() {
+		return $this->styles;
 	}
 }

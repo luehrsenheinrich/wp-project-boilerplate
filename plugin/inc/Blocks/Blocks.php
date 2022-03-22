@@ -6,30 +6,28 @@
  */
 
 namespace WpMunich\lhpbpp\Blocks;
-use WpMunich\lhpbpp\Component_Interface;
+use WpMunich\lhpbpp\Component;
 use function add_action;
 use function acf_register_block_type;
 
 /**
  * A class to handle the plugins blocks.
  */
-class Component implements Component_Interface {
-	/**
-	 * Gets the unique identifier for the plugin component.
-	 *
-	 * @return string Component slug.
-	 */
-	public function get_slug() {
-		return 'blocks';
-	}
+class Blocks extends Component {
 
 	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
+	 * {@inheritDoc}
 	 */
-	public function initialize() {
+	protected function add_actions() {
 		if ( function_exists( 'acf_register_block_type' ) ) {
 			add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function add_filters() {
 		add_filter( 'block_categories', array( $this, 'add_block_categories' ), 10, 2 );
 	}
 

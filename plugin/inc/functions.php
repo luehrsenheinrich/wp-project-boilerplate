@@ -12,15 +12,16 @@ namespace WpMunich\lhpbpp;
  *
  * When called for the first time, the function will initialize the plugin.
  *
- * @return Plugin_Functions Plugin functions instance exposing plugin function methods.
+ * @return Plugin The main plugin component.
  */
-function wp_lhpbpp() {
+function lh_plugin() {
 	static $plugin = null;
 
 	if ( null === $plugin ) {
-		$plugin = new Plugin();
-		$plugin->initialize();
-	}
+		$builder   = new \DI\ContainerBuilder();
+		$container = $builder->build();
 
-	return $plugin->plugin_functions();
+		$plugin = $container->get( Plugin::class );
+	}
+	return $plugin;
 }
