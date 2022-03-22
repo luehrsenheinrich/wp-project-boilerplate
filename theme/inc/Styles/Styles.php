@@ -7,8 +7,7 @@
 
 namespace WpMunich\lhpbpt\Styles;
 
-use WpMunich\lhpbpt\Component_Interface;
-use WpMunich\lhpbpt\Templating_Component_Interface;
+use WpMunich\lhpbpt\Component;
 use function add_action;
 use function wp_enqueue_style;
 use function wp_register_style;
@@ -16,7 +15,7 @@ use function wp_register_style;
 /**
  * A class to enqueue the needed styles.
  */
-class Component implements Component_Interface, Templating_Component_Interface {
+class Styles extends Component {
 
 	/**
 	 * The variable where our CSS files are saved.
@@ -26,18 +25,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	protected $css_files = false;
 
 	/**
-	 * Gets the unique identifier for the theme component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritdoc}
 	 */
-	public function get_slug() {
-		return 'styles';
-	}
-
-	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
-	 */
-	public function initialize() {
+	protected function add_actions() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_styles' ) );
 		add_action( 'wp_head', array( $this, 'action_preload_styles' ) );
 		add_action( 'wp_footer', array( $this, 'action_print_preloaded_styles' ) );
@@ -50,6 +40,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		/** Remove WP Emoji */
 		add_action( 'init', array( $this, 'remove_wp_emoji' ) );
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function add_filters() {}
 
 	/**
 	 * Gets template tags to expose as methods on the Template_Tags class instance, accessible through `wp_rig()`.

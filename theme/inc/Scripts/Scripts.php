@@ -6,29 +6,25 @@
  */
 
 namespace WpMunich\lhpbpt\Scripts;
-use WpMunich\lhpbpt\Component_Interface;
+use WpMunich\lhpbpt\Component;
 use function add_action;
 
 /**
  * A class to enqueue the needed scripts..
  */
-class Component implements Component_Interface {
+class Scripts extends Component {
 
 	/**
-	 * Gets the unique identifier for the theme component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritdoc}
 	 */
-	public function get_slug() {
-		return 'script';
-	}
-
-	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
-	 */
-	public function initialize() {
+	protected function add_actions() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function add_filters() {}
 
 	/**
 	 * Enqueue needed scripts.

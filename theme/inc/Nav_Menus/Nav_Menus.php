@@ -6,8 +6,7 @@
  */
 
 namespace WpMunich\lhpbpt\Nav_Menus;
-use WpMunich\lhpbpt\Component_Interface;
-use WpMunich\lhpbpt\Templating_Component_Interface;
+use WpMunich\lhpbpt\Component;
 use function add_action;
 use function register_nav_menus;
 use function esc_html__;
@@ -16,12 +15,8 @@ use function wp_nav_menu;
 
 /**
  * Class for managing navigation menus.
- *
- * Exposes template tags:
- * * `wp_lhpbpt()->is_nav_menu_active( string $slug )`
- * * `wp_lhpbpt()->display_nav_menu( array $args = [] )`
  */
-class Component implements Component_Interface, Templating_Component_Interface {
+class Nav_Menus extends Component {
 	/**
 	 * Associative array of theme navigations, keyed by their slug.
 	 *
@@ -33,6 +28,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Constructor function to populate theme vars.
 	 */
 	public function __construct() {
+		$this->add_actions();
+		$this->add_filters();
+
 		$this->nav_menu_list = array(
 			'header' => esc_html__( 'Header', 'lhpbpt' ),
 			'footer' => esc_html__( 'Footer', 'lhpbpt' ),
@@ -40,34 +38,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	}
 
 	/**
-	 * Gets the unique identifier for the theme component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritdoc}
 	 */
-	public function get_slug() {
-		return 'nav_menus';
-	}
+	protected function add_actions() {}
 
 	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
+	 * {@inheritdoc}
 	 */
-	public function initialize() {
-		add_action( 'after_setup_theme', array( $this, 'action_register_nav_menus' ) );
-	}
-
-	/**
-	 * Gets template tags to expose as methods on the Template_Tags class instance, accessible through `wp_lhpbpt()`.
-	 *
-	 * @return array Associative array of $method_name => $callback_info pairs. Each $callback_info must either be
-	 *               a callable or an array with key 'callable'. This approach is used to reserve the possibility of
-	 *               adding support for further arguments in the future.
-	 */
-	public function template_tags() {
-		return array(
-			'is_nav_menu_active' => array( $this, 'is_nav_menu_active' ),
-			'display_nav_menu'   => array( $this, 'display_nav_menu' ),
-		);
-	}
+	protected function add_filters() {}
 
 	/**
 	 * Registers the navigation menus.

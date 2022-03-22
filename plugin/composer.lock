@@ -40,6 +40,10 @@
                 }
             ],
             "description": "A simple PHP utility for conditionally joining classNames together",
+            "support": {
+                "issues": "https://github.com/CJStroud/classnames-php/issues",
+                "source": "https://github.com/CJStroud/classnames-php/tree/master"
+            },
             "time": "2017-04-29T22:14:00+00:00"
         }
     ],
@@ -51,5 +55,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.2.0"
 }

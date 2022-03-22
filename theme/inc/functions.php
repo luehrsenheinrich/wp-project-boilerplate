@@ -12,13 +12,15 @@ namespace WpMunich\lhpbpt;
  *
  * When called for the first time, the function will initialize the theme.
  *
- * @return Template_Tags Template tags instance exposing template tag methods.
+ * @return Theme The main theme component.
  */
 function wp_lhpbpt() {
 	static $theme = null;
 	if ( null === $theme ) {
-		$theme = new Theme();
-		$theme->initialize();
+		$builder   = new \DI\ContainerBuilder();
+		$container = $builder->build();
+
+		$theme = $container->get( Theme::class );
 	}
-	return $theme->template_tags();
+	return $theme;
 }
