@@ -69,8 +69,8 @@ class ACF extends Component {
 
 		$option_page = acf_add_options_page(
 			array(
-				'page_title' => __( 'Plugin Settings', 'lhpbpp' ),
-				'menu_title' => __( 'Plugin Settings', 'lhpbpp' ),
+				'page_title' => __( 'L//H Settings', 'lhpbpp' ),
+				'menu_title' => __( 'L//H  Settings', 'lhpbpp' ),
 				'menu_slug'  => 'lhpbpp-plugin-general-settings',
 				'icon_url'   => lh_plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
