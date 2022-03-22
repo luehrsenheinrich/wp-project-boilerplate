@@ -10,7 +10,7 @@ use WpMunich\lhpbpp\Component;
 use function add_action;
 use function wp_get_environment_type;
 use function acf_add_options_page;
-use function WpMunich\lhpbpp\wp_lhpbpp;
+use function WpMunich\lhpbpp\lh_plugin;
 
 /**
  * A class to handle acf related logic..
@@ -72,7 +72,7 @@ class ACF extends Component {
 				'page_title' => __( 'Plugin Settings', 'lhpbpp' ),
 				'menu_title' => __( 'Plugin Settings', 'lhpbpp' ),
 				'menu_slug'  => 'lhpbpp-plugin-general-settings',
-				'icon_url'   => wp_lhpbpp()->svg->get_admin_menu_icon( 'img/icons/slashes.svg' ),
+				'icon_url'   => lh_plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
 				'redirect'   => false,
 			)
