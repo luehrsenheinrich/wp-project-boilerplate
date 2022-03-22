@@ -43,23 +43,33 @@ class Theme {
 	protected $styles;
 
 	/**
+	 * Theme Supports component.
+	 *
+	 * @var Theme_Supports\Theme_Supports
+	 */
+	protected $theme_supports;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param i18n\I18N           $i18n I18N component.
-	 * @param Nav_Menus\Nav_Menus $nav_menus Nav_Menus component.
-	 * @param Scripts\Scripts     $scripts Scripts component.
-	 * @param Styles\Styles       $styles Styles component.
+	 * @param i18n\I18N                     $i18n I18N component.
+	 * @param Nav_Menus\Nav_Menus           $nav_menus Nav_Menus component.
+	 * @param Scripts\Scripts               $scripts Scripts component.
+	 * @param Styles\Styles                 $styles Styles component.
+	 * @param Theme_Supports\Theme_Supports $theme_supports Theme_Supports component.
 	 */
 	public function __construct(
 		i18n\I18N $i18n,
 		Nav_Menus\Nav_Menus $nav_menus,
 		Scripts\Scripts $scripts,
-		Styles\Styles $styles
+		Styles\Styles $styles,
+		Theme_Supports\Theme_Supports $theme_supports
 	) {
-		$this->i18n      = $i18n;
-		$this->nav_menus = $nav_menus;
-		$this->scripts   = $scripts;
-		$this->styles    = $styles;
+		$this->i18n           = $i18n;
+		$this->nav_menus      = $nav_menus;
+		$this->scripts        = $scripts;
+		$this->styles         = $styles;
+		$this->theme_supports = $theme_supports;
 	}
 
 	/**

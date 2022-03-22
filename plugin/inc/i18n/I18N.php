@@ -18,14 +18,14 @@ class I18N extends Component {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected function add_actions() {}
+	protected function add_actions() {
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	protected function add_filters() {
-		add_filter( 'block_categories', array( $this, 'add_block_categories' ), 10, 2 );
-	}
+	protected function add_filters() {}
 
 	/**
 	 * Load the plugin text domain for translation.

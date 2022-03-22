@@ -22,13 +22,15 @@ class Blocks extends Component {
 		if ( function_exists( 'acf_register_block_type' ) ) {
 			add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
 		}
+
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected function add_filters() {
-		add_filter( 'block_categories', array( $this, 'add_block_categories' ), 10, 2 );
+		add_filter( 'block_categories_all', array( $this, 'add_block_categories' ), 10, 2 );
 	}
 
 	/**
@@ -71,5 +73,26 @@ class Blocks extends Component {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Enqueue the block scripts and styles.
+	 */
+	public function enqueue_block_editor_assets() {
+		$screen = get_current_screen();
+
+		$assets = wp_json_file_decode( LHPBPP_PATH . '/admin/dist/assets.json', array( 'associative' => true ) );
+
+		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
+			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
+			wp_enqueue_script(
+				'kbsp-blocks-helper',
+				LHPBPP_URL . '/admin/dist/js/blocks-helper.min.js',
+				array_merge( array(), $block_helper_assets['dependencies'] ),
+				$block_helper_assets['version'],
+				true
+			);
+
+		}
 	}
 }

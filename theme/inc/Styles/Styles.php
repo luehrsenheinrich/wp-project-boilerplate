@@ -279,9 +279,10 @@ class Styles extends Component {
 	 * Enqueues WordPress theme styles for the editor.
 	 */
 	public function action_add_editor_styles() {
+
 		// Enqueue block editor stylesheet.
-		add_editor_style( 'css/font-fira-sans.min.css' );
-		add_editor_style( 'css/editor-styles.min.css' );
+		add_editor_style( 'dist/css/font-fira-sans.min.css' );
+		add_editor_style( 'dist/css/editor-styles.min.css' );
 	}
 
 	/**
