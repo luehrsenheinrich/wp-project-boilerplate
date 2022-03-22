@@ -45,20 +45,6 @@ class Styles extends Component {
 	 * {@inheritdoc}
 	 */
 	protected function add_filters() {}
-
-	/**
-	 * Gets template tags to expose as methods on the Template_Tags class instance, accessible through `wp_rig()`.
-	 *
-	 * @return array Associative array of $method_name => $callback_info pairs. Each $callback_info must either be
-	 *               a callable or an array with key 'callable'. This approach is used to reserve the possibility of
-	 *               adding support for further arguments in the future.
-	 */
-	public function template_tags() : array {
-		return array(
-			'print_styles' => array( $this, 'print_styles' ),
-		);
-	}
-
 	/**
 	 * Gets all CSS files.
 	 *
@@ -102,7 +88,7 @@ class Styles extends Component {
 		 *                         enqueued instead of just being registered) and 'preload_callback' (callback)
 		 *                         function determining whether the file should be preloaded for the current request).
 		 */
-		$css_files = apply_filters( 'lhpbpt_css_files', $css_files );
+		$css_files = apply_filters( 'lh_theme_css_files', $css_files );
 
 		$this->css_files = array();
 		foreach ( $css_files as $handle => $data ) {
@@ -146,7 +132,7 @@ class Styles extends Component {
 		 *
 		 * @param bool $preloading_styles_enabled Whether preloading stylesheets and injecting them is enabled.
 		 */
-		return apply_filters( 'lhpbpt_preloading_styles_enabled', $preloading_styles_enabled );
+		return apply_filters( 'lh_theme_preloading_styles_enabled', $preloading_styles_enabled );
 	}
 
 	/**
@@ -161,7 +147,7 @@ class Styles extends Component {
 	 *
 	 * @param string ...$handles One or more stylesheet handles.
 	 */
-	public function print_styles( string ...$handles ) {
+	public function print( string ...$handles ) {
 		// If preloading styles is disabled (and thus they have already been enqueued), return early.
 		if ( ! $this->preloading_styles_enabled() ) {
 			return;
@@ -176,7 +162,7 @@ class Styles extends Component {
 
 				if ( ! $is_valid ) {
 					/* translators: %s: stylesheet handle */
-					_doing_it_wrong( __CLASS__ . '::print_styles()', esc_html( sprintf( __( 'Invalid theme stylesheet handle: %s', 'lhpbpt' ), $handle ) ), 'lhpbpt' );
+					_doing_it_wrong( __CLASS__ . '::print()', esc_html( sprintf( __( 'Invalid theme stylesheet handle: %s', 'lhpbpt' ), $handle ) ), 'lhpbpt' );
 				}
 
 				return $is_valid;
