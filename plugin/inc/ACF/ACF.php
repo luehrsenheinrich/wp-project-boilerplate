@@ -2,40 +2,36 @@
 /**
  * Lhplugin\ACF\Component class
  *
- * @package lhpbpt
+ * @package lhpbpp
  */
 
-namespace WpMunich\lhpbpt\ACF;
-use WpMunich\lhpbpt\Component_Interface;
+namespace WpMunich\lhpbpp\ACF;
+use WpMunich\lhpbpp\Component;
 use function add_action;
 use function wp_get_environment_type;
 use function acf_add_options_page;
+use function WpMunich\lhpbpp\lh_plugin;
 
 /**
  * A class to handle acf related logic..
  */
-class Component implements Component_Interface {
-
+class ACF extends Component {
 	/**
-	 * Gets the unique identifier for the plugin component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritDoc}
 	 */
-	public function get_slug() {
-		return 'acf';
+	protected function add_actions() {
+		add_action( 'acf/init', array( $this, 'add_options_page' ) );
 	}
 
 	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
+	 * {@inheritDoc}
 	 */
-	public function initialize() {
-		if ( wp_get_environment_type() === 'development' && defined( 'LH_CURRENTLY_EDITING' ) && LH_CURRENTLY_EDITING === 'lhpbpt' ) {
+	protected function add_filters() {
+		if ( wp_get_environment_type() === 'development' && defined( 'LH_CURRENTLY_EDITING' ) && LH_CURRENTLY_EDITING === 'lhpbp' ) {
 			add_filter( 'acf/settings/save_json', array( $this, 'acf_json_save_point' ) );
 		}
 
 		add_filter( 'acf/settings/load_json', array( $this, 'acf_json_load_point' ) );
-
-		add_action( 'acf/init', array( $this, 'add_options_page' ) );
 	}
 
 	/**
@@ -46,7 +42,7 @@ class Component implements Component_Interface {
 	 * @return string       Save path.
 	 */
 	public function acf_json_save_point( $path ) {
-		$path = get_template_directory() . '/acf-json';
+		$path = LHPBPP_PATH . 'acf-json';
 		return $path;
 	}
 
@@ -58,18 +54,9 @@ class Component implements Component_Interface {
 	 * @return array        An array of paths.
 	 */
 	public function acf_json_load_point( $paths ) {
-		$paths[] = get_template_directory() . '/acf-json';
+		$paths[] = LHPBPP_PATH . 'acf-json';
 
 		return $paths;
-	}
-
-	/**
-	 * Hide the acf admin
-	 *
-	 * @return void
-	 */
-	private function hide_acf_admin() {
-		add_filter( 'acf/settings/show_admin', '__return_false' );
 	}
 
 	/**
@@ -82,9 +69,10 @@ class Component implements Component_Interface {
 
 		$option_page = acf_add_options_page(
 			array(
-				'page_title' => __( 'Theme Settings', 'lhpbpt' ),
-				'menu_title' => __( 'Theme Settings', 'lhpbpt' ),
-				'menu_slug'  => 'lhpbpt-plugin-general-settings',
+				'page_title' => __( 'L//H Settings', 'lhpbpp' ),
+				'menu_title' => __( 'L//H  Settings', 'lhpbpp' ),
+				'menu_slug'  => 'lhpbpp-plugin-general-settings',
+				'icon_url'   => lh_plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
 				'redirect'   => false,
 			)

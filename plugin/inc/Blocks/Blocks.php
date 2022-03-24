@@ -6,31 +6,31 @@
  */
 
 namespace WpMunich\lhpbpp\Blocks;
-use WpMunich\lhpbpp\Component_Interface;
+use WpMunich\lhpbpp\Component;
 use function add_action;
 use function acf_register_block_type;
 
 /**
  * A class to handle the plugins blocks.
  */
-class Component implements Component_Interface {
-	/**
-	 * Gets the unique identifier for the plugin component.
-	 *
-	 * @return string Component slug.
-	 */
-	public function get_slug() {
-		return 'blocks';
-	}
+class Blocks extends Component {
 
 	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
+	 * {@inheritDoc}
 	 */
-	public function initialize() {
+	protected function add_actions() {
 		if ( function_exists( 'acf_register_block_type' ) ) {
 			add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
 		}
-		add_filter( 'block_categories', array( $this, 'add_block_categories' ), 10, 2 );
+
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function add_filters() {
+		add_filter( 'block_categories_all', array( $this, 'add_block_categories' ), 10, 2 );
 	}
 
 	/**
@@ -73,5 +73,26 @@ class Component implements Component_Interface {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Enqueue the block scripts and styles.
+	 */
+	public function enqueue_block_editor_assets() {
+		$screen = get_current_screen();
+
+		$assets = wp_json_file_decode( LHPBPP_PATH . '/admin/dist/assets.json', array( 'associative' => true ) );
+
+		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
+			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
+			wp_enqueue_script(
+				'kbsp-blocks-helper',
+				LHPBPP_URL . '/admin/dist/js/blocks-helper.min.js',
+				array_merge( array(), $block_helper_assets['dependencies'] ),
+				$block_helper_assets['version'],
+				true
+			);
+
+		}
 	}
 }

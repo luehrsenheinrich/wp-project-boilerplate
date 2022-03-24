@@ -31,4 +31,4 @@ require get_template_directory() . '/vendor/autoload.php';
 require get_template_directory() . '/inc/functions.php';
 
 // Initialize the theme.
-call_user_func( 'WpMunich\lhpbpt\wp_lhpbpt' );
+call_user_func( 'WpMunich\lhpbpt\lh_theme' );

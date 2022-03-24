@@ -83,4 +83,4 @@ if ( wp_get_environment_type() === 'development' ) {
 }
 
 // Initialize the plugin.
-call_user_func( 'WpMunich\lhpbpp\wp_lhpbpp' );
+call_user_func( 'WpMunich\lhpbpp\lh_plugin' );

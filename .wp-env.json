@@ -3,10 +3,7 @@
 		"./theme"
 	],
 	"plugins": [
-		"./plugin",
-		"https://downloads.wordpress.org/plugin/wordpress-importer.zip",
-		"https://downloads.wordpress.org/plugin/query-monitor.zip",
-		"https://downloads.wordpress.org/plugin/debug-bar.zip"
+		"./plugin"
 	],
 	"mappings": {
 		"php.ini": "./bin/php.ini",

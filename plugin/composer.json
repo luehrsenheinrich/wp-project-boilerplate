@@ -2,7 +2,8 @@
   "name": "wpmunich/lhbpp",
   "type": "wordpress-plugin",
   "require": {
-    "cjstroud/classnames-php": "^1.0"
+    "cjstroud/classnames-php": "^1.0",
+    "php-di/php-di": "^6.3"
   },
   "autoload": {
     "psr-4": {
