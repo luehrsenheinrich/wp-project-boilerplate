@@ -50,6 +50,13 @@ class Theme {
 	protected $theme_supports;
 
 	/**
+	 * FSE component.
+	 *
+	 * @var FSE\FSE
+	 */
+	protected $fse;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param i18n\I18N                     $i18n I18N component.
@@ -57,19 +64,22 @@ class Theme {
 	 * @param Scripts\Scripts               $scripts Scripts component.
 	 * @param Styles\Styles                 $styles Styles component.
 	 * @param Theme_Supports\Theme_Supports $theme_supports Theme_Supports component.
+	 * @param FSE\FSE                       $fse FSE component.
 	 */
 	public function __construct(
 		i18n\I18N $i18n,
 		Nav_Menus\Nav_Menus $nav_menus,
 		Scripts\Scripts $scripts,
 		Styles\Styles $styles,
-		Theme_Supports\Theme_Supports $theme_supports
+		Theme_Supports\Theme_Supports $theme_supports,
+		FSE\FSE $fse
 	) {
 		$this->i18n           = $i18n;
 		$this->nav_menus      = $nav_menus;
 		$this->scripts        = $scripts;
 		$this->styles         = $styles;
 		$this->theme_supports = $theme_supports;
+		$this->fse            = $fse;
 	}
 
 	/**
