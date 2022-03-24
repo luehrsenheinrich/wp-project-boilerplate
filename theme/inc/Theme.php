@@ -57,6 +57,13 @@ class Theme {
 	protected $fse;
 
 	/**
+	 * Lazysizes component.
+	 *
+	 * @var Lazysizes\Lazysizes
+	 */
+	protected $lazysizes;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param i18n\I18N                     $i18n I18N component.
@@ -65,6 +72,7 @@ class Theme {
 	 * @param Styles\Styles                 $styles Styles component.
 	 * @param Theme_Supports\Theme_Supports $theme_supports Theme_Supports component.
 	 * @param FSE\FSE                       $fse FSE component.
+	 * @param Lazysizes\Lazysizes           $lazysizes Lazysizes component.
 	 */
 	public function __construct(
 		i18n\I18N $i18n,
@@ -72,7 +80,8 @@ class Theme {
 		Scripts\Scripts $scripts,
 		Styles\Styles $styles,
 		Theme_Supports\Theme_Supports $theme_supports,
-		FSE\FSE $fse
+		FSE\FSE $fse,
+		Lazysizes\Lazysizes $lazysizes
 	) {
 		$this->i18n           = $i18n;
 		$this->nav_menus      = $nav_menus;
@@ -80,6 +89,7 @@ class Theme {
 		$this->styles         = $styles;
 		$this->theme_supports = $theme_supports;
 		$this->fse            = $fse;
+		$this->lazysizes      = $lazysizes;
 	}
 
 	/**

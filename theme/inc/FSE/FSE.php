@@ -1,6 +1,6 @@
 <?php
 /**
- * KBST\FSE\Component class
+ * LHPBPT\FSE\Component class
  *
  * @package lhpbpt
  */

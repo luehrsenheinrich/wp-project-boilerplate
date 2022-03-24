@@ -86,7 +86,7 @@ class Blocks extends Component {
 		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
-				'kbsp-blocks-helper',
+				'lhpbpp-blocks-helper',
 				LHPBPP_URL . '/admin/dist/js/blocks-helper.min.js',
 				array_merge( array(), $block_helper_assets['dependencies'] ),
 				$block_helper_assets['version'],
