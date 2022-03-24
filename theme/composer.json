@@ -1,10 +1,17 @@
 {
   "name": "luehrsenheinrich/lhtbp",
   "type": "wordpress-theme",
-  "require": {},
+  "require": {
+    "php-di/php-di": "^6.3"
+  },
   "autoload": {
     "psr-4": {
       "WpMunich\\lhpbpt\\": "inc/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "bamarni/composer-bin-plugin": true
     }
   }
 }

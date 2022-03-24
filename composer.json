@@ -13,7 +13,15 @@
 	},
 	"scripts": {
 		"lint": "phpcs -d memory_limit=-1",
-		"fix": "phpcbf -d memory_limit=-1"
+		"fix": "phpcbf -d memory_limit=-1",
+		"post-install-cmd": [
+			"cd theme && composer install",
+			"cd plugin && composer install"
+		],
+		"post-update-cmd": [
+			"cd theme && composer update",
+			"cd plugin && composer update"
+		]
 	},
 	"config": {
 		"allow-plugins": {

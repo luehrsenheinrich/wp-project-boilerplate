@@ -6,15 +6,14 @@
  */
 
 namespace WpMunich\lhpbpp\SVG;
-use WpMunich\lhpbpp\Component_Interface;
-use WpMunich\lhpbpp\Plugin_Function_Interface;
+use WpMunich\lhpbpp\Component;
 use function add_action;
 use \WP_Error;
 
 /**
  * The Component
  */
-class Component implements Component_Interface, Plugin_Function_Interface {
+class SVG extends Component {
 
 	/**
 	 * A storage type for icons we have already used.
@@ -24,32 +23,14 @@ class Component implements Component_Interface, Plugin_Function_Interface {
 	private $images = array();
 
 	/**
-	 * Gets the unique identifier for the theme component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritDoc}
 	 */
-	public function get_slug() {
-		return 'svg';
-	}
+	protected function add_actions() {}
 
 	/**
-	 * Gets template tags to expose as methods on the Template_Tags class instance, accessible through `wp_lhpbpp()`.
-	 *
-	 * @return array Associative array of $method_name => $callback_info pairs. Each $callback_info must either be
-	 *               a callable or an array with key 'callable'. This approach is used to reserve the possibility of
-	 *               adding support for further arguments in the future.
+	 * {@inheritDoc}
 	 */
-	public function plugin_functions() {
-		return array(
-			'get_svg'             => array( $this, 'load' ),
-			'get_admin_menu_icon' => array( $this, 'get_admin_menu_icon' ),
-		);
-	}
-
-	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
-	 */
-	public function initialize() {}
+	protected function add_filters() {}
 
 	/**
 	 * Get an SVG from the theme or plugin folder.
@@ -59,7 +40,7 @@ class Component implements Component_Interface, Plugin_Function_Interface {
 	 *
 	 * @return string The SVG code.
 	 */
-	public function load( $path = null, $args = array() ) {
+	public function get_svg( $path = null, $args = array() ) {
 		$final_path = get_template_directory() . $path;
 
 		switch ( $path ) {
@@ -106,6 +87,6 @@ class Component implements Component_Interface, Plugin_Function_Interface {
 			),
 		);
 
-		return $this->load( $path, $args );
+		return $this->get_svg( $path, $args );
 	}
 }

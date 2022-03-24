@@ -7,8 +7,7 @@
 
 namespace WpMunich\lhpbpt\Styles;
 
-use WpMunich\lhpbpt\Component_Interface;
-use WpMunich\lhpbpt\Templating_Component_Interface;
+use WpMunich\lhpbpt\Component;
 use function add_action;
 use function wp_enqueue_style;
 use function wp_register_style;
@@ -16,7 +15,7 @@ use function wp_register_style;
 /**
  * A class to enqueue the needed styles.
  */
-class Component implements Component_Interface, Templating_Component_Interface {
+class Styles extends Component {
 
 	/**
 	 * The variable where our CSS files are saved.
@@ -26,18 +25,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	protected $css_files = false;
 
 	/**
-	 * Gets the unique identifier for the theme component.
-	 *
-	 * @return string Component slug.
+	 * {@inheritdoc}
 	 */
-	public function get_slug() {
-		return 'styles';
-	}
-
-	/**
-	 * Adds the action and filter hooks to integrate with WordPress.
-	 */
-	public function initialize() {
+	protected function add_actions() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_styles' ) );
 		add_action( 'wp_head', array( $this, 'action_preload_styles' ) );
 		add_action( 'wp_footer', array( $this, 'action_print_preloaded_styles' ) );
@@ -52,18 +42,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	}
 
 	/**
-	 * Gets template tags to expose as methods on the Template_Tags class instance, accessible through `wp_rig()`.
-	 *
-	 * @return array Associative array of $method_name => $callback_info pairs. Each $callback_info must either be
-	 *               a callable or an array with key 'callable'. This approach is used to reserve the possibility of
-	 *               adding support for further arguments in the future.
+	 * {@inheritdoc}
 	 */
-	public function template_tags() : array {
-		return array(
-			'print_styles' => array( $this, 'print_styles' ),
-		);
-	}
-
+	protected function add_filters() {}
 	/**
 	 * Gets all CSS files.
 	 *
@@ -107,7 +88,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		 *                         enqueued instead of just being registered) and 'preload_callback' (callback)
 		 *                         function determining whether the file should be preloaded for the current request).
 		 */
-		$css_files = apply_filters( 'lhpbpt_css_files', $css_files );
+		$css_files = apply_filters( 'lh_theme_css_files', $css_files );
 
 		$this->css_files = array();
 		foreach ( $css_files as $handle => $data ) {
@@ -151,7 +132,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		 *
 		 * @param bool $preloading_styles_enabled Whether preloading stylesheets and injecting them is enabled.
 		 */
-		return apply_filters( 'lhpbpt_preloading_styles_enabled', $preloading_styles_enabled );
+		return apply_filters( 'lh_theme_preloading_styles_enabled', $preloading_styles_enabled );
 	}
 
 	/**
@@ -166,7 +147,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 *
 	 * @param string ...$handles One or more stylesheet handles.
 	 */
-	public function print_styles( string ...$handles ) {
+	public function print( string ...$handles ) {
 		// If preloading styles is disabled (and thus they have already been enqueued), return early.
 		if ( ! $this->preloading_styles_enabled() ) {
 			return;
@@ -181,7 +162,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 				if ( ! $is_valid ) {
 					/* translators: %s: stylesheet handle */
-					_doing_it_wrong( __CLASS__ . '::print_styles()', esc_html( sprintf( __( 'Invalid theme stylesheet handle: %s', 'lhpbpt' ), $handle ) ), 'lhpbpt' );
+					_doing_it_wrong( __CLASS__ . '::print()', esc_html( sprintf( __( 'Invalid theme stylesheet handle: %s', 'lhpbpt' ), $handle ) ), 'lhpbpt' );
 				}
 
 				return $is_valid;
@@ -298,9 +279,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Enqueues WordPress theme styles for the editor.
 	 */
 	public function action_add_editor_styles() {
+
 		// Enqueue block editor stylesheet.
-		add_editor_style( 'css/font-fira-sans.min.css' );
-		add_editor_style( 'css/editor-styles.min.css' );
+		add_editor_style( 'dist/css/font-fira-sans.min.css' );
+		add_editor_style( 'dist/css/editor-styles.min.css' );
 	}
 
 	/**
