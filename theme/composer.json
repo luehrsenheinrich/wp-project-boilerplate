@@ -1,6 +1,7 @@
 {
   "name": "luehrsenheinrich/lhtbp",
   "type": "wordpress-theme",
+  "optimize-autoloader": true,
   "require": {
     "php-di/php-di": "^6.3"
   },

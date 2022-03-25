@@ -1,6 +1,7 @@
 {
   "name": "wpmunich/lhbpp",
   "type": "wordpress-plugin",
+  "optimize-autoloader": true,
   "require": {
     "cjstroud/classnames-php": "^1.0",
     "php-di/php-di": "^6.3"
