@@ -4,9 +4,9 @@
 const glob = require('glob');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 
 /**
@@ -14,42 +14,50 @@ const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extract
  *
  * @type {string[]}
  */
-const ThemeFrontendJs = glob.sync('./theme/src/js/*.js').reduce(function (obj, el) {
-	obj['js/' + path.parse(el).name + '.min'] = el;
-	obj['js/' + path.parse(el).name + '.bundle'] = el;
-	return obj;
-}, {});
+const ThemeFrontendJs = glob
+	.sync('./theme/src/js/*.js')
+	.reduce(function (obj, el) {
+		obj['js/' + path.parse(el).name + '.min'] = el;
+		obj['js/' + path.parse(el).name + '.bundle'] = el;
+		return obj;
+	}, {});
 
 /**
  * Theme frontend CSS files
  *
  * @type {string[]}
  */
-const ThemeFrontendCSS = glob.sync('./theme/src/css/*.css').reduce(function (obj, el) {
-	obj['css/' + path.parse(el).name + '.min'] = el;
-	return obj;
-}, {});
+const ThemeFrontendCSS = glob
+	.sync('./theme/src/css/*.css')
+	.reduce(function (obj, el) {
+		obj['css/' + path.parse(el).name + '.min'] = el;
+		return obj;
+	}, {});
 
 /**
  * Theme backend JavaScript files
  *
  * @type {string[]}
  */
-const ThemeBackendJs = glob.sync('./theme/admin/src/js/*.js').reduce(function (obj, el) {
-    obj['js/' + path.parse(el).name + '.min'] = el;
-    obj['js/' + path.parse(el).name + '.bundle'] = el;
-    return obj;
-}, {});
+const ThemeBackendJs = glob
+	.sync('./theme/admin/src/js/*.js')
+	.reduce(function (obj, el) {
+		obj['js/' + path.parse(el).name + '.min'] = el;
+		obj['js/' + path.parse(el).name + '.bundle'] = el;
+		return obj;
+	}, {});
 
 /**
  * Theme backend CSS files
  *
  * @type {string[]}
  */
-const ThemeBackendCSS = glob.sync('./theme/admin/src/css/*.css').reduce(function (obj, el) {
-    obj['css/' + path.parse(el).name + '.min'] = el;
-    return obj;
-}, {});
+const ThemeBackendCSS = glob
+	.sync('./theme/admin/src/css/*.css')
+	.reduce(function (obj, el) {
+		obj['css/' + path.parse(el).name + '.min'] = el;
+		return obj;
+	}, {});
 
 /**
  * Theme PHP files
@@ -57,8 +65,8 @@ const ThemeBackendCSS = glob.sync('./theme/admin/src/css/*.css').reduce(function
  * @type {string[]}
  */
 const ThemePhp = glob.sync('./theme/**/*.php').reduce(function (obj, el) {
-    obj['php/' + path.parse(el).name] = el;
-    return obj;
+	obj['php/' + path.parse(el).name] = el;
+	return obj;
 }, {});
 
 /**
@@ -66,21 +74,25 @@ const ThemePhp = glob.sync('./theme/**/*.php').reduce(function (obj, el) {
  *
  * @type {string[]}
  */
-const PluginBackendJs = glob.sync('./plugin/admin/src/js/*.js').reduce(function (obj, el) {
-    obj['js/' + path.parse(el).name + '.min'] = el;
-    obj['js/' + path.parse(el).name + '.bundle'] = el;
-    return obj;
-}, {});
+const PluginBackendJs = glob
+	.sync('./plugin/admin/src/js/*.js')
+	.reduce(function (obj, el) {
+		obj['js/' + path.parse(el).name + '.min'] = el;
+		obj['js/' + path.parse(el).name + '.bundle'] = el;
+		return obj;
+	}, {});
 
 /**
  * Plugin backend CSS files
  *
  * @type {string[]}
  */
-const PluginBackendCSS = glob.sync('./plugin/admin/src/css/*.css').reduce(function (obj, el) {
-    obj['css/' + path.parse(el).name + '.min'] = el;
-    return obj;
-}, {});
+const PluginBackendCSS = glob
+	.sync('./plugin/admin/src/css/*.css')
+	.reduce(function (obj, el) {
+		obj['css/' + path.parse(el).name + '.min'] = el;
+		return obj;
+	}, {});
 
 /**
  * The default JS loader.
@@ -89,14 +101,14 @@ const PluginBackendCSS = glob.sync('./plugin/admin/src/css/*.css').reduce(functi
  * @type {Object}
  */
 const defaultJsLoader = {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    use: {
-        loader: 'babel-loader',
-        options: {
-            presets: ['@babel/preset-env'],
-        },
-    },
+	test: /\.js$/,
+	exclude: /node_modules/,
+	use: {
+		loader: 'babel-loader',
+		options: {
+			presets: ['@babel/preset-env'],
+		},
+	},
 };
 
 /**
@@ -106,19 +118,19 @@ const defaultJsLoader = {
  * @type {Object}
  */
 const wordpressJsLoader = {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    use: {
-        loader: 'babel-loader',
-        options: {
-            presets: ['@wordpress/babel-preset-default'],
-            plugins: [
-                '@wordpress/babel-plugin-import-jsx-pragma',
-                '@babel/plugin-transform-react-jsx',
-                'lodash',
-            ],
-        },
-    },
+	test: /\.js$/,
+	exclude: /node_modules/,
+	use: {
+		loader: 'babel-loader',
+		options: {
+			presets: ['@wordpress/babel-preset-default'],
+			plugins: [
+				'@wordpress/babel-plugin-import-jsx-pragma',
+				'@babel/plugin-transform-react-jsx',
+				'lodash',
+			],
+		},
+	},
 };
 
 /**
@@ -127,7 +139,7 @@ const wordpressJsLoader = {
  * @type {Object}
  */
 const defaultConfig = {
-	mode: 'production',
+	mode: 'development',
 	optimization: {
 		minimizer: [
 			new TerserPlugin({
@@ -135,54 +147,54 @@ const defaultConfig = {
 			}),
 		],
 	},
-    output: {
-        clean: true,
-        filename: '[name].js',
-    },
+	output: {
+		clean: true,
+		filename: '[name].js',
+	},
 	resolve: {
 		modules: ['node_modules'],
 	},
-    plugins: [
-        new LiveReloadPlugin({
-            useSourceHash: true,
-        }),
-        new RemoveEmptyScriptsPlugin({
-            extensions: ['css', 'php'],
-        }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-        }),
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: false,
-                            import: false,
-                            url: false,
-                            sourceMap: true,
-                            importLoaders: 1,
-                        },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.php$/,
-                loader: 'null-loader',
-            }
-        ],
-    },
+	plugins: [
+		new LiveReloadPlugin({
+			useSourceHash: true,
+		}),
+		new RemoveEmptyScriptsPlugin({
+			extensions: ['css', 'php'],
+		}),
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+		}),
+	],
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							modules: false,
+							import: false,
+							url: false,
+							sourceMap: true,
+							importLoaders: 1,
+						},
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							sourceMap: true,
+						},
+					},
+				],
+			},
+			{
+				test: /\.php$/,
+				loader: 'null-loader',
+			},
+		],
+	},
 };
 
 /**
@@ -191,23 +203,20 @@ const defaultConfig = {
  * @type {Object}
  */
 const themeFrontendWebpackOptions = {
-    ...defaultConfig,
-    name: 'themeFrontend',
-    entry: {
-        ...ThemeFrontendJs,
-        ...ThemeFrontendCSS,
-        ...ThemePhp,
-    },
-    output: {
-        ...defaultConfig.output,
-        path: path.resolve(__dirname, 'theme/dist'),
-    },
-    module: {
-        rules: [
-            ...defaultConfig.module.rules,
-            defaultJsLoader,
-        ]
-    }
+	...defaultConfig,
+	name: 'themeFrontend',
+	entry: {
+		...ThemeFrontendJs,
+		...ThemeFrontendCSS,
+		...ThemePhp,
+	},
+	output: {
+		...defaultConfig.output,
+		path: path.resolve(__dirname, 'theme/dist'),
+	},
+	module: {
+		rules: [...defaultConfig.module.rules, defaultJsLoader],
+	},
 };
 
 /**
@@ -216,29 +225,26 @@ const themeFrontendWebpackOptions = {
  * @type {Object}
  */
 const themeBackendWebpackOptions = {
-    ...defaultConfig,
-    name: 'themeBackend',
-    entry: {
-        ...ThemeBackendJs,
-        ...ThemeBackendCSS,
-    },
-    output: {
-        ...defaultConfig.output,
-        path: path.resolve(__dirname, 'theme/admin/dist'),
-    },
-    module: {
-        rules: [
-            ...defaultConfig.module.rules,
-            wordpressJsLoader,
-        ]
-    },
-    plugins: [
-        ...defaultConfig.plugins,
-        new DependencyExtractionWebpackPlugin({
-            outputFormat: 'json',
-            combineAssets: true,
-        })
-    ]
+	...defaultConfig,
+	name: 'themeBackend',
+	entry: {
+		...ThemeBackendJs,
+		...ThemeBackendCSS,
+	},
+	output: {
+		...defaultConfig.output,
+		path: path.resolve(__dirname, 'theme/admin/dist'),
+	},
+	module: {
+		rules: [...defaultConfig.module.rules, wordpressJsLoader],
+	},
+	plugins: [
+		...defaultConfig.plugins,
+		new DependencyExtractionWebpackPlugin({
+			outputFormat: 'json',
+			combineAssets: true,
+		}),
+	],
 };
 
 /**
@@ -247,35 +253,30 @@ const themeBackendWebpackOptions = {
  * @type {Object}
  */
 const pluginBackendWebpackOptions = {
-    ...defaultConfig,
-    name: 'pluginBackend',
-    entry: {
-        ...PluginBackendJs,
-        ...PluginBackendCSS,
-    },
-    output: {
-        ...defaultConfig.output,
-        path: path.resolve(__dirname, 'plugin/admin/dist'),
-    },
-    module: {
-        rules: [
-            ...defaultConfig.module.rules,
-            wordpressJsLoader,
-        ]
-    },
-    plugins: [
-        ...defaultConfig.plugins,
-        new DependencyExtractionWebpackPlugin({
-            outputFormat: 'json',
-            combineAssets: true,
-        })
-    ]
+	...defaultConfig,
+	name: 'pluginBackend',
+	entry: {
+		...PluginBackendJs,
+		...PluginBackendCSS,
+	},
+	output: {
+		...defaultConfig.output,
+		path: path.resolve(__dirname, 'plugin/admin/dist'),
+	},
+	module: {
+		rules: [...defaultConfig.module.rules, wordpressJsLoader],
+	},
+	plugins: [
+		...defaultConfig.plugins,
+		new DependencyExtractionWebpackPlugin({
+			outputFormat: 'json',
+			combineAssets: true,
+		}),
+	],
 };
 
-
-
 module.exports = [
-    themeFrontendWebpackOptions,
-    pluginBackendWebpackOptions,
-    themeBackendWebpackOptions,
-]
+	themeFrontendWebpackOptions,
+	pluginBackendWebpackOptions,
+	themeBackendWebpackOptions,
+];
