@@ -88,15 +88,21 @@ jobs:
       - name: Check Status
         run: git status
 
+      - name: 🔼 Bump version
+        id: version
+        run: echo "::set-output name=version::$(npm version ${{ github.event.inputs.version }} -m 'Tagging %s' -f)"
+
       - name: 🔎 Lint the code
         run: npm run lint
 
       - name: 🏗 Build the code release
         run: npm run release
 
-      - name: 🔼 Bump version
-        id: version
-        run: echo "::set-output name=version::$(npm version ${{ github.event.inputs.version }} -m 'Tagging %s' -f)"
+      - name: Push the version to git
+        run: |
+            git push && git push --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
 
       - name: 🚀 Create Release
         id: create_release
@@ -105,6 +111,7 @@ jobs:
           body: |
             ${{ steps.changelog.outputs.log }}
           files: ./archives/*.zip
+          tag_name: ${{ steps.version.outputs.version }}
 
       - name: 🚢 Deploy to Update Server
         if: ${{ success() }}
