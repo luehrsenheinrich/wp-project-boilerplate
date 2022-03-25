@@ -98,6 +98,17 @@ jobs:
       - name: 🏗 Build the code release
         run: npm run release
 
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.version.outputs.version }}',
+              sha: context.sha
+            })
+
       - name: Push the version to git
         run: |
             git push && git push --tags
