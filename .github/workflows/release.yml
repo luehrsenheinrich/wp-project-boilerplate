@@ -108,8 +108,6 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          body: |
-            ${{ steps.changelog.outputs.log }}
           files: ./archives/*.zip
           tag_name: ${{ steps.version.outputs.version }}
 
@@ -120,5 +118,5 @@ jobs:
           server: ${{ secrets.UPDATE_SERVER_HOST }}
           username: ${{ secrets.UPDATE_SERVER_USER }}
           password: ${{ secrets.UPDATE_SERVER_PASSWORD }}
-          local-dir: ./update/
+          local-dir: ./archives/
           state-name: .${{ steps.package.outputs.slug }}-sync-state.json
