@@ -118,4 +118,22 @@ class Theme {
 	public function styles() {
 		return $this->styles;
 	}
+
+	/**
+	 * Get the current theme slug.
+	 *
+	 * @return string Theme slug.
+	 */
+	public function get_theme_slug() {
+		return 'lhpbpt';
+	}
+
+	/**
+	 * Get the current theme version.
+	 *
+	 * @return string Theme version.
+	 */
+	public function get_theme_version() {
+		return wp_get_theme()->get( 'Version' );
+	}
 }

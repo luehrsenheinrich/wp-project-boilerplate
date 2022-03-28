@@ -8,6 +8,7 @@
 namespace WpMunich\lhpbpt\Lazysizes;
 use WpMunich\lhpbpt\Component;
 use function add_action;
+use function WpMunich\lhpbpt\lh_theme;
 
 /**
  * Add a class to handle lazy loading of images.
@@ -159,7 +160,7 @@ class Lazysizes extends Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), LHPBPT_VERSION, true );
+		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), lh_theme()->get_theme_version(), true );
 	}
 
 	/**

@@ -8,6 +8,7 @@
 namespace WpMunich\lhpbpt\Scripts;
 use WpMunich\lhpbpt\Component;
 use function add_action;
+use function WpMunich\lhpbpt\lh_theme;
 
 /**
  * A class to enqueue the needed scripts..
@@ -32,7 +33,7 @@ class Scripts extends Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), LHPBPT_VERSION, true );
+		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
 
 		$translation_array = array(
 			'themeUrl' => get_template_directory_uri(),
