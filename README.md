@@ -33,7 +33,7 @@ new repository. So let's get started:
 
 ### Test Release
 - [ ] Create a [patch release](../../actions/workflows/release.yml) with the github action
-- [ ] Check if the release has been created and uploaded in the GitHub release section
+- [ ] Check if the [release](../../releases) has been created and uploaded in the GitHub release section
 
 ### Finishing touches
 - [ ] Edit the `project-README.md` with the appropriate text about your theme
