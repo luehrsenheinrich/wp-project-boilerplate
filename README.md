@@ -32,7 +32,7 @@ new repository. So let's get started:
 - [ ] Open `http://localhost/wp-admin` and log in with `admin:password`
 
 ### Test Release
-- [ ] Create a patch release with the github action
+- [ ] Create a [patch release](../../actions/workflows/release.yml) with the github action
 - [ ] Check if the release has been created and uploaded in the GitHub release section
 
 ### Finishing touches
