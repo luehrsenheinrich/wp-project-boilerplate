@@ -31,12 +31,6 @@ fs.readFile(`./plugin/${pkg.slug}p.php`, (err, data) => {
     // Replace the existing version row.
     let newData = data.toString().replace(versionRowRegex, newVersionRow);
 
-    // Create a new version constant.
-    const newVersionConstant = `define( '${uppercaseSlug}P_VERSION', '${pkg.version}' );`;
-
-    // Replace the version constant.
-    newData = newData.replace(versionRegex, newVersionConstant);
-
     // Write the new content to the file.
     fs.writeFile(`./plugin/${pkg.slug}p.php`, newData, (err) => {
         console.log( `Plugin version in ${pkg.slug}.php updated.` );
