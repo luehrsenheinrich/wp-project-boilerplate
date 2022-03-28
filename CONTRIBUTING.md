@@ -16,7 +16,7 @@ If you want to contribute code to the project you have to set up the environment
 
 The working directories are the `theme` & `plugin` directories. If you change something in another location of the repository the pull request will be ignored.
 
-The development server and all dependencies are handled by `[@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)`. Make sure you have [docker installed](https://docs.docker.com/compose/install/) and run `npm start` in the directory. Your spawned WordPress instance will be available under `http://localhost` with the account `admin:password`.
+The development server and all dependencies are handled by [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/). Make sure you have [docker installed](https://docs.docker.com/compose/install/) and run `npm start` in the directory. Your spawned WordPress instance will be available under `http://localhost` with the account `admin:password`.
 
 Please be aware, that you should usually not write code directly on the main branch.
 
