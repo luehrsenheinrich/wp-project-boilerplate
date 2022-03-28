@@ -85,9 +85,6 @@ jobs:
           log="${log//$'\r'/'%0D'}"
           echo "::set-output name=log::$log"
 
-      - name: Check Status
-        run: git status
-
       - name: 🔼 Bump version
         id: version
         run: echo "::set-output name=version::$(npm version ${{ github.event.inputs.version }} -m 'Tagging %s' -f)"

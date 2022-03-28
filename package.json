@@ -23,6 +23,7 @@
     "lint": "npm run lint:php && npm run lint:js && npm run lint:css",
     "dev": "npm run start && npm run watch",
     "test": "npm run lint",
+    "preversion": "npm run test",
     "version": "npm run release && git add -A"
   },
   "author": "Luehrsen // Heinrich",
