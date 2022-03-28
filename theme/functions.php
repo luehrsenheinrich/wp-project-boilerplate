@@ -7,6 +7,7 @@
  * @package lhpbpt
  */
 
+// Get the autoloader.
 require get_template_directory() . '/vendor/autoload.php';
 
 // Load the `wp_lhpbpt()` entry point function.
