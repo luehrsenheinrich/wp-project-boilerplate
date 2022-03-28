@@ -14,6 +14,8 @@
  * Domain Path: /languages
  */
 
+use function WpMunich\lhpbpp\lh_plugin;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -42,3 +44,12 @@ if ( wp_get_environment_type() === 'development' ) {
 
 // Initialize the plugin.
 call_user_func( 'WpMunich\lhpbpp\lh_plugin' );
+
+// Initialize the plugin update checker.
+if ( class_exists( 'Puc_v4_Factory' ) ) {
+	Puc_v4_Factory::buildUpdateChecker(
+		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . lh_plugin()->get_plugin_slug(),
+		__FILE__, // Full path to the main plugin file or functions.php.
+		lh_plugin()->get_plugin_slug()
+	);
+}

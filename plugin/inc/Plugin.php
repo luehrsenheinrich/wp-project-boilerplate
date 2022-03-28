@@ -117,4 +117,13 @@ class Plugin {
 	public function get_plugin_url() {
 		return plugin_dir_url( $this->get_plugin_file() );
 	}
+
+	/**
+	 * Get the plugin slug.
+	 *
+	 * @return string The plugin slug.
+	 */
+	public function get_plugin_slug() {
+		return 'lhpbpp';
+	}
 }

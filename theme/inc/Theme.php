@@ -136,4 +136,13 @@ class Theme {
 	public function get_theme_version() {
 		return wp_get_theme()->get( 'Version' );
 	}
+
+	/**
+	 * Check requirements.
+	 */
+	private function check_requirements() {
+		if ( ! function_exists( 'acf_add_options_page' ) ) {
+			wp_die( 'This theme requires Advanced Custom Fields Pro plugin.' );
+		}
+	}
 }
