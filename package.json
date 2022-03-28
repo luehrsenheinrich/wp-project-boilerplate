@@ -21,7 +21,9 @@
     "lint:js": "eslint './{theme,plugin}/**/src/js/**/*.js'",
     "lint:css": "stylelint './{theme,plugin}/**/src/css/**/*.css'",
     "lint": "npm run lint:php && npm run lint:js && npm run lint:css",
-    "dev": "npm run start && npm run watch"
+    "dev": "npm run start && npm run watch",
+    "test": "npm run lint",
+    "version": "npm run release && git add -A"
   },
   "author": "Luehrsen // Heinrich",
   "authorUrl": "https://www.luehrsen-heinrich.de",
