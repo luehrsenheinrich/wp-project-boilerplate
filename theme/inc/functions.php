@@ -1,6 +1,6 @@
 <?php
 /**
- * The `wp_lhpbpt()` function.
+ * The `lh_theme()` function.
  *
  * @package lhpbpt
  */
