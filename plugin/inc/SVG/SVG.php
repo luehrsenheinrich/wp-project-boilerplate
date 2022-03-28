@@ -8,6 +8,8 @@
 namespace WpMunich\lhpbpp\SVG;
 use WpMunich\lhpbpp\Component;
 use function add_action;
+use function WpMunich\lhpbpp\lh_plugin;
+
 use \WP_Error;
 
 /**
@@ -47,8 +49,8 @@ class SVG extends Component {
 			case ( file_exists( get_template_directory() . $path ) ):
 				$final_path = get_template_directory() . $path;
 				break;
-			case ( file_exists( LHPBPP_PATH . $path ) ):
-				$final_path = LHPBPP_PATH . $path;
+			case ( file_exists( lh_plugin()->get_plugin_path() . $path ) ):
+				$final_path = lh_plugin()->get_plugin_path() . $path;
 				break;
 			default:
 				return false;

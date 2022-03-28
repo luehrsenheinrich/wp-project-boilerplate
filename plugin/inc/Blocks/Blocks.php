@@ -9,6 +9,7 @@ namespace WpMunich\lhpbpp\Blocks;
 use WpMunich\lhpbpp\Component;
 use function add_action;
 use function acf_register_block_type;
+use function WpMunich\lhpbpp\lh_plugin;
 
 /**
  * A class to handle the plugins blocks.
@@ -47,7 +48,7 @@ class Blocks extends Component {
 				'category'        => 'lhpbpp-blocks',
 				'icon'            => 'screenoptions',
 				'keywords'        => array( __( 'ACF', 'lhpbpp' ), __( 'Demo', 'lhpbpp' ), __( 'Block', 'lhpbpp' ) ),
-				'render_template' => apply_filters( 'lh_acf_block_template_path', LHPBPP_PATH . 'blocks/acf/template.php', 'acf-demo-block' ),
+				'render_template' => apply_filters( 'lh_acf_block_template_path', lh_plugin()->get_plugin_path() . 'blocks/acf/template.php', 'acf-demo-block' ),
 				'mode'            => 'auto',
 				'supports'        => array(
 					'align' => array( 'wide', 'full' ),
@@ -81,13 +82,13 @@ class Blocks extends Component {
 	public function enqueue_block_editor_assets() {
 		$screen = get_current_screen();
 
-		$assets = wp_json_file_decode( LHPBPP_PATH . '/admin/dist/assets.json', array( 'associative' => true ) );
+		$assets = wp_json_file_decode( lh_plugin()->get_plugin_path() . '/admin/dist/assets.json', array( 'associative' => true ) );
 
 		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
 				'lhpbpp-blocks-helper',
-				LHPBPP_URL . '/admin/dist/js/blocks-helper.min.js',
+				lh_plugin()->get_plugin_url() . '/admin/dist/js/blocks-helper.min.js',
 				array_merge( array(), $block_helper_assets['dependencies'] ),
 				$block_helper_assets['version'],
 				true

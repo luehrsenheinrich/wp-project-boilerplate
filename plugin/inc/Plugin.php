@@ -71,4 +71,50 @@ class Plugin {
 	public function svg() {
 		return $this->svg;
 	}
+
+	/**
+	 * Get the plugin version.
+	 *
+	 * @return string The plugin version.
+	 */
+	public function get_plugin_version() {
+		// Check if we can use the `get_plugin_data()` function.
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		/**
+		 * The plugin data as an array.
+		 * We use this to avoid updating plugin data on multiple locations. This makes
+		 * the file header of the plugin main file the single source of truth.
+		 */
+		$plugin_data = get_plugin_data( LHPBPP_FILE );
+
+		return $plugin_data['Version'] ?? '0.0.1';
+	}
+
+	/**
+	 * Get the main plugin file.
+	 *
+	 * @return string The main plugin file.
+	 */
+	public function get_plugin_file() {
+		return LHPBPP_FILE;
+	}
+
+	/**
+	 * Get the plugin directory path.
+	 *
+	 * @return string The plugin directory path.
+	 */
+	public function get_plugin_path() {
+		return plugin_dir_path( $this->get_plugin_file() );
+	}
+
+	/**
+	 * Get the plugin directory URL.
+	 */
+	public function get_plugin_url() {
+		return plugin_dir_url( $this->get_plugin_file() );
+	}
 }

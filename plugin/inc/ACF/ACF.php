@@ -42,7 +42,7 @@ class ACF extends Component {
 	 * @return string       Save path.
 	 */
 	public function acf_json_save_point( $path ) {
-		$path = LHPBPP_PATH . 'acf-json';
+		$path = lh_plugin()->get_plugin_path() . 'acf-json';
 		return $path;
 	}
 
@@ -54,7 +54,7 @@ class ACF extends Component {
 	 * @return array        An array of paths.
 	 */
 	public function acf_json_load_point( $paths ) {
-		$paths[] = LHPBPP_PATH . 'acf-json';
+		$paths[] = lh_plugin()->get_plugin_path() . 'acf-json';
 
 		return $paths;
 	}
