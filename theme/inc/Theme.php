@@ -83,13 +83,19 @@ class Theme {
 		FSE\FSE $fse,
 		Lazysizes\Lazysizes $lazysizes
 	) {
-		$this->i18n           = $i18n;
-		$this->nav_menus      = $nav_menus;
-		$this->scripts        = $scripts;
-		$this->styles         = $styles;
-		$this->theme_supports = $theme_supports;
-		$this->fse            = $fse;
-		$this->lazysizes      = $lazysizes;
+		// Do not display templates, if the requirements are not met.
+		add_action( 'template_redirect', array( $this, 'requirements_template' ) );
+
+		// Only initialize components if all the requirements are met.
+		if ( $this->requirements_are_met() ) {
+			$this->i18n           = $i18n;
+			$this->nav_menus      = $nav_menus;
+			$this->scripts        = $scripts;
+			$this->styles         = $styles;
+			$this->theme_supports = $theme_supports;
+			$this->fse            = $fse;
+			$this->lazysizes      = $lazysizes;
+		}
 	}
 
 	/**
@@ -138,11 +144,28 @@ class Theme {
 	}
 
 	/**
-	 * Check requirements.
+	 * Check if the requirements for the current theme are met.
+	 *
+	 * @return bool True if requirements are met, false otherwise.
 	 */
-	private function check_requirements() {
-		if ( ! function_exists( 'acf_add_options_page' ) ) {
-			wp_die( 'This theme requires Advanced Custom Fields Pro plugin.' );
+	private function requirements_are_met() {
+		if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) ) {
+			return false;
+		}
+
+		if ( ! function_exists( 'get_field' ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Display a template if the requirements are not met.
+	 */
+	public function requirements_template() {
+		if ( ! $this->requirements_are_met() ) {
+			wp_die( 'The requirements for this theme are not met.' );
 		}
 	}
 }
