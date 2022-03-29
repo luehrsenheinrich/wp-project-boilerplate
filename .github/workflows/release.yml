@@ -91,9 +91,9 @@ jobs:
       - name: 🔼 Bump version
         run: npm version ${{ github.event.inputs.version }} -m 'Tagging %s'
 
-      - name: Get new version
+      - name: ⚙️ Get new version
         id: version
-        run: echo "::set-output name=version::$(npm pkg get version)"
+        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
 
       - name: Push the version to git
         run: |
