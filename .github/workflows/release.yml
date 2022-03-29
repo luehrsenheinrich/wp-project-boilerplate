@@ -100,7 +100,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: |
-            ${{ steps.changelog.outputs.log }}
+            ${{ steps.changelog.outputs.log }} |
+            ${{ steps.version.outputs.version }}
           files: ./archives/*.zip
           tag_name: ${{ steps.version.outputs.version }}
 
