@@ -85,13 +85,20 @@ jobs:
           log="${log//$'\r'/'%0D'}"
           echo "::set-output name=log::$log"
 
+      - name: Check Status
+        run: git status
+
       - name: 🔼 Bump version
         id: version
-        run: echo "::set-output name=version::$(npm version ${{ github.event.inputs.version }} -m 'Tagging %s' -f)"
+        run: npm version ${{ github.event.inputs.version }} -m 'Tagging %s'
+
+      - name: Get new version
+        id: version
+        run: echo "::set-output name=version::$(npm pkg get version)"
 
       - name: Push the version to git
         run: |
-            git push && git push --tags
+            git push
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
 
@@ -103,7 +110,7 @@ jobs:
             ${{ steps.changelog.outputs.log }} |
             ${{ steps.version.outputs.version }}
           files: ./archives/*.zip
-          tag_name: ${{ steps.version.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
 
       - name: 🚢 Deploy to Update Server
         if: ${{ success() }}
