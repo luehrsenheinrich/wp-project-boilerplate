@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
+const chokidar = require('chokidar');
 
 /**
  * Theme frontend JavaScript files
@@ -134,6 +135,42 @@ const wordpressJsLoader = {
 };
 
 /**
+ * Get a file watcher.
+ *
+ * @param {Array} files Array of files.
+ */
+const createFileWatcher = (files) => {
+	const watcher = chokidar.watch(files, {
+		ignored: ['node_modules', 'vendor'],
+		ignoreInitial: true,
+		followSymlinks: false,
+		atomic: false,
+	});
+	return watcher;
+};
+
+/**
+ * Live Reloading
+ *
+ * @param {Object} options The options to use with LiveReload.
+ */
+const initLiveReloadPlugin = (options = {}) => {
+	const _options = {
+		...options,
+		appendScriptTag: true,
+	};
+	const liveReloadPlugin = new LiveReloadPlugin(_options);
+	const reload = () => {
+		// this goes through to tiny-lr that is being used by LiveReloadPlugin
+		liveReloadPlugin.server.notifyClients(['index.php']);
+	};
+	// watch for changes to .php files and reload
+	createFileWatcher('**/**.php').on('change', reload).on('unlink', reload)
+
+	return liveReloadPlugin;
+};
+
+/**
  * Our default webpack config
  *
  * @type {Object}
@@ -155,7 +192,7 @@ const defaultConfig = {
 		modules: ['node_modules'],
 	},
 	plugins: [
-		new LiveReloadPlugin({
+		initLiveReloadPlugin({
 			useSourceHash: true,
 		}),
 		new RemoveEmptyScriptsPlugin({
