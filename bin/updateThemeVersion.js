@@ -22,7 +22,7 @@ fs.readFile(`./theme/style.css`, (err, data) => {
 	const styleHeaderRegex = /\/\*(?:[^*]|\n|(?:\*(?:[^\/]|\n)))*\*\//;
 
 	// Find the version row.
-	const versionRowRegex = /[\s?]\*[\s?]Version:[\s?]\d.\d.\d/;
+	const versionRowRegex = /[\s?]\*[\s?]Version:[\s?]\d+.\d+.\d+/;
 
 	// Extract the existing style header.
 	const styleHeader = data.toString().match(styleHeaderRegex)[0];

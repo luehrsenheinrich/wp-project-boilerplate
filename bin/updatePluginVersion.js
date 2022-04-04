@@ -19,7 +19,7 @@ fs.readFile(`./plugin/${pkg.slug}p.php`, (err, data) => {
 	}
 
 	// Find the file doc comment.
-	const versionRowRegex = /[\s?]\*[\s?]Version:[\s?]\d.\d.\d/;
+	const versionRowRegex = /[\s?]\*[\s?]Version:[\s?]\d+.\d+.\d+/;
 
 	// Build the new version row.
 	const newVersionRow = ` * Version: ${pkg.version}`;
