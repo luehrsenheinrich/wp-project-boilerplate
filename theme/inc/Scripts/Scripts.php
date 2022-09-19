@@ -20,6 +20,7 @@ class Scripts extends Component {
 	 */
 	protected function add_actions() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 	}
 
 	/**
@@ -44,5 +45,12 @@ class Scripts extends Component {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
+	}
+
+	/**
+	 * Enqueue admin scripts.
+	 */
+	public function enqueue_admin_scripts() {
+		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
 	}
 }
