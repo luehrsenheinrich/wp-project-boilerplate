@@ -173,6 +173,14 @@ class Lazysizes extends Component {
 	 * @return string The rewritten block content.
 	 */
 	public function rewrite_image_block( $block_content, $block, $instance ) {
+
+		/**
+		 * Check if the block has manual sizes set.
+		 */
+		$has_width  = $block['attrs']['width'] ?? false;
+		$has_height = $block['attrs']['height'] ?? false;
+		$is_resized = $has_width && $has_height;
+
 		/**
 		 * Suppress errors, as libxml does not support HTML5.
 		 */
@@ -215,6 +223,13 @@ class Lazysizes extends Component {
 		$new_image_html = wp_get_attachment_image( $block['attrs']['id'], $block['attrs']['sizeSlug'] ?? 'full' );
 
 		/**
+		 * If there is no image, we cannot do anything.
+		 */
+		if ( empty( $new_image_html ) ) {
+			return $block_content;
+		}
+
+		/**
 		 * Load the new image tag into the DOMDocument.
 		 */
 		$img_doc->loadHTML( '<?xml encoding="utf-8" ?>' . $new_image_html );
@@ -225,6 +240,14 @@ class Lazysizes extends Component {
 		 * @var \DOMNode|\DOMElement $new_image
 		 */
 		$new_image = $img_doc->getElementsByTagName( 'body' )->item( 0 )->childNodes->item( 0 );
+
+		/**
+		 * Make sure that manual resizing is not overwritten.
+		 */
+		if ( $is_resized ) {
+			$new_image->setAttribute( 'width', $block['attrs']['width'] );
+			$new_image->setAttribute( 'height', $block['attrs']['height'] );
+		}
 
 		/**
 		 * Import the new image element into the block DOMDocument.
