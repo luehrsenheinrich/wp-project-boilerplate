@@ -136,13 +136,18 @@ class Icon implements \JsonSerializable {
 	/**
 	 * Serializes the object to a value that can be serialized natively by wp_|json_encode().
 	 *
+	 * @param array $fields The fields to return.
+	 *
 	 * @return array The serialized object.
 	 */
-	public function jsonSerialize() {
-		return array(
-			'path'  => $this->get_path(),
-			'slug'  => $this->get_slug(),
-			'title' => $this->get_title(),
-		);
+	public function jsonSerialize( $fields = array( 'path', 'slug', 'title' ) ) {
+		$resp = array();
+		foreach ( $fields as $field ) {
+			if ( is_callable( array( $this, "get_{$field}" ) ) ) {
+				$callback       = "get_{$field}";
+				$resp[ $field ] = $this->$callback();
+			}
+		}
+		return $resp;
 	}
 }
