@@ -4,7 +4,6 @@
 
 .entry-content,
 .inner-container,
-.wp-block-column,
 [class*="wp-block"] > [class*="__inner-container"],
 [class*="wp-block"] > [class*="__content"] {
 	margin: 0 auto;
@@ -27,7 +26,7 @@
 		& + * {
 
 			/* The stack */
-			margin-top: var(--grid-gutter-height);
+			margin-top: var(--wp--style--block-gap);
 		}
 	}
 }

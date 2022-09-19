@@ -2,6 +2,9 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
   "settings": {
+    "spacing": {
+      "blockGap": false
+    },
     "typography": {
       "dropCap": false,
       "customFontSize": false,
@@ -147,6 +150,11 @@
           "color": "var(--color-system-info)"
         }
       ]
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "var(--grid-gutter-height)"
     }
   }
 }

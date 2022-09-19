@@ -29,9 +29,6 @@ class FSE extends Component {
 		add_filter( 'block_type_metadata', array( $this, 'filter_block_type_metadata' ) );
 		add_filter( 'block_type_metadata_settings', array( $this, 'filter_block_type_metadata_settings' ), 10, 2 );
 		add_filter( 'styles_inline_size_limit', '__return_zero' );
-
-		/** Remove unwanted output from the editor. */
-		remove_filter( 'render_block', 'wp_render_layout_support_flag' );
 	}
 
 	/**
