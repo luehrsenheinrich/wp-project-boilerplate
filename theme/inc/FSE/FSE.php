@@ -22,6 +22,8 @@ class FSE extends Component {
 		if ( ! is_admin() ) {
 			add_action( 'init', array( $this, 'remove_global_styles' ) );
 		}
+
+		add_action( 'init', array( $this, 'remove_theme_support' ) );
 	}
 
 	/**
