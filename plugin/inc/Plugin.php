@@ -44,23 +44,33 @@ class Plugin {
 	protected $svg;
 
 	/**
+	 * SVRESTG component.
+	 *
+	 * @var REST\REST;
+	 */
+	protected $rest;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param ACF\ACF       $acf ACF component.
 	 * @param Blocks\Blocks $blocks Blocks component.
 	 * @param i18n\I18N     $i18n I18N component.
 	 * @param SVG\SVG       $svg SVG component.
+	 * @param REST\REST     $rest REST component.
 	 */
 	public function __construct(
 		ACF\ACF $acf,
 		Blocks\Blocks $blocks,
 		i18n\I18N $i18n,
-		SVG\SVG $svg
+		SVG\SVG $svg,
+		REST\REST $rest
 	) {
 		$this->acf    = $acf;
 		$this->blocks = $blocks;
 		$this->i18n   = $i18n;
 		$this->svg    = $svg;
+		$this->rest   = $rest;
 	}
 
 	/**

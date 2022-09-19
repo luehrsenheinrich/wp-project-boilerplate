@@ -93,7 +93,14 @@ class Blocks extends Component {
 				$block_helper_assets['version'],
 				true
 			);
-
 		}
+
+		wp_enqueue_style(
+			'lhpbpp-admin-components',
+			lh_plugin()->get_plugin_url() . '/admin/dist/css/components.min.css',
+			array(),
+			lh_plugin()->get_plugin_version(),
+			'all'
+		);
 	}
 }
