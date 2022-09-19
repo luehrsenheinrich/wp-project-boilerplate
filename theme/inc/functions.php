@@ -36,7 +36,7 @@ function lh_theme() {
  * @return bool True if requirements are met, false otherwise.
  */
 function theme_requirements_are_met() {
-	if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) ) {
+	if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) || \WPMunich\lhpbpp\lh_plugin() === null ) {
 		return false;
 	}
 
