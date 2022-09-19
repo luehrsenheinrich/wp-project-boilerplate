@@ -142,6 +142,8 @@ class Icon implements \JsonSerializable {
 	 */
 	public function jsonSerialize( $fields = array( 'path', 'slug', 'title' ) ) {
 		$resp = array();
+		// Filter for fields.
+		// E.g. REST shouldn't expose 'path'.
 		foreach ( $fields as $field ) {
 			if ( is_callable( array( $this, "get_{$field}" ) ) ) {
 				$callback       = "get_{$field}";
