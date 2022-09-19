@@ -41,7 +41,7 @@ class WPM_Svg_Image {
 	 *
 	 * @var array
 	 */
-	private $allowed_attributes = array( 'class', 'id', 'width', 'height', 'fill' );
+	private $allowed_attributes = array( 'class', 'id', 'width', 'height', 'fill', 'role' );
 
 	/**
 	 * The return type for the render function.

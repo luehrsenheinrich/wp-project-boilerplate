@@ -1,0 +1,44 @@
+/* Our own elements used within the control */
+.lh-icon-select-control {
+	--lhisc-icon-size: 20px;
+	--lhisc-grid-gap: 12px;
+	width: 100%;
+
+	& input[type="text"]:focus {
+		box-shadow: none;
+	}
+}
+
+.lh-icon-select-option-label {
+	display: grid;
+	grid-template-columns: var(--lhisc-icon-size) auto;
+	grid-column-gap: var(--lhisc-grid-gap);
+	align-items: center;
+
+	& .lh-icon svg {
+		display: block;
+		max-height: var(--lhisc-icon-size);
+	}
+}
+
+/* Overrides of react-select elements via classNamePrefix */
+:root {
+
+	& .lhisc__menu {
+		z-index: 99999;
+	}
+
+	& .lhisc__indicators,
+	& .lhisc__option {
+		cursor: pointer;
+	}
+
+	& .lhisc__input-container {
+		cursor: text;
+		padding-left: calc(var(--lhisc-icon-size) + var(--lhisc-grid-gap));
+	}
+
+	& .lhisc__option:not(.lhisc__option--is-focused):not(.lhisc__option--is-selected) {
+		background-color: transparent;
+	}
+}
