@@ -3,7 +3,16 @@
   "version": 2,
   "settings": {
     "spacing": {
-      "blockGap": false
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": [
+        "em",
+        "rem",
+        "vh",
+        "vw",
+        "%"
+      ]
     },
     "typography": {
       "dropCap": false,
