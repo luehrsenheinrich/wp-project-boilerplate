@@ -23,7 +23,7 @@ class FSE extends Component {
 			add_action( 'init', array( $this, 'remove_global_styles' ) );
 		}
 
-		add_action( 'init', array( $this, 'remove_theme_support' ) );
+		add_action( 'init', array( $this, 'remove_theme_support' ), 9 );
 	}
 
 	/**
@@ -51,6 +51,11 @@ class FSE extends Component {
 		 * Remove access to block templates.
 		 */
 		remove_theme_support( 'block-templates' );
+
+		/**
+		 * Do not query the block directory when no block is found.
+		 */
+		remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
 	}
 
 	/**
