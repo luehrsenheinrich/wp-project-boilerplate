@@ -18,11 +18,6 @@ class FSE extends Component {
 	 * {@inheritdoc}
 	 */
 	protected function add_actions() {
-		/** Remove global styles */
-		if ( ! is_admin() ) {
-			// add_action( 'init', array( $this, 'remove_global_styles' ) );
-		}
-
 		add_action( 'init', array( $this, 'remove_theme_support' ), 9 );
 	}
 
@@ -57,16 +52,6 @@ class FSE extends Component {
 		 * Do not query the block directory when no block is found.
 		 */
 		remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
-	}
-
-	/**
-	 * Remove global styles as we handle them ourselves.
-	 *
-	 * @return void
-	 */
-	public function remove_global_styles() {
-		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
-		remove_action( 'wp_footer', 'wp_enqueue_global_styles' );
 	}
 
 	/**
