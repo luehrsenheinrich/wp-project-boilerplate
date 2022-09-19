@@ -44,6 +44,7 @@
       "defaultGradients": false,
       "custom": false,
       "customGradient": false,
+      "defaultDuotone": false,
       "palette": [
         {
           "name": "Primary 300",
