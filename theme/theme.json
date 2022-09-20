@@ -52,6 +52,7 @@
       ],
       "customSpacingSize": false
     },
+    "useRootPaddingAwareAlignments": true,
     "typography": {
       "dropCap": false,
       "customFontSize": false,
@@ -201,7 +202,13 @@
   },
   "styles": {
     "spacing": {
-      "blockGap": "var(--grid-gutter-height)"
+      "blockGap": "var(--grid-gutter-height)",
+      "padding":{
+        "top": "var(--grid-gutter-height)",
+        "bottom": "var(--grid-gutter-height)",
+        "left": "var(--grid-gutter-width)",
+        "right": "var(--grid-gutter-width)"
+      }
     }
   }
 }
