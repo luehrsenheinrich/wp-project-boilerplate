@@ -35,9 +35,6 @@ class Styles extends Component {
 		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 
-		/** Remove global styles */
-		add_action( 'init', array( $this, 'remove_global_styles' ) );
-
 		/** Remove WP Emoji */
 		add_action( 'init', array( $this, 'remove_wp_emoji' ) );
 	}
@@ -291,16 +288,6 @@ class Styles extends Component {
 	 */
 	public function enqueue_block_editor_assets() {
 		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/dist/css/vars.min.css' ), array(), lh_theme()->get_theme_version() );
-	}
-
-	/**
-	 * Remove global styles as we handle them ourselves.
-	 *
-	 * @return void
-	 */
-	public function remove_global_styles() {
-		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
-		remove_action( 'wp_footer', 'wp_enqueue_global_styles' );
 	}
 
 	/**

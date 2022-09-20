@@ -33,7 +33,6 @@
 	max-width: none;
 	margin-left: calc(var(--grid-gutter-width) * -1);
 	margin-right: calc(var(--grid-gutter-width) * -1);
-	padding: 0;
 }
 
 @media (--sm-query) {

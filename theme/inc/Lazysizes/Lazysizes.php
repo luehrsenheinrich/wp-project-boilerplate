@@ -220,7 +220,7 @@ class Lazysizes extends Component {
 		/**
 		 * Create a new image element.
 		 */
-		$new_image_html = wp_get_attachment_image( $block['attrs']['id'], $block['attrs']['sizeSlug'] ?? 'full' );
+		$new_image_html = wp_get_attachment_image( $block['attrs']['id'] ?? null, $block['attrs']['sizeSlug'] ?? 'full' );
 
 		/**
 		 * If there is no image, we cannot do anything.

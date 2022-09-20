@@ -2,6 +2,18 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
   "settings": {
+    "spacing": {
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": [
+        "em",
+        "rem",
+        "vh",
+        "vw",
+        "%"
+      ]
+    },
     "typography": {
       "dropCap": false,
       "customFontSize": false,
@@ -44,6 +56,7 @@
       "defaultGradients": false,
       "custom": false,
       "customGradient": false,
+      "defaultDuotone": false,
       "palette": [
         {
           "name": "Primary 300",
@@ -146,6 +159,11 @@
           "color": "var(--color-system-info)"
         }
       ]
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "var(--grid-gutter-height)"
     }
   }
 }
