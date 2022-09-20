@@ -2,8 +2,9 @@
 # Inner Container
 --------------------------------------------------------------*/
 
-.entry-content,
-.inner-container,
+:root .entry-content,
+:root .inner-container,
+:root .wp-site-blocks,
 [class*="wp-block"] > [class*="__inner-container"],
 [class*="wp-block"] > [class*="__content"] {
 	margin: 0 auto;
@@ -20,5 +21,12 @@
 		 * to the content width.
 		 */
 		max-width: var(--content-width);
+
+		/**
+		 * The stack.
+		 */
+		& + * {
+			margin-top: var(--wp--style--block-gap);
+		}
 	}
 }
