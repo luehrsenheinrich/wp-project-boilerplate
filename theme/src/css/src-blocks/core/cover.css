@@ -1,1 +1,12 @@
-/** I am now empty. */
+@media (--xs-query) {
+
+	:root .wp-block-cover {
+
+		&.alignwide {
+			max-width: none;
+			width: auto;
+			margin-left: calc(var(--grid-gutter-width) * -1);
+			margin-right: calc(var(--grid-gutter-width) * -1);
+		}
+	}
+}
