@@ -33,14 +33,6 @@ h6 {
 	clear: both;
 	font-weight: 300;
 	text-transform: uppercase;
-
-	@media (--xs-query) {
-
-		&.alignfull {
-			padding-left: var(--grid-gutter-width);
-			padding-right: var(--grid-gutter-width);
-		}
-	}
 }
 
 h1 {
