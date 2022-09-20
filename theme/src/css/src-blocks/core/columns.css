@@ -6,10 +6,6 @@
 			max-width: none;
 			margin-left: calc(var(--grid-gutter-width) * -1);
 			margin-right: calc(var(--grid-gutter-width) * -1);
-		}
-
-		&.alignwide,
-		&.alignfull {
 
 			&:not(.has-background) > .wp-block-column:not(.has-background) {
 				padding-left: var(--grid-gutter-width);
