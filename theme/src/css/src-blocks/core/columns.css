@@ -1,15 +1,30 @@
-:root .wp-block-columns {
-	padding-left: 0;
-	padding-right: 0;
+:root .wp-block-columns,
+:root .wp-block-column {
+
+	&:not(.has-background) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 :root .wp-block-column {
 	max-width: none;
 	margin-left: 0;
-	padding: 0;
 
 	& + .wp-block-column {
 		margin-top: var(--grid-gutter-height);
+	}
+}
+
+@media (--xs-query) {
+
+	:root .wp-block-columns {
+
+		&.alignwide {
+			max-width: none;
+			margin-left: calc(var(--grid-gutter-width) * -1);
+			margin-right: calc(var(--grid-gutter-width) * -1);
+		}
 	}
 }
 
