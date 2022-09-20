@@ -12,7 +12,45 @@
         "vh",
         "vw",
         "%"
-      ]
+      ],
+      "spacingSizes": [
+        {
+          "slug": "20",
+          "size": "calc(var(--wp--style--block-gap) * 0.4)",
+          "name": "X-Small"
+        },
+        {
+          "slug": "30",
+          "size": "calc(var(--wp--style--block-gap) * 0.6)",
+          "name": "Smaller"
+        },
+        {
+          "slug": "40",
+          "size": "calc(var(--wp--style--block-gap) * 0.8)",
+          "name": "Small"
+        },
+        {
+          "slug": "50",
+          "size": "calc(var(--wp--style--block-gap) * 1)",
+          "name": "Medium"
+        },
+        {
+          "slug": "60",
+          "size": "calc(var(--wp--style--block-gap) * 1.2)",
+          "name": "Large"
+        },
+        {
+          "slug": "70",
+          "size": "calc(var(--wp--style--block-gap) * 1.4)",
+          "name": "Larger"
+        },
+        {
+          "slug": "80",
+          "size": "calc(var(--wp--style--block-gap) * 1.6)",
+          "name": "X-Large"
+        }
+      ],
+      "customSpacingSize": false
     },
     "typography": {
       "dropCap": false,

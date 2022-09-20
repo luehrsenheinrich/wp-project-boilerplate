@@ -1,9 +1,3 @@
-.wp-block-cover {
-	color: var(--color-gray-light);
-	padding-left: 0;
-	padding-right: 0;
-}
-
 @media (--xs-query) {
 
 	:root .wp-block-cover {
