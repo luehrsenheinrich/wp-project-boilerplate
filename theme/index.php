@@ -30,7 +30,7 @@ get_header();
 					<div class="entry-header inner-container">
 						<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 					</div>
-					<div class="entry-content wide-content">
+					<div class="entry-content wp-site-blocks">
 						<?php the_content(); ?>
 					</div>
 				</article>
