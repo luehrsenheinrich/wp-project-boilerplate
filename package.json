@@ -33,7 +33,7 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.16.7",
     "@luehrsenheinrich/postcss-wp-global-styles": "^0.2.2",
-    "@wordpress/babel-plugin-import-jsx-pragma": "^3.1.2",
+    "@wordpress/babel-plugin-import-jsx-pragma": "^4.0.0",
     "@wordpress/babel-preset-default": "^6.6.1",
     "@wordpress/dependency-extraction-webpack-plugin": "^4.0.0",
     "@wordpress/env": "^4.3.1",
