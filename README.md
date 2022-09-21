@@ -32,7 +32,7 @@ new repository. So let's get started:
 - [ ] Open `http://localhost/wp-admin` and log in with `admin:password`
 
 ### Test Release
-- [ ] Add the `GH_ADMIN_TOKEN` secret to the [action secrets](../../settings/secrets/actions) and [dependabot secrets](../settings/secrets/dependabot).
+- [ ] Add the `GH_ADMIN_TOKEN` secret to the [action secrets](../../settings/secrets/actions) and [dependabot secrets](../../settings/secrets/dependabot).
 - [ ] Create a [patch release](../../actions/workflows/release.yml) with the github action
 - [ ] Check if the [release](../../releases) has been created and uploaded in the GitHub release section
 
