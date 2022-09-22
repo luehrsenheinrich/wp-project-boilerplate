@@ -104,6 +104,7 @@ class Styles extends Component {
 					'preload_callback' => null,
 					'media'            => 'all',
 					'enqueued'         => false,
+					'preloaded'        => false,
 				),
 				$data
 			);
