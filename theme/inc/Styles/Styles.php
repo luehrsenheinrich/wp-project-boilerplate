@@ -78,6 +78,10 @@ class Styles extends Component {
 			'lhpbpt-loop' => array(
 				'file' => 'loop.min.css',
 			),
+			'lhpbpt-archive' => array(
+				'file'             => 'archive.min.css',
+				'preload_callback' => 'is_archive',
+			),
 		);
 
 		/**
