@@ -96,4 +96,123 @@ class Nav_Menus extends Component {
 		// Output the nav.
 		wp_nav_menu( $args );
 	}
+
+	/**
+	 * Returns an <ul> with pagination links for a given query.
+	 *
+	 * @param  array $args An array of arguments.
+	 *
+	 * @return string       The list for the query links.
+	 */
+	public function paginate_links( array $args = array() ) {
+		global $wp_query;
+		$args = wp_parse_args(
+			$args,
+			array(
+				'current'   => $wp_query->query_vars['paged'] ? (int) $wp_query->query_vars['paged'] : 1,
+				'total'     => isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1,
+			)
+		);
+
+		$range = $this->generate_range( $args['current'], $args['total'] );
+
+		$html = '<ul class="page-numbers">';
+		foreach ( $range as $p ) {
+			$list_classnames = classnames(
+				array(
+					'delta-' . $p['delta'] => $p['delta'],
+				)
+			);
+
+			if ( ! empty( $list_classnames ) ) {
+				$list_class = 'class="' . $list_classnames . '"';
+			} else {
+				$list_class = null;
+			}
+
+			$html .= sprintf( '<li %s>', $list_class );
+			if ( $p['current'] ) {
+				$html .= '<span class="page-numbers current">';
+				$html .= $p['page_number'];
+				$html .= '</span>';
+			} elseif ( $p['dots'] ) {
+				$html .= '<span class="page-numbers dots">';
+				$html .= '...';
+				$html .= '</span>';
+			} else {
+				$html .= sprintf( '<a href="%s" class="page-numbers" data-page-target="%d">', get_pagenum_link( $p['page_number'] ), $p['page_number'] );
+				$html .= $p['page_number'];
+				$html .= '</a>';
+			}
+			$html .= '</li>';
+		}
+		$html .= '</ul>';
+
+		return $html;
+	}
+
+	/**
+	 * Generate a range for which we display page numbers.
+	 *
+	 * @param  int $current The current page.
+	 * @param  int $last    The maximum numbers of pages.
+	 * @param  int $delta   The width of the pagination range.
+	 *
+	 * @return array        An array of page numbers.
+	 */
+	private function generate_range( $current, $last, $delta = 1 ) {
+
+		/**
+		 * Define some constants.
+		 */
+		$left            = intval( $current - $delta );
+		$right           = intval( $current + $delta );
+		$last            = intval( $last );
+		$range           = array();
+		$range_with_dots = array();
+
+		for ( $i = 1; $i <= $last; $i++ ) {
+			if ( $i === 1 || $i === $last || ( $i >= $left && $i <= $right ) ) {
+				$range[] = $i;
+			}
+		}
+
+		$l = null;
+		foreach ( $range as $i ) {
+			if ( $i === $last || $i === 1 ) {
+				$delta = false;
+			} else {
+				$delta = abs( $i - $current );
+			}
+
+			if ( $l ) {
+				if ( $i - $l === 2 ) {
+					$range_with_dots[] = array(
+						'page_number' => $l + 1,
+						'current'     => $l === $current,
+						'dots'        => false,
+						'delta'       => $delta,
+					);
+				} elseif ( $i - $l !== 1 ) {
+					$range_with_dots[] = array(
+						'page_number' => null,
+						'current'     => false,
+						'dots'        => true,
+						'delta'       => 0,
+					);
+				}
+			}
+
+			$range_with_dots[] = array(
+				'page_number' => $i,
+				'current'     => $i === $current,
+				'dots'        => false,
+				'delta'       => $delta,
+			);
+
+			$l = $i;
+		}
+
+		return $range_with_dots;
+	}
 }
