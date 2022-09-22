@@ -17,32 +17,9 @@ namespace WpMunich\lhpbpt;
 get_header();
 ?>
 
-<div id="primary" class="content-area">
-	<?php lh_theme()->styles()->print( 'lhpbpt-blocks' ); ?>
-	<main id="main" class="site-main stack">
-		<?php
-		if ( have_posts() ) :
-			while ( have_posts() ) :
-				the_post();
-				?>
-
-				<article <?php post_class( 'entry stack' ); ?> id="post-<?php the_ID(); ?>">
-					<div class="entry-header inner-container">
-						<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-					</div>
-					<div class="entry-content wp-site-blocks">
-						<?php the_content(); ?>
-					</div>
-				</article>
-
-		<?php endwhile; else : ?>
-
-		<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
-
-		<?php endif; ?>
-	</main><!-- #main -->
-</div><!-- #primary -->
-
+<div id="content" class="content-area">
+	<?php get_template_part( 'template-parts/loop/loop', 'home' ); ?>
+</div><!-- #content -->
 
 <?php
 get_footer();
