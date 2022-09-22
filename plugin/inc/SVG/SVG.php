@@ -53,12 +53,12 @@ class SVG extends Component {
 					new Icon(
 						$base_path . 'img/icons/chevron--left.svg',
 						'chevron--left',
-						__( 'Slashes', 'jitmp' ),
+						__( 'Slashes', 'lhpbpp' ),
 					),
 					new Icon(
 						$base_path . 'img/icons/chevron--right.svg',
 						'chevron--right',
-						__( 'Slashes', 'jitmp' ),
+						__( 'Slashes', 'lhpbpp' ),
 					),
 				)
 			);
