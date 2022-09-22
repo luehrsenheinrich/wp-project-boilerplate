@@ -75,6 +75,9 @@ class Styles extends Component {
 				'file'             => 'footer.min.css',
 				'preload_callback' => '__return_true',
 			),
+			'lhpbpt-loop' => array(
+				'file' => 'loop.min.css',
+			),
 		);
 
 		/**
