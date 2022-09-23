@@ -75,6 +75,13 @@ class Styles extends Component {
 				'file'             => 'footer.min.css',
 				'preload_callback' => '__return_true',
 			),
+			'lhpbpt-loop' => array(
+				'file' => 'loop.min.css',
+			),
+			'lhpbpt-archive' => array(
+				'file'             => 'archive.min.css',
+				'preload_callback' => 'is_archive',
+			),
 		);
 
 		/**
@@ -104,6 +111,7 @@ class Styles extends Component {
 					'preload_callback' => null,
 					'media'            => 'all',
 					'enqueued'         => false,
+					'preloaded'        => false,
 				),
 				$data
 			);

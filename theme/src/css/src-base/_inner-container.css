@@ -7,8 +7,12 @@
 :root .wp-site-blocks,
 [class*="wp-block"] > [class*="__inner-container"],
 [class*="wp-block"] > [class*="__content"] {
-	margin: 0 auto;
-	padding: 0 var(--grid-gutter-width);
+
+	padding-left: var(--grid-gutter-width);
+	padding-right: var(--grid-gutter-width);
+
+	margin-left: auto;
+	margin-right: auto;
 
 	& > * {
 
