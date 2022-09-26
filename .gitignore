@@ -12,3 +12,7 @@
 /plugin/dist
 /plugin/admin/dist
 /plugin/vendor
+
+# OS
+.DS_Store
+Thumbs.db
