@@ -18,14 +18,14 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
 
@@ -37,10 +37,10 @@ jobs:
 
       - name: 💾 Get node.js cache directory
         id: node-cache-dir
-        run: echo "::set-output name=dir::$(npm config get cache)" # Use $(yarn cache dir) for yarn
+        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT # Use $(yarn cache dir) for yarn
 
       - name: 💾 Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.node-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Use '**/yarn.lock' for yarn
@@ -48,10 +48,10 @@ jobs:
 
       - name: 💾 Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: ⚙️ Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
