@@ -52,7 +52,7 @@
     "classnames": "^2.3.2",
     "css-loader": "^6.7.2",
     "cssnano": "^5.1.14",
-    "eslint": "^8.29.0",
+    "eslint": "^8.32.0",
     "glob": "^8.0.3",
     "html-react-parser": "^3.0.4",
     "ignore": "^5.2.0",
