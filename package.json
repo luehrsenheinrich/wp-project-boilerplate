@@ -42,7 +42,7 @@
     "@wordpress/babel-plugin-import-jsx-pragma": "^4.0.0",
     "@wordpress/babel-preset-default": "^7.8.0",
     "@wordpress/dependency-extraction-webpack-plugin": "^4.7.0",
-    "@wordpress/env": "^5.9.0",
+    "@wordpress/env": "^5.11.0",
     "@wordpress/eslint-plugin": "^13.8.0",
     "@wordpress/stylelint-config": "^21.7.0",
     "archiver": "^5.3.1",
