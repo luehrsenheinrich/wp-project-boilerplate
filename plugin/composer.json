@@ -11,5 +11,10 @@
     "psr-4": {
       "WpMunich\\lhpbpp\\": "inc/"
     }
+  },
+  "config": {
+    "platform": {
+      "php": "8.1"
+    }
   }
 }
