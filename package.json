@@ -47,7 +47,7 @@
     "@wordpress/stylelint-config": "^21.10.0",
     "archiver": "^5.3.1",
     "babel": "^6.23.0",
-    "babel-loader": "^9.1.0",
+    "babel-loader": "^9.1.2",
     "babel-plugin-lodash": "^3.3.4",
     "classnames": "^2.3.2",
     "css-loader": "^6.7.2",
