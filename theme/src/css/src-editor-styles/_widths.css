@@ -1,7 +1,0 @@
-.wp-block {
-	max-width: var(--content-width);
-}
-
-:root {
-	padding: var(--grid-gutter-height) var(--grid-gutter-width);
-}
