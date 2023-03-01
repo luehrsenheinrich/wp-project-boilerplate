@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-const glob = require('glob');
+const { globSync } = require('glob');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,8 +14,7 @@ const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extract
  *
  * @type {string[]}
  */
-const ThemeFrontendJs = glob
-	.sync('./theme/src/js/*.js')
+const ThemeFrontendJs = globSync('./theme/src/js/*.js')
 	.reduce(function (obj, el) {
 		obj['js/' + path.parse(el).name + '.min'] = el;
 		obj['js/' + path.parse(el).name + '.bundle'] = el;
@@ -27,8 +26,7 @@ const ThemeFrontendJs = glob
  *
  * @type {string[]}
  */
-const ThemeFrontendCSS = glob
-	.sync('./theme/src/css/*.css')
+const ThemeFrontendCSS = globSync('./theme/src/css/*.css')
 	.reduce(function (obj, el) {
 		obj['css/' + path.parse(el).name + '.min'] = el;
 		return obj;
@@ -39,8 +37,7 @@ const ThemeFrontendCSS = glob
  *
  * @type {string[]}
  */
-const ThemeBackendJs = glob
-	.sync('./theme/admin/src/js/*.js')
+const ThemeBackendJs = globSync('./theme/admin/src/js/*.js')
 	.reduce(function (obj, el) {
 		obj['js/' + path.parse(el).name + '.min'] = el;
 		obj['js/' + path.parse(el).name + '.bundle'] = el;
@@ -52,8 +49,7 @@ const ThemeBackendJs = glob
  *
  * @type {string[]}
  */
-const ThemeBackendCSS = glob
-	.sync('./theme/admin/src/css/*.css')
+const ThemeBackendCSS = globSync('./theme/admin/src/css/*.css')
 	.reduce(function (obj, el) {
 		obj['css/' + path.parse(el).name + '.min'] = el;
 		return obj;
@@ -64,7 +60,7 @@ const ThemeBackendCSS = glob
  *
  * @type {string[]}
  */
-const ThemePhp = glob.sync('./theme/**/*.php').reduce(function (obj, el) {
+const ThemePhp = globSync('./theme/**/*.php').reduce(function (obj, el) {
 	obj['php/' + path.parse(el).name] = el;
 	return obj;
 }, {});
@@ -74,8 +70,7 @@ const ThemePhp = glob.sync('./theme/**/*.php').reduce(function (obj, el) {
  *
  * @type {string[]}
  */
-const PluginBackendJs = glob
-	.sync('./plugin/admin/src/js/*.js')
+const PluginBackendJs = globSync('./plugin/admin/src/js/*.js')
 	.reduce(function (obj, el) {
 		obj['js/' + path.parse(el).name + '.min'] = el;
 		obj['js/' + path.parse(el).name + '.bundle'] = el;
@@ -87,8 +82,7 @@ const PluginBackendJs = glob
  *
  * @type {string[]}
  */
-const PluginBackendCSS = glob
-	.sync('./plugin/admin/src/css/*.css')
+const PluginBackendCSS = globSync('./plugin/admin/src/css/*.css')
 	.reduce(function (obj, el) {
 		obj['css/' + path.parse(el).name + '.min'] = el;
 		return obj;
@@ -153,6 +147,7 @@ const defaultConfig = {
 	},
 	resolve: {
 		modules: ['node_modules'],
+		preferRelative: true,
 	},
 	plugins: [
 		new LiveReloadPlugin({
