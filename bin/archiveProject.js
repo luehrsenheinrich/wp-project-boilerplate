@@ -4,7 +4,7 @@
 const fs = require('fs');
 const archiver = require('archiver');
 const ignore = require('ignore');
-const glob = require('glob');
+const { glob } = require('glob');
 const pkg = require('./../package.json');
 
 const createArchive = (path, srcPath, slug) => {
