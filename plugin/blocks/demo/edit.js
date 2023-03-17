@@ -10,11 +10,11 @@ const Edit = () => {
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Settings', 'lhpbpp')}>
-					<p>{__('This is a demo block', 'lhpbpp')}</p>
+					<p>{__('This is a demo block.', 'lhpbpp')}</p>
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps()}>
-				<p>{__('This is a demo block', 'lhpbpp')}</p>
+				<p>{__('This is a demo block.', 'lhpbpp')}</p>
 			</div>
 		</>
 	);

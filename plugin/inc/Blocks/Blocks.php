@@ -112,6 +112,21 @@ class Blocks extends Component {
 			lh_plugin()->get_plugin_version(),
 			'all'
 		);
+
+		$dir  = lh_plugin()->get_plugin_path();
+		$path = $dir . '/languages';
+
+		wp_set_script_translations(
+			'lhpbpp-blocks',
+			'lhpbpp',
+			$path
+		);
+
+		wp_set_script_translations(
+			'lhpbpp-blocks-helper',
+			'lhpbpp',
+			$path
+		);
 	}
 
 	/**

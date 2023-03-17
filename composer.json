@@ -24,9 +24,13 @@
 			"cd theme && composer update",
 			"cd plugin && composer update"
 		],
-    "make-pot": [
+    "i18n-make-pot": [
       "wp i18n make-pot ./theme ./theme/languages/lhpbpt.pot --exclude=vendor,node_modules,src",
-      "wp i18n make-pot ./plugin ./plugin/languages/lhpbpp.pot --exclude=vendor,node_modules,src"
+      "wp i18n make-pot ./plugin ./plugin/languages/lhpbpp.pot --exclude=vendor,node_modules,src,blocks/**/*.js"
+    ],
+    "i18n-make-json": [
+      "wp i18n make-json \"./theme/languages/\" --no-purge",
+      "wp i18n make-json \"./plugin/languages/\" --no-purge"
     ]
 	},
 	"config": {
