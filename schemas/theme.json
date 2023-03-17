@@ -256,6 +256,7 @@
       }
     },
     "settingsPropertiesDimensions": {
+      "type": "object",
       "properties": {
         "dimensions": {
           "description": "Settings related to dimensions.",
@@ -285,6 +286,23 @@
             "wideSize": {
               "description": "Sets the max-width of wide (`.alignwide`) content.",
               "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "settingsPropertiesPosition": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "description": "Settings related to position.",
+          "type": "object",
+          "properties": {
+            "sticky": {
+              "description": "Allow users to set sticky position.",
+              "type": "boolean",
+              "default": false
             }
           },
           "additionalProperties": false
@@ -459,6 +477,11 @@
             },
             "lineHeight": {
               "description": "Allow users to set custom line height.",
+              "type": "boolean",
+              "default": false
+            },
+            "textColumns": {
+              "description": "Allow users to set the number of text columns.",
               "type": "boolean",
               "default": false
             },
@@ -668,10 +691,16 @@
           "$ref": "#/definitions/settingsPropertiesColor"
         },
         {
+          "$ref": "#/definitions/settingsPropertiesDimensions"
+        },
+        {
           "$ref": "#/definitions/settingsPropertiesShadow"
         },
         {
           "$ref": "#/definitions/settingsPropertiesLayout"
+        },
+        {
+          "$ref": "#/definitions/settingsPropertiesPosition"
         },
         {
           "$ref": "#/definitions/settingsPropertiesSpacing"
@@ -694,9 +723,11 @@
           "properties": {
             "appearanceTools": {},
             "border": {},
-            "shadow": {},
             "color": {},
+            "dimensions": {},
             "layout": {},
+            "position": {},
+            "shadow": {},
             "spacing": {},
             "typography": {},
             "custom": {}
@@ -1318,6 +1349,23 @@
           },
           "additionalProperties": false
         },
+        "dimensions": {
+          "description": "Dimensions styles",
+          "type": "object",
+          "properties": {
+            "minHeight": {
+              "description": "Sets the `min-height` CSS property.",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/definitions/refComplete"
+                }
+              ]
+            }
+          }
+        },
         "spacing": {
           "description": "Spacing styles.",
           "type": "object",
@@ -1508,6 +1556,10 @@
                 }
               ]
             },
+            "textColumns": {
+              "description": "Sets the `column-count` CSS property.",
+              "type": "string"
+            },
             "textDecoration": {
               "description": "Sets the `text-decoration` CSS property.",
               "oneOf": [
@@ -1629,6 +1681,7 @@
           "properties": {
             "border": {},
             "color": {},
+            "dimensions": {},
             "spacing": {},
             "typography": {},
             "filter": {},
@@ -2005,6 +2058,7 @@
           "properties": {
             "border": {},
             "color": {},
+            "dimensions": {},
             "spacing": {},
             "typography": {},
             "filter": {},
