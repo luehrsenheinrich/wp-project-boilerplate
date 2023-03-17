@@ -76,5 +76,8 @@
     "webpack-cli": "^5.0.1",
     "webpack-livereload-plugin": "^3.0.2",
     "webpack-remove-empty-scripts": "^1.0.1"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^6.5.1"
   }
 }

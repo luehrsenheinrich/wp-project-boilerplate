@@ -25,6 +25,7 @@ class Blocks extends Component {
 		}
 
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+		add_action( 'init', array( $this, 'register_blocks' ) );
 	}
 
 	/**
@@ -95,6 +96,15 @@ class Blocks extends Component {
 			);
 		}
 
+		$block_assets = $assets['js/blocks.min.js'] ?? array();
+		wp_enqueue_script(
+			'lhpbpp-blocks',
+			lh_plugin()->get_plugin_url() . '/admin/dist/js/blocks.min.js',
+			array_merge( array(), $block_assets['dependencies'] ),
+			$block_assets['version'],
+			true
+		);
+
 		wp_enqueue_style(
 			'lhpbpp-admin-components',
 			lh_plugin()->get_plugin_url() . '/admin/dist/css/components.min.css',
@@ -102,5 +112,49 @@ class Blocks extends Component {
 			lh_plugin()->get_plugin_version(),
 			'all'
 		);
+	}
+
+	/**
+	 * Register the blocks.
+	 */
+	public function register_blocks() {
+		$blocks_path = lh_plugin()->get_plugin_path() . 'blocks/';
+
+		$custom_blocks = array(
+			'demo',
+		);
+
+		foreach ( $custom_blocks as $block ) {
+			register_block_type(
+				$blocks_path . $block . '/',
+				array(
+					'render_callback' => array( $this, 'provide_render_callback' ),
+				)
+			);
+		}
+	}
+
+	/**
+	 * Provide the render callback for the block.
+	 *
+	 * @param array    $attributes The block attributes.
+	 * @param string   $content The block content.
+	 * @param WP_Block $block The block type.
+	 *
+	 * @return string The rendered block.
+	 */
+	public function provide_render_callback( $attributes, $content, $block ) {
+		$blocks_path = lh_plugin()->get_plugin_path() . 'blocks/';
+		ob_start();
+
+		switch ( $block->name ) {
+			case 'lh/demo':
+				include $blocks_path . 'demo/template.php';
+				break;
+		}
+
+		$block_html = ob_get_clean();
+
+		return $block_html;
 	}
 }

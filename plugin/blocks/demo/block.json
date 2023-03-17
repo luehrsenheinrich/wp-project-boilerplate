@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "lh/demo",
+  "title": "Demo Block",
+  "description": "A demo block",
+  "textdomain": "lhpbpp",
+  "category": "lhpbpp-blocks",
+  "supports": {
+    "align": [ "wide" ]
+  },
+  "attributes": {},
+  "example": {},
+  "editorScript": "lhpbpp-blocks"
+}

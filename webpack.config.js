@@ -19,7 +19,7 @@ const ThemeFrontendJs = globSync('./theme/src/js/*.js').reduce(function (
 	el
 ) {
 	obj['js/' + path.parse(el).name + '.min'] = el;
-	obj['js/' + path.parse(el).name + '.bundle'] = el;
+	obj['js/' + path.parse(el).name] = el;
 	return obj;
 },
 {});
@@ -48,7 +48,7 @@ const ThemeBackendJs = globSync('./theme/admin/src/js/*.js').reduce(function (
 	el
 ) {
 	obj['js/' + path.parse(el).name + '.min'] = el;
-	obj['js/' + path.parse(el).name + '.bundle'] = el;
+	obj['js/' + path.parse(el).name] = el;
 	return obj;
 },
 {});
@@ -86,7 +86,7 @@ const PluginBackendJs = globSync('./plugin/admin/src/js/*.js').reduce(function (
 	el
 ) {
 	obj['js/' + path.parse(el).name + '.min'] = el;
-	obj['js/' + path.parse(el).name + '.bundle'] = el;
+	obj['js/' + path.parse(el).name] = el;
 	return obj;
 },
 {});
@@ -203,6 +203,11 @@ const defaultConfig = {
 			{
 				test: /\.php$/,
 				loader: 'null-loader',
+			},
+			{
+				test: /\.svg$/i,
+				issuer: /\.[jt]sx?$/,
+				use: ['@svgr/webpack'],
 			},
 		],
 	},
