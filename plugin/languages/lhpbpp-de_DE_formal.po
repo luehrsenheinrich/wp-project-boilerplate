@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WordPress Project Boilerplate 0.0.15\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plugin\n"
-"POT-Creation-Date: 2023-03-17T12:34:42+00:00\n"
-"PO-Revision-Date: 2023-03-17 13:35+0100\n"
+"POT-Creation-Date: 2023-03-23T13:22:01+00:00\n"
+"PO-Revision-Date: 2023-03-23 14:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -65,6 +65,10 @@ msgstr "Block"
 #: inc/SVG/SVG.php:51 inc/SVG/SVG.php:56 inc/SVG/SVG.php:61
 msgid "Slashes"
 msgstr "Slashes"
+
+#: admin/dist/js/blocks.js:39
+msgid "This block is made with ♥ by "
+msgstr "Dieser Block wurde mit ♥ erstellt von "
 
 #: admin/dist/js/blocks.js:49
 msgid "Settings"

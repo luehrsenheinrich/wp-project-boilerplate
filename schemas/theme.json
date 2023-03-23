@@ -74,6 +74,11 @@
           "description": "Settings related to shadows.",
           "type": "object",
           "properties": {
+            "defaultPresets": {
+              "description": "Allow users to choose shadows from the default shadow presets.",
+              "type": "boolean",
+              "default": true
+            },
             "presets": {
               "description": "Shadow presets for the shadow picker.\nGenerates a single custom property (`--wp--preset--shadow--{slug}`) per preset value.",
               "type": "array",
@@ -101,7 +106,8 @@
                 "additionalProperties": false
               }
             }
-          }
+          },
+          "additionalProperties": false
         }
       }
     },
@@ -1723,6 +1729,12 @@
                 },
                 ":visited": {
                   "$ref": "#/definitions/stylesPropertiesComplete"
+                },
+                ":link": {
+                  "$ref": "#/definitions/stylesPropertiesComplete"
+                },
+                ":any-link": {
+                  "$ref": "#/definitions/stylesPropertiesComplete"
                 }
               },
               "additionalProperties": false
@@ -1751,6 +1763,12 @@
                   "$ref": "#/definitions/stylesPropertiesComplete"
                 },
                 ":visited": {
+                  "$ref": "#/definitions/stylesPropertiesComplete"
+                },
+                ":link": {
+                  "$ref": "#/definitions/stylesPropertiesComplete"
+                },
+                ":any-link": {
                   "$ref": "#/definitions/stylesPropertiesComplete"
                 }
               },

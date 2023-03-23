@@ -89,7 +89,7 @@ class Blocks extends Component {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
 				'lhpbpp-blocks-helper',
-				lh_plugin()->get_plugin_url() . '/admin/dist/js/blocks-helper.min.js',
+				lh_plugin()->get_plugin_url() . 'admin/dist/js/blocks-helper.min.js',
 				array_merge( array(), $block_helper_assets['dependencies'] ),
 				$block_helper_assets['version'],
 				true
@@ -99,7 +99,7 @@ class Blocks extends Component {
 		$block_assets = $assets['js/blocks.min.js'] ?? array();
 		wp_enqueue_script(
 			'lhpbpp-blocks',
-			lh_plugin()->get_plugin_url() . '/admin/dist/js/blocks.min.js',
+			lh_plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
 			array_merge( array(), $block_assets['dependencies'] ),
 			$block_assets['version'],
 			true
@@ -113,8 +113,11 @@ class Blocks extends Component {
 			'all'
 		);
 
+		/**
+		 * Load the translations for the block editor assets.
+		 */
 		$dir  = lh_plugin()->get_plugin_path();
-		$path = $dir . '/languages';
+		$path = $dir . '/languages/';
 
 		wp_set_script_translations(
 			'lhpbpp-blocks',
