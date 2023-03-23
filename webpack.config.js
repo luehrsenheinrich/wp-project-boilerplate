@@ -14,46 +14,57 @@ const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extract
  *
  * @type {string[]}
  */
-const ThemeFrontendJs = globSync('./theme/src/js/*.js')
-	.reduce(function (obj, el) {
-		obj['js/' + path.parse(el).name + '.min'] = el;
-		obj['js/' + path.parse(el).name + '.bundle'] = el;
-		return obj;
-	}, {});
+const ThemeFrontendJs = globSync('./theme/src/js/*.js').reduce(function (
+	obj,
+	el
+) {
+	obj['js/' + path.parse(el).name + '.min'] = el;
+	obj['js/' + path.parse(el).name] = el;
+	return obj;
+},
+{});
 
 /**
  * Theme frontend CSS files
  *
  * @type {string[]}
  */
-const ThemeFrontendCSS = globSync('./theme/src/css/*.css')
-	.reduce(function (obj, el) {
-		obj['css/' + path.parse(el).name + '.min'] = el;
-		return obj;
-	}, {});
+const ThemeFrontendCSS = globSync('./theme/src/css/*.css').reduce(function (
+	obj,
+	el
+) {
+	obj['css/' + path.parse(el).name + '.min'] = el;
+	return obj;
+},
+{});
 
 /**
  * Theme backend JavaScript files
  *
  * @type {string[]}
  */
-const ThemeBackendJs = globSync('./theme/admin/src/js/*.js')
-	.reduce(function (obj, el) {
-		obj['js/' + path.parse(el).name + '.min'] = el;
-		obj['js/' + path.parse(el).name + '.bundle'] = el;
-		return obj;
-	}, {});
+const ThemeBackendJs = globSync('./theme/admin/src/js/*.js').reduce(function (
+	obj,
+	el
+) {
+	obj['js/' + path.parse(el).name + '.min'] = el;
+	obj['js/' + path.parse(el).name] = el;
+	return obj;
+},
+{});
 
 /**
  * Theme backend CSS files
  *
  * @type {string[]}
  */
-const ThemeBackendCSS = globSync('./theme/admin/src/css/*.css')
-	.reduce(function (obj, el) {
+const ThemeBackendCSS = globSync('./theme/admin/src/css/*.css').reduce(
+	function (obj, el) {
 		obj['css/' + path.parse(el).name + '.min'] = el;
 		return obj;
-	}, {});
+	},
+	{}
+);
 
 /**
  * Theme PHP files
@@ -70,23 +81,28 @@ const ThemePhp = globSync('./theme/**/*.php').reduce(function (obj, el) {
  *
  * @type {string[]}
  */
-const PluginBackendJs = globSync('./plugin/admin/src/js/*.js')
-	.reduce(function (obj, el) {
-		obj['js/' + path.parse(el).name + '.min'] = el;
-		obj['js/' + path.parse(el).name + '.bundle'] = el;
-		return obj;
-	}, {});
+const PluginBackendJs = globSync('./plugin/admin/src/js/*.js').reduce(function (
+	obj,
+	el
+) {
+	obj['js/' + path.parse(el).name + '.min'] = el;
+	obj['js/' + path.parse(el).name] = el;
+	return obj;
+},
+{});
 
 /**
  * Plugin backend CSS files
  *
  * @type {string[]}
  */
-const PluginBackendCSS = globSync('./plugin/admin/src/css/*.css')
-	.reduce(function (obj, el) {
+const PluginBackendCSS = globSync('./plugin/admin/src/css/*.css').reduce(
+	function (obj, el) {
 		obj['css/' + path.parse(el).name + '.min'] = el;
 		return obj;
-	}, {});
+	},
+	{}
+);
 
 /**
  * The default JS loader.
@@ -187,6 +203,11 @@ const defaultConfig = {
 			{
 				test: /\.php$/,
 				loader: 'null-loader',
+			},
+			{
+				test: /\.svg$/i,
+				issuer: /\.[jt]sx?$/,
+				use: ['@svgr/webpack'],
 			},
 		],
 	},

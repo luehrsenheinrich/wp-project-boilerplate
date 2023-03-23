@@ -10,7 +10,8 @@
 		"phpcompatibility/php-compatibility": "^9.3",
 		"wp-coding-standards/wpcs": "^2.3",
 		"wptrt/wpthemereview": "dev-develop",
-		"phpcompatibility/phpcompatibility-wp": "^2.1"
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-cli/wp-cli-bundle": "^2.7"
 	},
 	"scripts": {
 		"lint": "phpcs -d memory_limit=-1",
@@ -22,7 +23,15 @@
 		"post-update-cmd": [
 			"cd theme && composer update",
 			"cd plugin && composer update"
-		]
+		],
+    "i18n-make-pot": [
+      "wp i18n make-pot ./theme ./theme/languages/lhpbpt.pot --exclude=vendor,node_modules,src",
+      "wp i18n make-pot ./plugin ./plugin/languages/lhpbpp.pot --exclude=vendor,node_modules,src,blocks/**/*.js"
+    ],
+    "i18n-make-json": [
+      "wp i18n make-json \"./theme/languages/\" --no-purge",
+      "wp i18n make-json \"./plugin/languages/\" --no-purge"
+    ]
 	},
 	"config": {
 		"allow-plugins": {

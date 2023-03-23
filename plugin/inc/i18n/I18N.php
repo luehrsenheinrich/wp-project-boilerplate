@@ -20,7 +20,7 @@ class I18N extends Component {
 	 * {@inheritDoc}
 	 */
 	protected function add_actions() {
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ), 1 );
 	}
 
 	/**
@@ -32,10 +32,13 @@ class I18N extends Component {
 	 * Load the plugin text domain for translation.
 	 */
 	public function load_plugin_textdomain() {
+		$dir  = str_replace( WP_PLUGIN_DIR, '', lh_plugin()->get_plugin_path() );
+		$path = $dir . '/languages/';
+
 		load_plugin_textdomain(
 			'lhpbpp',
 			false,
-			lh_plugin()->get_plugin_path() . '/languages/'
+			$path
 		);
 	}
 }
