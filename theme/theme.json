@@ -179,7 +179,7 @@
         {
           "name": "System Success",
           "slug": "system-success",
-          "color": "var(--system-success)"
+          "color": "var(--color-system-success)"
         },
         {
           "name": "System Warning",
