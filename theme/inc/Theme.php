@@ -9,8 +9,8 @@ namespace WpMunich\lhpbpt;
 
 /**
  * Main class for the theme.
- *
- * This class takes care of initializing components.
+ * This is the main container for all theme components. It is used to access
+ * the components and to provide some basic information about the theme.
  */
 class Theme {
 
