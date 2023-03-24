@@ -16,17 +16,24 @@ namespace WpMunich\lhpbpt;
  */
 function lh_theme() {
 
+	/**
+	 * Check if the requirements for the current theme are met.
+	 * If the requirements are not met, we might get severe errors. Therefore, we
+	 * return null and do not initialize the theme.
+	 */
 	if ( ! theme_requirements_are_met() ) {
 		return null;
 	}
 
 	static $theme = null;
+
 	if ( null === $theme ) {
 		$builder   = new \DI\ContainerBuilder();
 		$container = $builder->build();
 
 		$theme = $container->get( Theme::class );
 	}
+
 	return $theme;
 }
 
@@ -36,10 +43,16 @@ function lh_theme() {
  * @return bool True if requirements are met, false otherwise.
  */
 function theme_requirements_are_met() {
+	/**
+	 * The accompanying plugin is required.
+	 */
 	if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) || \WPMunich\lhpbpp\lh_plugin() === null ) {
 		return false;
 	}
 
+	/**
+	 * The Advanced Custom Fields plugin is required.
+	 */
 	if ( ! function_exists( 'get_field' ) ) {
 		return false;
 	}
