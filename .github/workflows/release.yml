@@ -3,7 +3,7 @@
 # The action expects a valid zip file in the `./update/` folder and the `slug` key in the
 # `package.json` to be set.
 
-name: 🚀 Create Release
+name: 🚀 Create Release 2
 
 on:
   # This action is triggered manually.
