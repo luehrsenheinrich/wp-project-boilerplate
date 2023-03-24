@@ -2,9 +2,8 @@
 # Inner Container
 --------------------------------------------------------------*/
 
-:root .entry-content,
 :root .inner-container,
-:root .wp-site-blocks,
+:root .is-root-container,
 [class*="wp-block"] > [class*="__inner-container"],
 [class*="wp-block"] > [class*="__content"] {
 

@@ -64,41 +64,19 @@ class Block_Patterns extends Component {
 	 * @return void
 	 */
 	public function register_block_patterns() {
-		/*
-		Reminder: Remove Image IDs!
-		BOILERPLATE:
-			register_block_pattern(
-				'lhpbpt/my-pattern-name',
-				array(
-					'title'       => _x( 'Pattern Name', 'pattern title', 'lhpbpt' ),
-					'description' => __( 'Pattern Description', 'lhpbpt' ),
-					// phpcs:disable
-					'content'     => '
-						<!-- wp:paragraph -->
-						<p>Hanlo, I bims, 1 weld, lol :></p>
-						<!-- /wp:paragraph -->
-					',
-					// phpcs:enable
-					'categories'  => array( 'lhpbpt' ),
-					'keywords'    => array(
-						_x( 'Keyword name', 'block pattern keywords', 'lhpbpt' ),
-						_x( 'Keyword name', 'block pattern keywords', 'lhpbpt' ),
-					),
-				)
-			);
-		*/
 		register_block_pattern(
 			'lhpbpt/example-pattern',
 			array(
-				'title'       => _x( 'Example Pattern', 'pattern title', 'lhpbpt' ),
-				'description' => __( 'A simple example pattern. If you can read this at prod call an admin.', 'lhpbpt' ),
+				'title'         => _x( 'Example Pattern', 'pattern title', 'lhpbpt' ),
+				'description'   => __( 'A simple example pattern. If you can read this at prod call an admin.', 'lhpbpt' ),
 				// phpcs:disable
-				'content'     => $this->get_block_pattern_string( get_stylesheet_directory() . '/inc/Block_Patterns/bp-example.php' ),
+				'content'       => $this->get_block_pattern_string( get_stylesheet_directory() . '/inc/Block_Patterns/bp-example.php' ),
 				// phpcs:enable
-				'categories'  => array( 'lhpbpt-pattern' ),
-				'keywords'    => array(
+				'categories'    => array( 'lhpbpt-pattern' ),
+				'keywords'      => array(
 					_x( 'Example', 'block pattern keywords', 'lhpbpt' ),
 				),
+				'viewportWidth' => 1440,
 			)
 		);
 	}

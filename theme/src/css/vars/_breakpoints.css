@@ -23,7 +23,7 @@
 @media (--md-query) {
 
 	:root {
-		--last-bp: var(--md-md);
+		--last-bp: var(--bp-md);
 	}
 }
 
