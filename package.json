@@ -79,6 +79,6 @@
     "webpack-remove-empty-scripts": "^1.0.1"
   },
   "dependencies": {
-    "@svgr/webpack": "^6.5.1"
+    "@svgr/webpack": "^7.0.0"
   }
 }
