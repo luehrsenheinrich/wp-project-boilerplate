@@ -52,7 +52,7 @@ const IconSelectControl = ({
 	}, [icons, value]);
 
 	const onSelectIcon = (option) => {
-		onChange(option.value);
+		onChange(option?.value);
 	};
 
 	let options = icons;
