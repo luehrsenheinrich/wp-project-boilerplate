@@ -49,7 +49,7 @@ const IconSelectControl = ({
 				label: icon.title,
 			});
 		}
-	}, [icons, value]);
+	}, [icons, value, selectedOption]);
 
 	const onSelectIcon = (option) => {
 		onChange(option.value);
