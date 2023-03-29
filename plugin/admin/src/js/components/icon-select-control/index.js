@@ -52,7 +52,11 @@ const IconSelectControl = ({
 	}, [icons, value, selectedOption]);
 
 	const onSelectIcon = (option) => {
-		onChange(option.value);
+		onChange(option?.value);
+
+		if (!option?.value) {
+			setSelectedOption(null);
+		}
 	};
 
 	let options = icons;
@@ -70,12 +74,13 @@ const IconSelectControl = ({
 			<Select
 				openMenuOnClick={true}
 				openMenuOnFocus={true}
-				classNamePrefix="lhisc"
-				className="lh-icon-select-control"
+				classNamePrefix="react-select"
+				className="lh-icon-select-control react-select"
 				value={selectedOption}
 				onChange={onSelectIcon}
 				isSearchable={true}
 				isDisabled={!icons.length}
+				isClearable={true}
 				options={options.map((icon) => ({
 					icon: { ...icon },
 					value: icon.slug,
