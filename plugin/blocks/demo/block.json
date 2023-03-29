@@ -12,6 +12,13 @@
   "attributes": {
     "icon": {
       "type": "string"
+    },
+    "post": {
+      "type": "array",
+      "default": []
+    },
+    "postSingle": {
+      "type": "number"
     }
   },
   "example": {},
