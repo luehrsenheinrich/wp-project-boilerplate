@@ -9,7 +9,11 @@
   "supports": {
     "align": [ "wide" ]
   },
-  "attributes": {},
+  "attributes": {
+    "icon": {
+      "type": "string"
+    }
+  },
   "example": {},
   "editorScript": "lhpbpp-blocks"
 }

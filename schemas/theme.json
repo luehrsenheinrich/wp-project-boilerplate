@@ -2139,6 +2139,8 @@
             "typography": {},
             "border": {},
             "shadow": {},
+            "position": {},
+            "dimensions": {},
             "custom": {},
             "blocks": {
               "description": "Settings defined on a per-block basis.",
