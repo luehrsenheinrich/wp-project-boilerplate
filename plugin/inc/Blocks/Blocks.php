@@ -140,6 +140,7 @@ class Blocks extends Component {
 
 		$custom_blocks = array(
 			'demo',
+			'test',
 		);
 
 		foreach ( $custom_blocks as $block ) {
@@ -167,6 +168,9 @@ class Blocks extends Component {
 
 		switch ( $block->name ) {
 			case 'lh/demo':
+				include $blocks_path . 'demo/template.php';
+				break;
+			case 'lh/test':
 				include $blocks_path . 'demo/template.php';
 				break;
 		}
