@@ -98,7 +98,7 @@ class SVG extends Component {
 			return false;
 		}
 
-		if ( mime_content_type( $final_path ) !== 'image/svg' ) {
+		if ( ! in_array( mime_content_type( $final_path ), array( 'image/svg', 'image/svg+xml' ), true ) ) {
 			return false;
 		}
 
