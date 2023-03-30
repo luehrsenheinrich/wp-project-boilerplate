@@ -90,7 +90,7 @@ class WPM_Svg_Image {
 			return false;
 		}
 
-		if ( mime_content_type( $svg_path ) !== 'image/svg' ) {
+		if ( ! in_array( mime_content_type( $svg_path ), array( 'image/svg', 'image/svg+xml' ), true ) ) {
 			return false;
 		}
 

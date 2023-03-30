@@ -12,7 +12,6 @@ const Edit = (props) => {
 	const { attributes, setAttributes } = props;
 	const { icon, post, postSingle } = attributes;
 
-const Edit = () => {
 	return (
 		<>
 			<InspectorControls>
@@ -36,6 +35,11 @@ const Edit = () => {
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps()}>
+				{icon && (
+					<div className="icon">
+						<Icon slug={icon} />
+					</div>
+				)}
 				<p>{__('This is a demo block.', 'lhpbpp')}</p>
 			</div>
 		</>

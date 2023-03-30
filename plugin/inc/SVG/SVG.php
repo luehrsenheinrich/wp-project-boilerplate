@@ -53,12 +53,12 @@ class SVG extends Component {
 					new Icon(
 						$base_path . 'img/icons/chevron--left.svg',
 						'chevron--left',
-						__( 'Slashes', 'lhpbpp' ),
+						__( 'Chevron Left', 'lhpbpp' ),
 					),
 					new Icon(
 						$base_path . 'img/icons/chevron--right.svg',
 						'chevron--right',
-						__( 'Slashes', 'lhpbpp' ),
+						__( 'Chevron Right', 'lhpbpp' ),
 					),
 				)
 			);
@@ -98,7 +98,7 @@ class SVG extends Component {
 			return false;
 		}
 
-		if ( mime_content_type( $final_path ) !== 'image/svg' ) {
+		if ( ! in_array( mime_content_type( $final_path ), array( 'image/svg', 'image/svg+xml' ), true ) ) {
 			return false;
 		}
 
