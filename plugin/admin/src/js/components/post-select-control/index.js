@@ -6,7 +6,11 @@
  * WordPress dependencies.
  */
 import { useMemo } from '@wordpress/element';
-import { PanelRow, Spinner } from '@wordpress/components';
+import {
+	BaseControl,
+	Spinner,
+	useBaseControlProps,
+} from '@wordpress/components';
 import { useEntityRecords } from '@wordpress/core-data';
 import { __ } from '@wordpress/i18n';
 
@@ -38,6 +42,10 @@ const EntitySelectControl = ({
 	help = '',
 	multiple = true,
 }) => {
+	const { baseControlProps, controlProps } = useBaseControlProps({
+		label,
+		help,
+	});
 	const { records: entityRecords = [], isResolving } = useEntityRecords(
 		entityKind,
 		entityName,
@@ -85,8 +93,7 @@ const EntitySelectControl = ({
 	};
 
 	return (
-		<PanelRow className="post-type-select__row">
-			<span className="post-type-select__label">{label}</span>
+		<BaseControl {...baseControlProps}>
 			{isResolving && <Spinner />}
 			{!isResolving && (
 				<>
@@ -100,6 +107,7 @@ const EntitySelectControl = ({
 								strategy={horizontalListSortingStrategy}
 							>
 								<Select
+									{...controlProps}
 									value={selectValue}
 									onChange={onSelectPost}
 									options={options}
@@ -142,9 +150,7 @@ const EntitySelectControl = ({
 					)}
 				</>
 			)}
-
-			{help && <p className="post-type-select__help">{help}</p>}
-		</PanelRow>
+		</BaseControl>
 	);
 };
 
@@ -156,10 +162,10 @@ export default EntitySelectControl;
 
 function getSelectValue(value, options = [], multiple) {
 	if (multiple) {
-		return value.map((v) => {
+		return value?.map((v) => {
 			return options.find((o) => o.value === v.value);
 		});
 	}
 
-	return options.find((o) => o.value === value.value);
+	return options.find((o) => o.value === value?.value);
 }

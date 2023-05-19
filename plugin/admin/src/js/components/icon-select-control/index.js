@@ -7,6 +7,7 @@ import {
 	Spinner,
 	useBaseControlProps,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 /**
  * External dependencies.
@@ -20,15 +21,18 @@ import { useIcons } from '../../data/entities/icon';
 import LHIcon from '../icon';
 
 const IconSelectControl = ({
-	label = null,
+	label = __('Select icon', 'lhpbpp'),
+	help = '',
 	value,
 	onChange,
 	blackList,
 	whiteList,
-	baseProps = {},
 }) => {
 	const [selectedOption, setSelectedOption] = useState();
-	const { baseControlProps, controlProps } = useBaseControlProps(baseProps);
+	const { baseControlProps, controlProps } = useBaseControlProps({
+		label,
+		help,
+	});
 	const { icons, ...yadda } = useIcons();
 
 	useEffect(() => {
@@ -65,9 +69,6 @@ const IconSelectControl = ({
 
 	return (
 		<BaseControl {...baseControlProps}>
-			{label?.length && (
-				<label htmlFor="lh-icon-select-control">{label}</label>
-			)}
 			{!yadda?.hasResolved && <Spinner />}
 			{yadda?.hasResolved && (
 				<Select
