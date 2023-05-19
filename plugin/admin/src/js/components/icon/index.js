@@ -39,7 +39,7 @@ const LHIcon = (props) => {
 	if (parsedSvg) {
 		const className = classNames(
 			props?.className || '',
-			`lh-icon icon-${icon.slug}`
+			`lh-icon icon-${icon?.slug || slug || 'svg'}`
 		);
 
 		return <WPIcon {...props} icon={parsedSvg} className={className} />;
