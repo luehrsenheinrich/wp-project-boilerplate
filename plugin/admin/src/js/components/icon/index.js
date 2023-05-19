@@ -1,9 +1,8 @@
 /**
  * WordPress dependencies.
  */
-import { withSelect } from '@wordpress/data';
+import { useMemo } from '@wordpress/element';
 import { Icon as WPIcon } from '@wordpress/components';
-import { Component } from '@wordpress/element';
 
 /**
  * External dependencies.
@@ -14,66 +13,61 @@ import parse, { attributesToProps, domToReact } from 'html-react-parser';
 /**
  * Internal dependencies.
  */
-import { ICONS_STORE_KEY } from '../../data';
+import { useIcon } from '../../data/entities/icon';
 
 /**
  * Returns a wp.components.Icon element with icon from API.
+ *
+ * @param {Object} props           - Component props.
+ * @param {string} props.slug      - Icon slug.
+ * @param {string} props.svg       - Icon SVG.
+ * @param {string} props.className - Icon class name.
+ *
+ * @return {Object} - Icon component.
  */
-class LHIcon extends Component {
-	constructor() {
-		super(...arguments);
-		this.getParserOptions = this.getParserOptions.bind(this);
+const LHIcon = (props) => {
+	const { slug, svg } = props;
+	const { icon } = useIcon(slug);
+
+	// Further processing of the icon data.
+	const markup = svg || icon?.svg;
+	const parsedSvg = useMemo(
+		() => (markup ? parse(markup, getParserOptions()) : null),
+		[markup]
+	);
+
+	if (parsedSvg) {
+		const className = classNames(
+			props?.className || '',
+			`lh-icon icon-${icon.slug}`
+		);
+
+		return <WPIcon {...props} icon={parsedSvg} className={className} />;
 	}
 
-	getParserOptions() {
-		return {
-			replace: (domNode) => {
-				if (domNode.name === 'svg') {
-					// Define the custom tag name.
-					const CustomTag = domNode.name;
-					const props = attributesToProps(domNode.attribs);
+	return <></>;
+};
 
-					return (
-						<CustomTag {...props} key={domNode.attribs.id}>
-							{domToReact(domNode.children)}
-						</CustomTag>
-					);
-				}
+export default LHIcon;
 
-				return domNode;
-			},
-		};
-	}
-
-	render() {
-		const { icon } = this.props;
-		if (icon?.svg) {
-			const className = classNames(
-				this.props.className,
-				`lh-icon icon-${this.props.slug}`
-			);
-			const parsedSvg = parse(icon.svg, this.getParserOptions());
-			return (
-				<WPIcon
-					{...this.props}
-					icon={parsedSvg}
-					className={className}
-				/>
-			);
-		}
-
-		return <></>;
-	}
-}
-
-export default withSelect((select, props) => {
-	const { getIcons, getIcon } = select(ICONS_STORE_KEY);
-	const icons = getIcons();
-	let icon = icons.filter(({ slug }) => slug === props.slug)[0] || null;
-	if (!icon) {
-		icon = getIcon(props.slug);
-	}
+/**
+ * Returns the parser options for the html-react-parser library.
+ */
+const getParserOptions = () => {
 	return {
-		icon,
+		replace: (domNode) => {
+			if (domNode.name === 'svg') {
+				// Define the custom tag name.
+				const CustomTag = domNode.name;
+				const props = attributesToProps(domNode.attribs);
+
+				return (
+					<CustomTag {...props} key={domNode.attribs.id}>
+						{domToReact(domNode.children)}
+					</CustomTag>
+				);
+			}
+			return domNode;
+		},
 	};
-})(LHIcon);
+};
