@@ -56,10 +56,16 @@ const EntitySelectControl = ({
 		}
 	);
 
-	const options = entityRecords?.map(({ id, name, title }) => ({
-		value: id,
-		label: title?.rendered || title || name,
-	}));
+	const options = entityRecords
+		?.filter(({ name, title }) => {
+			// Don't show entities with empty titles.
+			const optionLabel = title?.rendered || title || name;
+			return typeof optionLabel === 'string' && optionLabel.length > 0;
+		})
+		?.map(({ id, name, title }) => ({
+			value: id,
+			label: title?.rendered || title || name,
+		}));
 
 	const selectValue = useMemo(
 		() => getSelectValue(value, options, multiple),
