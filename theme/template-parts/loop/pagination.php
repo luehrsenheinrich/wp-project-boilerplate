@@ -6,7 +6,6 @@
  */
 
 namespace WpMunich\lhpbpt;
-use function WpMunich\lhpbpp\lh_plugin;
 
 $args = wp_parse_args(
 	$args,
@@ -31,16 +30,7 @@ if ( $args['query']->max_num_pages > 1 ) : ?>
 		<div class="prev">
 			<a href="<?php echo esc_url( get_pagenum_link( $current - 1 ) ); ?>" data-page-target="<?php echo esc_attr( $current - 1 ); ?>" class="prev-link">
 				<span class="screen-reader-text"><?php echo esc_attr( 'Previous', 'lhpbpt' ); ?></span>
-				<?php
-				echo lh_plugin()->svg()->get_svg( //phpcs:ignore
-					'chevron--left',
-					array(
-						'attributes' => array(
-							'class' => 'icon icon-chevron',
-						),
-					)
-				);
-				?>
+				<?php get_template_part( 'template-parts/icon', null, array( 'pointer' => 'chevron--left' ) ); ?>
 			</a>
 		</div>
 	<?php endif; ?>
@@ -66,16 +56,7 @@ if ( $args['query']->max_num_pages > 1 ) : ?>
 		<div class="next">
 			<a href="<?php echo esc_url( get_pagenum_link( $current + 1 ) ); ?>" data-page-target="<?php echo esc_attr( $current + 1 ); ?>" class="next-link">
 				<span class="screen-reader-text"><?php echo esc_attr( 'Next', 'lhpbpt' ); ?></span>
-				<?php
-				echo lh_plugin()->svg()->get_svg( //phpcs:ignore
-					'chevron--right',
-					array(
-						'attributes' => array(
-							'class' => 'icon icon-chevron',
-						),
-					)
-				);
-				?>
+				<?php get_template_part( 'template-parts/icon', null, array( 'pointer' => 'chevron--right' ) ); ?>
 			</a>
 		</div>
 	<?php endif; ?>
