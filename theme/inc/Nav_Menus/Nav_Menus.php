@@ -7,11 +7,12 @@
 
 namespace WpMunich\lhpbpt\Nav_Menus;
 use WpMunich\lhpbpt\Component;
-use function add_action;
-use function register_nav_menus;
 use function esc_html__;
+use function get_pagenum_link;
 use function has_nav_menu;
+use function register_nav_menus;
 use function wp_nav_menu;
+use function wp_parse_args;
 
 /**
  * Class for managing navigation menus.

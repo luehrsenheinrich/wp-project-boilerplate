@@ -9,6 +9,8 @@ namespace WpMunich\lhpbpt\FSE;
 
 use WpMunich\lhpbpt\Component;
 use function add_action;
+use function add_filter;
+use function remove_theme_support;
 
 /**
  * A class to handle fullsite editing & theme.json

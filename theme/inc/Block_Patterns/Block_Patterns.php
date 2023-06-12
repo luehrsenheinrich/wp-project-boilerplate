@@ -9,6 +9,9 @@ namespace WpMunich\lhpbpt\Block_Patterns;
 
 use WpMunich\lhpbpt\Component;
 use function add_action;
+use function register_block_pattern;
+use function register_block_pattern_category;
+use function unregister_block_pattern_category;
 
 /**
  * A class to handle Block Patterns.

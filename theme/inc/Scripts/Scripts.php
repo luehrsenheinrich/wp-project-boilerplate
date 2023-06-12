@@ -7,8 +7,15 @@
 
 namespace WpMunich\lhpbpt\Scripts;
 use WpMunich\lhpbpt\Component;
-use function add_action;
 use function WpMunich\lhpbpt\lh_theme;
+use function add_action;
+use function comments_open;
+use function get_option;
+use function get_rest_url;
+use function get_template_directory_uri;
+use function is_singular;
+use function wp_enqueue_script;
+use function wp_localize_script;
 
 /**
  * A class to enqueue the needed scripts..
