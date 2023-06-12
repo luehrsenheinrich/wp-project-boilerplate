@@ -27,6 +27,11 @@
 	--font-size-regular: calc(16 / var(--global-font-size) * 1rem);
 	--font-size-large: var(--global-h4-font-size);
 	--font-size-larger: var(--global-h1-font-size);
+
+	/* Font Weights */
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-bold: 700;
 }
 
 @media (--sm-query) {
