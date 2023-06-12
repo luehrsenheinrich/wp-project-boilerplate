@@ -19,6 +19,13 @@ class Icon implements \JsonSerializable {
 	protected string $path;
 
 	/**
+	 * Wether to expose the Icon to the REST API or not.
+	 *
+	 * @var boolean
+	 */
+	protected bool $show_in_rest;
+
+	/**
 	 * The slug of the icon.
 	 *
 	 * @var string
@@ -31,13 +38,6 @@ class Icon implements \JsonSerializable {
 	 * @var string
 	 */
 	protected string $title;
-
-	/**
-	 * Wether to expose the Icon to the REST API or not.
-	 *
-	 * @var boolean
-	 */
-	protected bool $show_in_rest;
 
 	/**
 	 * Class constructor
@@ -58,7 +58,8 @@ class Icon implements \JsonSerializable {
 		if ( $title && ! empty( $title ) ) {
 			$this->set_title( $title );
 		}
-		$this->show_in_rest = $show_in_rest;
+
+		$this->set_show_in_rest( $show_in_rest );
 	}
 
 	/**
@@ -130,6 +131,18 @@ class Icon implements \JsonSerializable {
 	public function set_title( $title ) {
 		if ( ! empty( $title ) ) {
 			$this->title = $title;
+		}
+	}
+
+	/**
+	 * Set if the Icon can be exposed to the REST API.
+	 *
+	 * @param bool $show_in_rest True if exposable, false otherwise.
+	 * @return void.
+	 */
+	public function set_show_in_rest( $show_in_rest ) {
+		if ( is_bool( $show_in_rest ) ) {
+			$this->show_in_rest = $show_in_rest;
 		}
 	}
 

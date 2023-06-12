@@ -7,6 +7,7 @@
 
 namespace WpMunich\lhpbpp\SVG;
 use \DOMDocument;
+use function wp_parse_args;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -16,18 +17,11 @@ defined( 'ABSPATH' ) || exit;
 class WPM_Svg_Image {
 
 	/**
-	 * The DOMDocument representation of the SVG.
+	 * An array of allowed svg attributes.
 	 *
-	 * @var DOMDocument
+	 * @var array
 	 */
-	private $dom_document;
-
-	/**
-	 * The SVG DOMElement.
-	 *
-	 * @var DOMElement
-	 */
-	private $svg;
+	private $allowed_attributes = array( 'class', 'id', 'width', 'height', 'fill', 'role' );
 
 	/**
 	 * An array of html attributes that are applied to the svg tag.
@@ -37,11 +31,11 @@ class WPM_Svg_Image {
 	private $attributes = array();
 
 	/**
-	 * An array of allowed svg attributes.
+	 * The DOMDocument representation of the SVG.
 	 *
-	 * @var array
+	 * @var DOMDocument
 	 */
-	private $allowed_attributes = array( 'class', 'id', 'width', 'height', 'fill', 'role' );
+	private $dom_document;
 
 	/**
 	 * The return type for the render function.
@@ -49,6 +43,13 @@ class WPM_Svg_Image {
 	 * @var string
 	 */
 	private $return_type = 'tag';
+
+	/**
+	 * The SVG DOMElement.
+	 *
+	 * @var DOMElement
+	 */
+	private $svg;
 
 	/**
 	 * The class constructor.

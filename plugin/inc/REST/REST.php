@@ -15,6 +15,7 @@ use function apply_filters;
 use function esc_attr;
 use function register_rest_route;
 use function rest_ensure_response;
+use function wp_parse_args;
 
 /**
  * A class to register custom REST endpoints.

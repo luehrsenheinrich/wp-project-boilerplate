@@ -7,15 +7,25 @@
 
 namespace WpMunich\lhpbpp\ACF;
 use WpMunich\lhpbpp\Component;
-use function add_action;
-use function wp_get_environment_type;
-use function acf_add_options_page;
 use function WpMunich\lhpbpp\lh_plugin;
+use function acf_add_options_page;
+use function add_action;
+use function add_filter;
+use function wp_get_environment_type;
 
 /**
  * A class to handle acf related logic..
  */
 class ACF extends Component {
+	/**
+	 * Validated and final page settings.
+	 *
+	 * @see https://www.advancedcustomfields.com/resources/acf_add_options_page/
+	 *
+	 * @var array
+	 */
+	protected $option_page = array();
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,7 +77,7 @@ class ACF extends Component {
 			return;
 		}
 
-		$option_page = acf_add_options_page(
+		$this->option_page = acf_add_options_page(
 			array(
 				'page_title' => __( 'L//H Settings', 'lhpbpp' ),
 				'menu_title' => __( 'L//H Settings', 'lhpbpp' ),

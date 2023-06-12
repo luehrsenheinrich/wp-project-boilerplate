@@ -7,9 +7,9 @@
 
 namespace WpMunich\lhpbpp\i18n;
 use WpMunich\lhpbpp\Component;
+use function WpMunich\lhpbpp\lh_plugin;
 use function add_action;
 use function load_plugin_textdomain;
-use function WpMunich\lhpbpp\lh_plugin;
 
 /**
  * A class to handle textdomains and other i18n related logic..
