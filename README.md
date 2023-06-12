@@ -24,6 +24,7 @@ new repository. So let's get started:
 
 ### Project Slug & Names
 - [ ] Search & Replace (case sensitive) `lhpbp` with your new WordPress project slug
+- [ ] Search & Replace (case sensitive) `LHPBP` with your new WordPress project slug
 - [ ] Adjust details in `package.json` and update the file headers in `theme/style.css` and `plugin/lhpbpp.php`
 - [ ] Rename the main plugin file from `plugin/lhpbpp.php` to `plugin/<new_project_slug>p.php`
 
