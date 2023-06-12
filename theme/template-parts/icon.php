@@ -7,7 +7,7 @@
 
 use function WpMunich\lhpbpp\lh_plugin;
 
-$attr = wp_parse_args(
+$args = wp_parse_args(
 	$args ?? array(),
 	array(
 		'pointer'        => '',
@@ -17,8 +17,8 @@ $attr = wp_parse_args(
 	)
 );
 
-$attr['attributes'] = wp_parse_args(
-	$attr['attributes'],
+$args['iconAttributes'] = wp_parse_args(
+	$args['iconAttributes'],
 	array(
 		'class'  => '',
 		'width'  => '24',
@@ -27,16 +27,14 @@ $attr['attributes'] = wp_parse_args(
 );
 
 $icon_svg = lh_plugin()->svg()->get_svg(
-	$attr['iconAttributes'],
+	$args['pointer'],
 	array(
-		'attributes' => array(
-			'width'  => '24',
-			'height' => '24',
-		),
+		'attributes' => $args['iconAttributes'],
 	)
 );
 
-if ( ! empty( $attr['pointer'] ) && ! empty( $icon_svg ) ) :
+
+if ( ! empty( $args['pointer'] ) && ! empty( $icon_svg ) ) :
 	$wrapper_class_names = classNames(
 		'icon',
 		$args['className'],
