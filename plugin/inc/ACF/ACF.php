@@ -1,6 +1,6 @@
 <?php
 /**
- * Lhplugin\ACF\Component class
+ * LHPBPP\ACF\Component class
  *
  * @package lhpbpp
  */
