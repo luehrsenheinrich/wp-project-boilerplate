@@ -8,6 +8,7 @@
 namespace WpMunich\lhpbpt\Theme_Supports;
 use WpMunich\lhpbpt\Component;
 use function add_action;
+use function add_theme_support;
 
 /**
  * Add theme supports.
