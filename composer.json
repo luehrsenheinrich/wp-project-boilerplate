@@ -1,5 +1,5 @@
 {
-	"name": "luehrsenheinrich/wp-plugin-boilerplate",
+	"name": "luehrsenheinrich/wp-project-boilerplate",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
   "optimize-autoloader": true,
