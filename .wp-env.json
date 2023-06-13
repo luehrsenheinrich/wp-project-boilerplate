@@ -5,6 +5,7 @@
 	"plugins": [
 		"./plugin"
 	],
+	"phpVersion": "8.1",
 	"mappings": {
 		"php.ini": "./bin/php.ini",
 		"wp-content": "./wp/"
