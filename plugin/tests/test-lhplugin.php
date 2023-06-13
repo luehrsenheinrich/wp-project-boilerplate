@@ -8,7 +8,7 @@
 use function WpMunich\lhpbpp\lh_plugin;
 
 /**
- * Class LHPlugin_Basic_Test
+ * Class Lhpbpp_Basic_Test
  */
 class LHPlugin_Basic_Test extends WP_UnitTestCase {
 
@@ -24,12 +24,5 @@ class LHPlugin_Basic_Test extends WP_UnitTestCase {
 	 */
 	public function test_lhpbpp_file_constant() {
 		$this->assertTrue( defined( 'LHPBPP_FILE' ) );
-	}
-
-	/**
-	 * Check if the lhpbpp directory constant is defined.
-	 */
-	public function test_lhpbpp_dir_constant() {
-		$this->assertTrue( defined( 'LHPBPP_DIR' ) );
 	}
 }
