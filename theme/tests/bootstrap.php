@@ -32,10 +32,11 @@ require_once "{$_tests_dir}/includes/functions.php";
  * Manually load the plugin being tested.
  */
 function _manually_load_theme() {
-	require dirname( dirname( __FILE__ ) ) . '/functions.php';
+	switch_theme( 'lhpbpt' );
+	require WP_CONTENT_DIR . '/themes/theme/inc/functions.php';
 }
 
-tests_add_filter( 'muplugins_loaded', '_manually_load_theme' );
+tests_add_filter( 'after_setup_theme', '_manually_load_theme' );
 
 // Start up the WP testing environment.
 require "{$_tests_dir}/includes/bootstrap.php";
