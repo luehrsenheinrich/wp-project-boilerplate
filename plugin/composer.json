@@ -16,5 +16,8 @@
     "platform": {
       "php": "8.1"
     }
+  },
+  "require-dev": {
+    "yoast/phpunit-polyfills": "^1.0"
   }
 }

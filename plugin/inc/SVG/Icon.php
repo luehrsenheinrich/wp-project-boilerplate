@@ -151,8 +151,9 @@ class Icon implements \JsonSerializable {
 	 *
 	 * @param array $fields The fields to return.
 	 *
-	 * @return array The serialized object.
+	 * @return mixed The serialized object.
 	 */
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize( $fields = array( 'path', 'slug', 'title' ) ) {
 		$resp = array();
 		// Filter for fields.
