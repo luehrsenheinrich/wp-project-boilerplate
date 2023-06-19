@@ -57,10 +57,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: 🚀 Start the environment
-        run: npm start
-
-      - name: 📂 Create uploads directory
-        run: mkdir -p wp/wp-content/uploads
+        run: npm start:test
 
       - name: 🧪 Run tests
         run: npm test
