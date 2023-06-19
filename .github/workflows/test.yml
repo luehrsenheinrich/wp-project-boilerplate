@@ -57,7 +57,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: 🚀 Start the environment
-        run: npm start:test
+        run: npm run start:test
 
       - name: 🧪 Run tests
         run: npm test
