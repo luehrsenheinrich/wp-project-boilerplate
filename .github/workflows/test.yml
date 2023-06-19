@@ -59,8 +59,5 @@ jobs:
       - name: 🚀 Start the environment
         run: npm start
 
-      - name: 📂 Create uploads directory
-        run: mkdir wp/wp-content/uploads
-
       - name: 🧪 Run tests
         run: npm test
