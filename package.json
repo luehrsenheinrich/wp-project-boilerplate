@@ -12,7 +12,7 @@
     "release": "npm run release:build && npm run release:version && npm run release:package",
     "prestart": "npm install && composer install && npm run update:schemas && npm run build",
     "start": "npx wp-env start",
-    "start:test": "WP_ENV_CONFIG=.wp-env-test.json wp-env start --update",
+    "start:test": "npm run prestart && WP_ENV_CONFIG=.wp-env-test.json wp-env start --update",
     "stop": "npx wp-env stop",
     "watch": "webpack --watch",
     "env:clean": "npx wp-env clean all",
