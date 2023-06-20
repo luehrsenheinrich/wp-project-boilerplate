@@ -1,8 +1,8 @@
 {
-	"name": "luehrsenheinrich/wp-plugin-boilerplate",
+	"name": "luehrsenheinrich/wp-project-boilerplate",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
-  "optimize-autoloader": true,
+	"optimize-autoloader": true,
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
 		"squizlabs/php_codesniffer": "^3.6",
@@ -11,7 +11,8 @@
 		"wp-coding-standards/wpcs": "^2.3",
 		"wptrt/wpthemereview": "dev-develop",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
-		"wp-cli/wp-cli-bundle": "^2.7"
+		"wp-cli/wp-cli-bundle": "^2.7",
+		"php-stubs/wordpress-tests-stubs": "^6.2"
 	},
 	"scripts": {
 		"lint": "phpcs -d memory_limit=-1",

@@ -8,10 +8,19 @@
 namespace WpMunich\lhpbpt\Styles;
 
 use WpMunich\lhpbpt\Component;
-use function add_action;
-use function wp_enqueue_style;
-use function wp_register_style;
 use function WpMunich\lhpbpt\lh_theme;
+use function _doing_it_wrong;
+use function add_action;
+use function add_editor_style;
+use function apply_filters;
+use function esc_html;
+use function get_theme_file_uri;
+use function remove_action;
+use function wp_enqueue_style;
+use function wp_print_styles;
+use function wp_register_style;
+use function wp_style_add_data;
+use function wp_styles;
 
 /**
  * A class to enqueue the needed styles.

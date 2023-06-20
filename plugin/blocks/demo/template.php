@@ -6,7 +6,7 @@
  * @param string   $content The block content.
  * @param WP_Block $block The block type.
  *
- * @package jitmp
+ * @package lhpbpp
  */
 
 use function WpMunich\lhpbpp\lh_plugin;

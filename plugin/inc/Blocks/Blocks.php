@@ -1,15 +1,22 @@
 <?php
 /**
- * Lhplugin\Blocks\Component class
+ * LHPBPP\Blocks\Component class
  *
  * @package lhpbpp
  */
 
 namespace WpMunich\lhpbpp\Blocks;
 use WpMunich\lhpbpp\Component;
-use function add_action;
-use function acf_register_block_type;
 use function WpMunich\lhpbpp\lh_plugin;
+use function acf_register_block_type;
+use function add_action;
+use function add_filter;
+use function apply_filters;
+use function get_current_screen;
+use function register_block_type;
+use function wp_enqueue_script;
+use function wp_json_file_decode;
+use function wp_set_script_translations;
 
 /**
  * A class to handle the plugins blocks.

@@ -8,6 +8,8 @@
 namespace WpMunich\lhpbpp\SVG;
 use WpMunich\lhpbpp\Component;
 use function WpMunich\lhpbpp\lh_plugin;
+use function add_filter;
+use function get_template_directory;
 
 /**
  * The Component

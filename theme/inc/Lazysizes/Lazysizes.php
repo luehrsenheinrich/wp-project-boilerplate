@@ -7,8 +7,8 @@
 
 namespace WpMunich\lhpbpt\Lazysizes;
 use WpMunich\lhpbpt\Component;
-use function add_action;
 use function WpMunich\lhpbpt\lh_theme;
+use function add_action;
 
 /**
  * Add a class to handle lazy loading of images.

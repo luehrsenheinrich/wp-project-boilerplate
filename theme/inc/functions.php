@@ -84,3 +84,24 @@ function theme_requirements_notice__error() {
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
 add_action( 'admin_notices', '\WpMunich\lhpbpt\theme_requirements_notice__error' );
+
+/**
+ * Render an array of html attributes into a string.
+ *
+ * @param array $attributes The attributes to render.
+ *
+ * @return string The rendered attributes.
+ */
+function render_attributes( array $attributes ) {
+	$rendered_attributes = '';
+
+	foreach ( $attributes as $name => $value ) {
+		if ( empty( $value ) ) {
+			continue;
+		}
+
+		$rendered_attributes .= sprintf( '%s="%s" ', esc_attr( $name ), esc_attr( $value ) );
+	}
+
+	return trim( $rendered_attributes );
+}

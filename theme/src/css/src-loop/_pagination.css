@@ -34,7 +34,7 @@
 		grid-area: page-links;
 		text-align: center;
 		align-self: center;
-		font-weight: 400;
+		font-weight: var(--font-weight-regular);
 
 		@media (--sm-query) {
 			display: none;
