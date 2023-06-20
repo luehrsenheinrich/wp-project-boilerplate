@@ -1,5 +1,5 @@
 # WordPress Project Boilerplate
-[![🏗 Build & Deploy](../../actions/workflows/main.yml/badge.svg)](../../actions/workflows/main.yml)
+[![🧪 Tests](../../actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
 
 There are probably more WordPress boilerplates than actual themes & plugins available for bootstrapping your work on an amazing WordPress project. And that is very much okay, because every developer, every agency has their own little flavors in how they like to do things.
 
