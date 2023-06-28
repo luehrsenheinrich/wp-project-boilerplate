@@ -33,7 +33,7 @@
     "test:unit:env": "npm run test:unit:env:plugin && npm run test:unit:env:theme",
     "test:unit:env:plugin": "wp-env run --env-cwd='wp-content/plugins/plugin' tests-cli vendor/bin/phpunit -c phpunit.xml --verbose",
     "test:unit:env:theme": "wp-env run --env-cwd='wp-content/themes/theme' tests-cli vendor/bin/phpunit -c phpunit.xml --verbose",
-    "preversion": "npm run test",
+    "preversion": "npm start && npm run test",
     "version": "npm run release && git add -A"
   },
   "author": "Luehrsen // Heinrich",
