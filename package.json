@@ -3,7 +3,7 @@
   "title": "WordPress Project Boilerplate",
   "slug": "lhpbp",
   "version": "0.0.17",
-  "description": "A base boilerplate for Luehrsen // Heinrich WordPress projects. ",
+  "description": "A base boilerplate for Luehrsen // Heinrich WordPress projects.",
   "scripts": {
     "build": "webpack",
     "release:build": "webpack --mode='production'",

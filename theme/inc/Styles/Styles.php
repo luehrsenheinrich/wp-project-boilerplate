@@ -43,6 +43,7 @@ class Styles extends Component {
 		add_action( 'wp_footer', array( $this, 'action_print_preloaded_styles' ) );
 		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_editor_assets' ) );
 
 		/** Remove WP Emoji */
 		add_action( 'init', array( $this, 'remove_wp_emoji' ) );
