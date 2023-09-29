@@ -6,7 +6,8 @@
  */
 
 namespace WpMunich\lhpbpp\Blocks;
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbpp\Plugin_Component;
+
 use function WpMunich\lhpbpp\lh_plugin;
 use function acf_register_block_type;
 use function add_action;
@@ -21,7 +22,7 @@ use function wp_set_script_translations;
 /**
  * A class to handle the plugins blocks.
  */
-class Blocks extends Component {
+class Blocks extends Plugin_Component {
 
 	/**
 	 * {@inheritDoc}

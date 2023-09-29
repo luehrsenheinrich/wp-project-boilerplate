@@ -6,7 +6,8 @@
  */
 
 namespace WpMunich\lhpbpp\i18n;
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbpp\Plugin_Component;
+
 use function WpMunich\lhpbpp\lh_plugin;
 use function add_action;
 use function load_plugin_textdomain;
@@ -14,7 +15,7 @@ use function load_plugin_textdomain;
 /**
  * A class to handle textdomains and other i18n related logic..
  */
-class I18N extends Component {
+class I18N extends Plugin_Component {
 
 	/**
 	 * {@inheritDoc}

@@ -7,7 +7,7 @@
 
 namespace WpMunich\lhpbpp\REST;
 
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbpp\Plugin_Component;
 use \WP_REST_Server;
 use function WpMunich\lhpbpp\lh_plugin;
 use function add_action;
@@ -20,7 +20,7 @@ use function wp_parse_args;
 /**
  * A class to register custom REST endpoints.
  */
-class REST extends Component {
+class REST extends Plugin_Component {
 	/**
 	 * The namespace for REST endpoints in this component.
 	 *

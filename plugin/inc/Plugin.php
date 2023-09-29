@@ -15,42 +15,6 @@ use function plugin_dir_url;
  * This class takes care of initializing plugin features and available template tags.
  */
 class Plugin {
-
-	/**
-	 * ACF component.
-	 *
-	 * @var ACF\ACF;
-	 */
-	protected $acf;
-
-	/**
-	 * Blocks component.
-	 *
-	 * @var Blocks\Blocks;
-	 */
-	protected $blocks;
-
-	/**
-	 * I18N component.
-	 *
-	 * @var i18n\I18N;
-	 */
-	protected $i18n;
-
-	/**
-	 * SVRESTG component.
-	 *
-	 * @var REST\REST;
-	 */
-	protected $rest;
-
-	/**
-	 * SVG component.
-	 *
-	 * @var SVG\SVG;
-	 */
-	protected $svg;
-
 	/**
 	 * Constructor.
 	 *
@@ -61,17 +25,14 @@ class Plugin {
 	 * @param SVG\SVG       $svg SVG component.
 	 */
 	public function __construct(
-		ACF\ACF $acf,
-		Blocks\Blocks $blocks,
-		i18n\I18N $i18n,
-		REST\REST $rest,
-		SVG\SVG $svg
+		private ACF\ACF $acf,
+		private Blocks\Blocks $blocks,
+		private i18n\I18N $i18n,
+		private REST\REST $rest,
+		private SVG\SVG $svg
 	) {
-		$this->acf    = $acf;
-		$this->blocks = $blocks;
-		$this->i18n   = $i18n;
-		$this->svg    = $svg;
-		$this->rest   = $rest;
+		do_action( 'qm/start', 'plugin_initialization' );
+		do_action( 'qm/stop', 'plugin_initialization' );
 	}
 
 	/**
@@ -136,5 +97,14 @@ class Plugin {
 	 */
 	public function get_plugin_slug() {
 		return 'lhpbpp';
+	}
+
+	/**
+	 * Get the DI container.
+	 *
+	 * @return \DI\Container The DI container.
+	 */
+	public function container() {
+		return lh_plugin_container();
 	}
 }

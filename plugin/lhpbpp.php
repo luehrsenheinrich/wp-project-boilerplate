@@ -37,11 +37,6 @@ require plugin_dir_path( LHPBPP_FILE ) . 'vendor/autoload.php';
 // Load the `wp_lhpbpp()` entry point function.
 require plugin_dir_path( LHPBPP_FILE ) . 'inc/functions.php';
 
-// If we are in the development environment, load some test functions.
-if ( wp_get_environment_type() === 'development' ) {
-	require plugin_dir_path( LHPBPP_FILE ) . 'inc/test.php';
-}
-
 // Initialize the plugin.
 call_user_func( 'WpMunich\lhpbpp\lh_plugin' );
 

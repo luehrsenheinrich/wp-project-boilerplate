@@ -6,7 +6,8 @@
  */
 
 namespace WpMunich\lhpbpp\SVG;
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbpp\Plugin_Component;
+
 use function WpMunich\lhpbpp\lh_plugin;
 use function add_filter;
 use function get_template_directory;
@@ -14,7 +15,7 @@ use function get_template_directory;
 /**
  * The Component
  */
-class SVG extends Component {
+class SVG extends Plugin_Component {
 
 	/**
 	 * Library of icons supported by the theme.

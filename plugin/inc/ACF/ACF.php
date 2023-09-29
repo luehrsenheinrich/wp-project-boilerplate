@@ -6,7 +6,8 @@
  */
 
 namespace WpMunich\lhpbpp\ACF;
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbpp\Plugin_Component;
+
 use function WpMunich\lhpbpp\lh_plugin;
 use function acf_add_options_page;
 use function add_action;
@@ -14,9 +15,9 @@ use function add_filter;
 use function wp_get_environment_type;
 
 /**
- * A class to handle acf related logic..
+ * A class to handle acf related logic.
  */
-class ACF extends Component {
+class ACF extends Plugin_Component {
 	/**
 	 * Validated and final page settings.
 	 *
