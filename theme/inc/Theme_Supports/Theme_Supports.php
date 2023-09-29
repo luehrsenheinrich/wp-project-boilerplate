@@ -6,14 +6,15 @@
  */
 
 namespace WpMunich\lhpbpt\Theme_Supports;
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbpt\Theme_Component;
+
 use function add_action;
 use function add_theme_support;
 
 /**
  * Add theme supports.
  */
-class Theme_Supports extends Component {
+class Theme_Supports extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */

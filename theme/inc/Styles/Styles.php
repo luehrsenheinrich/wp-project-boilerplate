@@ -7,7 +7,8 @@
 
 namespace WpMunich\lhpbpt\Styles;
 
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbpt\Theme_Component;
+
 use function WpMunich\lhpbpt\lh_theme;
 use function _doing_it_wrong;
 use function add_action;
@@ -25,7 +26,7 @@ use function wp_styles;
 /**
  * A class to enqueue the needed styles.
  */
-class Styles extends Component {
+class Styles extends Theme_Component {
 
 	/**
 	 * The variable where our CSS files are saved.

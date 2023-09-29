@@ -15,6 +15,7 @@ namespace WpMunich\lhpbpt;
  * @return Theme The main theme component.
  */
 function lh_theme() {
+	static $theme = null;
 
 	/**
 	 * Check if the requirements for the current theme are met.
@@ -25,16 +26,28 @@ function lh_theme() {
 		return null;
 	}
 
-	static $theme = null;
-
 	if ( null === $theme ) {
-		$builder   = new \DI\ContainerBuilder();
-		$container = $builder->build();
-
-		$theme = $container->get( Theme::class );
+		$theme = lh_theme_container()->get( Theme::class );
 	}
 
 	return $theme;
+}
+
+/**
+ * Provides access to the themes DI container.
+ *
+ * @link https://github.com/PHP-DI/PHP-DI
+ * @return \DI\Container The plugin's DI container.
+ */
+function lh_theme_container() {
+	static $container = null;
+
+	if ( null === $container ) {
+		$builder   = new \DI\ContainerBuilder();
+		$container = $builder->build();
+	}
+
+	return $container;
 }
 
 /**

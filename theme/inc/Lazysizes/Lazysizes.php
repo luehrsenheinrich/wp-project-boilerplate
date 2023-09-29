@@ -6,14 +6,15 @@
  */
 
 namespace WpMunich\lhpbpt\Lazysizes;
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbpt\Theme_Component;
+
 use function WpMunich\lhpbpt\lh_theme;
 use function add_action;
 
 /**
  * Add a class to handle lazy loading of images.
  */
-class Lazysizes extends Component {
+class Lazysizes extends Theme_Component {
 
 	/**
 	 * {@inheritDoc}

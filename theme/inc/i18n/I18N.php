@@ -7,14 +7,15 @@
 
 namespace WpMunich\lhpbpt\i18n;
 
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbpt\Theme_Component;
+
 use function add_action;
 use function load_theme_textdomain;
 
 /**
  * A class to handle textdomains and other i18n related logic..
  */
-class I18N extends Component {
+class I18N extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */

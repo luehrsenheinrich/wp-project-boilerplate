@@ -20,3 +20,5 @@ lh_theme()->styles()->print( 'lhpbpt-footer' );
 
 </body>
 </html>
+<?php
+do_action( 'qm/stop', 'template_render' );

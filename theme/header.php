@@ -10,6 +10,7 @@
  */
 
 namespace WpMunich\lhpbpt;
+do_action( 'qm/start', 'template_render' );
 
 ?>
 <!doctype html>

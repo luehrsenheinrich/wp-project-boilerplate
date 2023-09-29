@@ -6,7 +6,8 @@
  */
 
 namespace WpMunich\lhpbpt\Scripts;
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbpt\Theme_Component;
+
 use function WpMunich\lhpbpt\lh_theme;
 use function add_action;
 use function comments_open;
@@ -20,7 +21,7 @@ use function wp_localize_script;
 /**
  * A class to enqueue the needed scripts..
  */
-class Scripts extends Component {
+class Scripts extends Theme_Component {
 
 	/**
 	 * {@inheritdoc}

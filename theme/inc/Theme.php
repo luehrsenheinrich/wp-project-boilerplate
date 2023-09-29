@@ -13,63 +13,6 @@ namespace WpMunich\lhpbpt;
  * the components and to provide some basic information about the theme.
  */
 class Theme {
-
-	/**
-	 * Block patterns component.
-	 *
-	 * @var Block_Patterns\Block_Patterns
-	 */
-	protected $block_patterns;
-
-	/**
-	 * FSE component.
-	 *
-	 * @var FSE\FSE
-	 */
-	protected $fse;
-
-	/**
-	 * The i18n component.
-	 *
-	 * @var i18n\I18N
-	 */
-	protected $i18n;
-
-	/**
-	 * Lazysizes component.
-	 *
-	 * @var Lazysizes\Lazysizes
-	 */
-	protected $lazysizes;
-
-	/**
-	 * The Nav Menus component.
-	 *
-	 * @var Nav_Menus\Nav_Menus
-	 */
-	protected $nav_menus;
-
-	/**
-	 * Scripts component.
-	 *
-	 * @var Scripts\Scripts
-	 */
-	protected $scripts;
-
-	/**
-	 * Styles component.
-	 *
-	 * @var Styles\Styles
-	 */
-	protected $styles;
-
-	/**
-	 * Theme Supports component.
-	 *
-	 * @var Theme_Supports\Theme_Supports
-	 */
-	protected $theme_supports;
-
 	/**
 	 * Constructor.
 	 *
@@ -83,23 +26,17 @@ class Theme {
 	 * @param Theme_Supports\Theme_Supports $theme_supports Theme_Supports component.
 	 */
 	public function __construct(
-		Block_Patterns\Block_Patterns $block_patterns,
-		FSE\FSE $fse,
-		i18n\I18N $i18n,
-		Lazysizes\Lazysizes $lazysizes,
-		Nav_Menus\Nav_Menus $nav_menus,
-		Scripts\Scripts $scripts,
-		Styles\Styles $styles,
-		Theme_Supports\Theme_Supports $theme_supports
+		private Block_Patterns\Block_Patterns $block_patterns,
+		private FSE\FSE $fse,
+		private i18n\I18N $i18n,
+		private Lazysizes\Lazysizes $lazysizes,
+		private Nav_Menus\Nav_Menus $nav_menus,
+		private Scripts\Scripts $scripts,
+		private Styles\Styles $styles,
+		private Theme_Supports\Theme_Supports $theme_supports
 	) {
-		$this->i18n           = $i18n;
-		$this->nav_menus      = $nav_menus;
-		$this->scripts        = $scripts;
-		$this->styles         = $styles;
-		$this->theme_supports = $theme_supports;
-		$this->fse            = $fse;
-		$this->lazysizes      = $lazysizes;
-		$this->block_patterns = $block_patterns;
+		do_action( 'qm/start', 'theme_initialization' );
+		do_action( 'qm/stop', 'theme_initialization' );
 	}
 
 	/**
