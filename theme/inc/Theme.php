@@ -2,10 +2,10 @@
 /**
  * LHPBPT\Theme class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 /**
  * Main class for the theme.

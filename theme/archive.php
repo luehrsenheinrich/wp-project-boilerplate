@@ -4,10 +4,10 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 get_header();
 lh_theme()->styles()->print( 'lhpbpt-archive' );

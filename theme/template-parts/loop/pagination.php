@@ -2,10 +2,10 @@
 /**
  * The template for the pagination within the loop.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 $args = wp_parse_args(
 	$args,

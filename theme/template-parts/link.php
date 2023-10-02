@@ -2,10 +2,10 @@
 /**
  * The template for displaying a single link.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbpt\render_attributes;
+use function WpMunich\lhpbp\theme\render_attributes;
 
 $args = wp_parse_args(
 	$args ?? array(),

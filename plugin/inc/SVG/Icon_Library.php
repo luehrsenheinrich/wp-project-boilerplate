@@ -2,10 +2,10 @@
 /**
  * The class to represent the theme's icon library.
  *
- * @package lhpbpp/SVG
+ * @package lhpbp\plugin/SVG
  */
 
-namespace WpMunich\lhpbpp\SVG;
+namespace WpMunich\lhpbp\plugin\SVG;
 
 /**
  * Icon Library Class.

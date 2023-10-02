@@ -2,13 +2,13 @@
 /**
  * LHPBPT\Scripts\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Scripts;
-use WpMunich\lhpbpt\Theme_Component;
+namespace WpMunich\lhpbp\theme\Scripts;
+use WpMunich\lhpbp\theme\Theme_Component;
 
-use function WpMunich\lhpbpt\lh_theme;
+use function WpMunich\lhpbp\theme\lh_theme;
 use function add_action;
 use function comments_open;
 use function get_option;

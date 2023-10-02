@@ -4,7 +4,7 @@
  *
  * @link https://www.advancedcustomfields.com/resources/acf_register_block_type/
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
 // Create id attribute allowing for custom "anchor" value.

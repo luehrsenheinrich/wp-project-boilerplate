@@ -2,7 +2,7 @@
 /**
  * Silence is golden.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
 return;

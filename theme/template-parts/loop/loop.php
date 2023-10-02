@@ -2,10 +2,10 @@
 /**
  * The template part to display the loop.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 global $wp_query, $post;
 

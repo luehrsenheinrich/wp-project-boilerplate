@@ -2,10 +2,10 @@
 /**
  * The template for displaying a single icon.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\lh_plugin;
 
 $args = wp_parse_args(
 	$args ?? array(),

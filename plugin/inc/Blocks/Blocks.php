@@ -2,13 +2,13 @@
 /**
  * LHPBPP\Blocks\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\Blocks;
-use WpMunich\lhpbpp\Plugin_Component;
+namespace WpMunich\lhpbp\plugin\Blocks;
+use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\lh_plugin;
 use function acf_register_block_type;
 use function add_action;
 use function add_filter;

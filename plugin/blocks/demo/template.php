@@ -6,10 +6,10 @@
  * @param string   $content The block content.
  * @param WP_Block $block The block type.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\lh_plugin;
 
 $attr = wp_parse_args(
 	$attributes,

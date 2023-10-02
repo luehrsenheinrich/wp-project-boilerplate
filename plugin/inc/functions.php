@@ -2,10 +2,10 @@
 /**
  * The file that provides access to the plugin object.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp;
+namespace WpMunich\lhpbp\plugin;
 
 /**
  * Provides access to all available functions of the plugin.

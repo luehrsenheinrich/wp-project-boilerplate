@@ -2,10 +2,10 @@
 /**
  * LHPBPP\Plugin class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp;
+namespace WpMunich\lhpbp\plugin;
 use function get_plugin_data;
 use function plugin_dir_url;
 

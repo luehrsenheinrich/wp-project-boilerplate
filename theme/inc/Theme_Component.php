@@ -2,11 +2,11 @@
 /**
  * The implementation of the abstract component class for theme components.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
-use WpMunich\lhpbpp\Abstracts\Component;
+namespace WpMunich\lhpbp\theme;
+use WpMunich\lhpbp\plugin\Abstracts\Component;
 
 /**
  * Abstract class for a theme component.

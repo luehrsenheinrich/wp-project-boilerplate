@@ -4,11 +4,11 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbpt\lh_theme;
-use function WpMunich\lhpbpt\theme_requirements_are_met;
+use function WpMunich\lhpbp\theme\lh_theme;
+use function WpMunich\lhpbp\theme\theme_requirements_are_met;
 
 // Get the autoloader.
 require get_template_directory() . '/vendor/autoload.php';
@@ -17,7 +17,7 @@ require get_template_directory() . '/vendor/autoload.php';
 require get_template_directory() . '/inc/functions.php';
 
 // Initialize the theme.
-call_user_func( 'WpMunich\lhpbpt\lh_theme' );
+call_user_func( 'WpMunich\lhpbp\theme\lh_theme' );
 
 // Initialize the plugin update checker.
 if ( class_exists( 'Puc_v4_Factory' ) && theme_requirements_are_met() ) {

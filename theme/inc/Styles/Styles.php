@@ -2,14 +2,14 @@
 /**
  * LHPBPT\Styles\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Styles;
+namespace WpMunich\lhpbp\theme\Styles;
 
-use WpMunich\lhpbpt\Theme_Component;
+use WpMunich\lhpbp\theme\Theme_Component;
 
-use function WpMunich\lhpbpt\lh_theme;
+use function WpMunich\lhpbp\theme\lh_theme;
 use function _doing_it_wrong;
 use function add_action;
 use function add_editor_style;

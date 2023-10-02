@@ -2,12 +2,12 @@
 /**
  * LHPBPT\Block_Patterns\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Block_Patterns;
+namespace WpMunich\lhpbp\theme\Block_Patterns;
 
-use WpMunich\lhpbpt\Theme_Component;
+use WpMunich\lhpbp\theme\Theme_Component;
 
 use function add_action;
 use function register_block_pattern;

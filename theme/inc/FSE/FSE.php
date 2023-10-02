@@ -2,12 +2,12 @@
 /**
  * LHPBPT\FSE\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\FSE;
+namespace WpMunich\lhpbp\theme\FSE;
 
-use WpMunich\lhpbpt\Theme_Component;
+use WpMunich\lhpbp\theme\Theme_Component;
 
 use function add_action;
 use function add_filter;

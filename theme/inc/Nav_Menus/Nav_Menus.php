@@ -2,11 +2,11 @@
 /**
  * LHPBPT\Nav_Menus\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Nav_Menus;
-use WpMunich\lhpbpt\Theme_Component;
+namespace WpMunich\lhpbp\theme\Nav_Menus;
+use WpMunich\lhpbp\theme\Theme_Component;
 
 use function esc_html__;
 use function get_pagenum_link;

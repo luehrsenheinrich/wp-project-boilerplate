@@ -2,13 +2,13 @@
 /**
  * Lhtheme\Lazysizes\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Lazysizes;
-use WpMunich\lhpbpt\Theme_Component;
+namespace WpMunich\lhpbp\theme\Lazysizes;
+use WpMunich\lhpbp\theme\Theme_Component;
 
-use function WpMunich\lhpbpt\lh_theme;
+use function WpMunich\lhpbp\theme\lh_theme;
 use function add_action;
 
 /**

@@ -4,7 +4,7 @@
   "optimize-autoloader": true,
   "autoload": {
     "psr-4": {
-      "WpMunich\\lhpbpt\\": "inc/"
+      "WpMunich\\lhpbp\\theme\\": "inc/"
     }
   },
   "config": {

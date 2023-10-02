@@ -2,10 +2,10 @@
 /**
  * The class to represent an Icon Object.
  *
- * @package lhpbpp/SVG
+ * @package lhpbp\plugin/SVG
  */
 
-namespace WpMunich\lhpbpp\SVG;
+namespace WpMunich\lhpbp\plugin\SVG;
 
 /**
  * A single Icon.

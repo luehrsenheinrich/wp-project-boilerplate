@@ -2,10 +2,10 @@
 /**
  * The `lh_theme()` function.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 /**
  * Provides access to the business logic of the theme.
@@ -59,7 +59,7 @@ function theme_requirements_are_met() {
 	/**
 	 * The accompanying plugin is required.
 	 */
-	if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) || \WPMunich\lhpbpp\lh_plugin() === null ) {
+	if ( ! function_exists( '\WpMunich\lhpbp\plugin\lh_plugin' ) || \WpMunich\lhpbp\plugin\lh_plugin() === null ) {
 		return false;
 	}
 
@@ -81,7 +81,7 @@ function requirements_template() {
 		wp_die( 'The requirements for this theme are not met.' );
 	}
 }
-add_action( 'template_redirect', '\WpMunich\lhpbpt\requirements_template' );
+add_action( 'template_redirect', '\WpMunich\lhpbp\theme\requirements_template' );
 
 /**
  * Display an admin notice if the requirements are not met.
@@ -96,7 +96,7 @@ function theme_requirements_notice__error() {
 
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
-add_action( 'admin_notices', '\WpMunich\lhpbpt\theme_requirements_notice__error' );
+add_action( 'admin_notices', '\WpMunich\lhpbp\theme\theme_requirements_notice__error' );
 
 /**
  * Render an array of html attributes into a string.

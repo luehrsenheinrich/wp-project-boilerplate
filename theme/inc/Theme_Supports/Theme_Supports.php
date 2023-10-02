@@ -2,11 +2,11 @@
 /**
  * LHPBPT\Theme_Supports\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Theme_Supports;
-use WpMunich\lhpbpt\Theme_Component;
+namespace WpMunich\lhpbp\theme\Theme_Supports;
+use WpMunich\lhpbp\theme\Theme_Component;
 
 use function add_action;
 use function add_theme_support;

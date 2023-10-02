@@ -2,13 +2,13 @@
 /**
  * LHPBPP\SVG\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\SVG;
-use WpMunich\lhpbpp\Plugin_Component;
+namespace WpMunich\lhpbp\plugin\SVG;
+use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\lh_plugin;
 use function add_filter;
 use function get_template_directory;
 

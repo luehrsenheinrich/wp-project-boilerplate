@@ -2,13 +2,13 @@
 /**
  * LHPBPP\i18n\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\i18n;
-use WpMunich\lhpbpp\Plugin_Component;
+namespace WpMunich\lhpbp\plugin\i18n;
+use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\lh_plugin;
 use function add_action;
 use function load_plugin_textdomain;
 

@@ -2,10 +2,10 @@
 /**
  * The implementation of the abstract component class for plugin components.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp;
+namespace WpMunich\lhpbp\plugin;
 
 /**
  * Abstract class for a plugin component.

@@ -6,10 +6,10 @@
  * contains all the logic for a specific feature of the plugin or theme. It combines
  * actions and filters, the logic and helper functions.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\Abstracts;
+namespace WpMunich\lhpbp\plugin\Abstracts;
 
 /**
  * Abstract class for a component.
