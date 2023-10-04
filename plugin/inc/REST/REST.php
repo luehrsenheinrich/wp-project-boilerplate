@@ -81,7 +81,7 @@ class REST extends Plugin_Component {
 	 */
 	public function rest_get_icons( $request ) {
 		$slugs     = $request->get_param( 'slugs' );
-		$lib_icons = lh_plugin()->svg()->get_icon_library()->get_icons();
+		$lib_icons = plugin()->svg()->get_icon_library()->get_icons();
 		$res_icons = array();
 
 		// Slugs param is expected to be a comma separated value string.
@@ -98,7 +98,7 @@ class REST extends Plugin_Component {
 				$res_icons[] = wp_parse_args(
 					$icon->jsonSerialize( array( 'slug', 'title' ) ),
 					array(
-						'svg' => lh_plugin()->svg()->get_svg( $icon->get_slug() ),
+						'svg' => plugin()->svg()->get_svg( $icon->get_slug() ),
 					)
 				);
 			}
@@ -118,13 +118,13 @@ class REST extends Plugin_Component {
 		$path = $request->get_param( 'path' );
 		$args = $this->get_args_from_request( $request );
 
-		$svg = lh_plugin()->svg()->get_svg( $slug );
+		$svg = plugin()->svg()->get_svg( $slug );
 
 		if ( ! $svg && $path && ! empty( $path ) ) {
-			$svg = lh_plugin()->svg()->get_svg( $path );
+			$svg = plugin()->svg()->get_svg( $path );
 		}
 
-		$icon = $slug && $svg ? lh_plugin()->svg()->get_icon_library()->get_icon( $slug )->jsonSerialize( array( 'slug', 'title' ) ) : array();
+		$icon = $slug && $svg ? plugin()->svg()->get_icon_library()->get_icon( $slug )->jsonSerialize( array( 'slug', 'title' ) ) : array();
 
 		$response = apply_filters(
 			'lhpbpp_rest_get_svg_response',

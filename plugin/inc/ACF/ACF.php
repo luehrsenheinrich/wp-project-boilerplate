@@ -53,7 +53,7 @@ class ACF extends Plugin_Component {
 	 * @return string       Save path.
 	 */
 	public function acf_json_save_point( $path ) {
-		$path = lh_plugin()->get_plugin_path() . 'acf-json';
+		$path = plugin()->get_plugin_path() . 'acf-json';
 		return $path;
 	}
 
@@ -65,7 +65,7 @@ class ACF extends Plugin_Component {
 	 * @return array        An array of paths.
 	 */
 	public function acf_json_load_point( $paths ) {
-		$paths[] = lh_plugin()->get_plugin_path() . 'acf-json';
+		$paths[] = plugin()->get_plugin_path() . 'acf-json';
 
 		return $paths;
 	}
@@ -83,7 +83,7 @@ class ACF extends Plugin_Component {
 				'page_title' => __( 'L//H Settings', 'lhpbpp' ),
 				'menu_title' => __( 'L//H Settings', 'lhpbpp' ),
 				'menu_slug'  => 'lhpbpp-plugin-general-settings',
-				'icon_url'   => lh_plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
+				'icon_url'   => plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
 				'redirect'   => false,
 			)

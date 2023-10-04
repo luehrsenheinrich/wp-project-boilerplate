@@ -43,8 +43,8 @@ call_user_func( 'WpMunich\lhpbp\plugin\lh_plugin' );
 // Initialize the plugin update checker.
 if ( class_exists( 'Puc_v4_Factory' ) ) {
 	Puc_v4_Factory::buildUpdateChecker(
-		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . lh_plugin()->get_plugin_slug(),
+		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . plugin()->get_plugin_slug(),
 		__FILE__, // Full path to the main plugin file or functions.php.
-		lh_plugin()->get_plugin_slug()
+		plugin()->get_plugin_slug()
 	);
 }

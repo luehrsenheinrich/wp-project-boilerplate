@@ -33,7 +33,7 @@ class I18N extends Plugin_Component {
 	 * Load the plugin text domain for translation.
 	 */
 	public function load_plugin_textdomain() {
-		$dir  = str_replace( WP_PLUGIN_DIR, '', lh_plugin()->get_plugin_path() );
+		$dir  = str_replace( WP_PLUGIN_DIR, '', plugin()->get_plugin_path() );
 		$path = $dir . '/languages/';
 
 		load_plugin_textdomain(

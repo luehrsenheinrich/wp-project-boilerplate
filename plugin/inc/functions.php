@@ -14,7 +14,7 @@ namespace WpMunich\lhpbp\plugin;
  *
  * @return Plugin The main plugin component.
  */
-function lh_plugin() {
+function plugin() {
 	static $plugin = null;
 
 	if ( null === $plugin ) {

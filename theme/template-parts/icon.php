@@ -26,7 +26,7 @@ $args['iconAttributes'] = wp_parse_args(
 	)
 );
 
-$icon_svg = lh_plugin()->svg()->get_svg(
+$icon_svg = plugin()->svg()->get_svg(
 	$args['pointer'],
 	array(
 		'attributes' => $args['iconAttributes'],

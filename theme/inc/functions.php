@@ -59,7 +59,7 @@ function theme_requirements_are_met() {
 	/**
 	 * The accompanying plugin is required.
 	 */
-	if ( ! function_exists( '\WpMunich\lhpbp\plugin\lh_plugin' ) || \WpMunich\lhpbp\plugin\lh_plugin() === null ) {
+	if ( ! function_exists( '\WpMunich\lhpbp\plugin\lh_plugin' ) || \WpMunich\lhpbp\plugin\plugin() === null ) {
 		return false;
 	}
 

@@ -43,7 +43,7 @@ class SVG extends Plugin_Component {
 	 */
 	public function get_icon_library() {
 		if ( ! $this->icon_library instanceof Icon_Library ) {
-			$base_path = lh_plugin()->get_plugin_path();
+			$base_path = plugin()->get_plugin_path();
 
 			$this->icon_library = new Icon_Library();
 			$this->icon_library->set_icons(
@@ -89,8 +89,8 @@ class SVG extends Plugin_Component {
 			case ( file_exists( get_template_directory() . $pointer ) ):
 				$final_path = get_template_directory() . $pointer;
 				break;
-			case ( file_exists( lh_plugin()->get_plugin_path() . $pointer ) ):
-				$final_path = lh_plugin()->get_plugin_path() . $pointer;
+			case ( file_exists( plugin()->get_plugin_path() . $pointer ) ):
+				$final_path = plugin()->get_plugin_path() . $pointer;
 				break;
 			default:
 				return false;

@@ -18,7 +18,7 @@ $attr = wp_parse_args(
 	)
 );
 
-$icon = lh_plugin()->svg()->get_svg(
+$icon = plugin()->svg()->get_svg(
 	$attr['icon'],
 	array(
 		'attributes' => array(
