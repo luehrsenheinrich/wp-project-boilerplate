@@ -16,7 +16,7 @@ class LHPlugin_Basic_Test extends WP_UnitTestCase {
 	 * Test if the plugin exists.
 	 */
 	public function test_plugin_exists() {
-		$this->assertTrue( function_exists( 'WpMunich\lhpbp\plugin\lh_plugin' ) );
+		$this->assertTrue( function_exists( 'WpMunich\lhpbp\plugin\plugin' ) );
 	}
 
 	/**
