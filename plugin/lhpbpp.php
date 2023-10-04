@@ -14,7 +14,7 @@
  * Domain Path: /languages
  */
 
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -38,7 +38,7 @@ require plugin_dir_path( LHPBPP_FILE ) . 'vendor/autoload.php';
 require plugin_dir_path( LHPBPP_FILE ) . 'inc/functions.php';
 
 // Initialize the plugin.
-call_user_func( 'WpMunich\lhpbp\plugin\lh_plugin' );
+call_user_func( 'WpMunich\lhpbp\plugin\plugin' );
 
 // Initialize the plugin update checker.
 if ( class_exists( 'Puc_v4_Factory' ) ) {

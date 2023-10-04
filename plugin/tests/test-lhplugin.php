@@ -5,7 +5,7 @@
  * @package lhpbp\plugin
  */
 
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 
 /**
  * Class Lhpbpp_Basic_Test

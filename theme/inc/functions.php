@@ -7,6 +7,8 @@
 
 namespace WpMunich\lhpbp\theme;
 
+use function WpMunich\lhpbp\plugin\plugin_container;
+
 /**
  * Provides access to the business logic of the theme.
  *
@@ -27,27 +29,10 @@ function lh_theme() {
 	}
 
 	if ( null === $theme ) {
-		$theme = lh_theme_container()->get( Theme::class );
+		$theme = plugin_container()->get( Theme::class );
 	}
 
 	return $theme;
-}
-
-/**
- * Provides access to the themes DI container.
- *
- * @link https://github.com/PHP-DI/PHP-DI
- * @return \DI\Container The plugin's DI container.
- */
-function lh_theme_container() {
-	static $container = null;
-
-	if ( null === $container ) {
-		$builder   = new \DI\ContainerBuilder();
-		$container = $builder->build();
-	}
-
-	return $container;
 }
 
 /**
@@ -59,7 +44,7 @@ function theme_requirements_are_met() {
 	/**
 	 * The accompanying plugin is required.
 	 */
-	if ( ! function_exists( '\WpMunich\lhpbp\plugin\lh_plugin' ) || \WpMunich\lhpbp\plugin\plugin() === null ) {
+	if ( ! function_exists( '\WpMunich\lhpbp\plugin\plugin' ) || \WpMunich\lhpbp\plugin\plugin() === null ) {
 		return false;
 	}
 

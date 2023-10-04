@@ -11,6 +11,8 @@
 
 namespace WpMunich\lhpbp\plugin\Abstracts;
 
+use function WpMunich\lhpbp\plugin\plugin_container;
+
 /**
  * Abstract class for a component.
  */
@@ -56,5 +58,7 @@ abstract class Component {
 	 *
 	 * @return \DI\Container The DI container.
 	 */
-	abstract protected function container();
+	protected function container() {
+		return plugin_container();
+	}
 }

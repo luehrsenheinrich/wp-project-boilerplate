@@ -9,7 +9,7 @@ namespace WpMunich\lhpbp\plugin\REST;
 
 use WpMunich\lhpbp\plugin\Plugin_Component;
 use \WP_REST_Server;
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function apply_filters;
 use function esc_attr;

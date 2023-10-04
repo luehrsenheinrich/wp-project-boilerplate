@@ -8,7 +8,7 @@
 namespace WpMunich\lhpbp\plugin\Blocks;
 use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 use function acf_register_block_type;
 use function add_action;
 use function add_filter;

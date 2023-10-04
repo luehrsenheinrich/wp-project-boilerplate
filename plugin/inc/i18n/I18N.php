@@ -8,7 +8,7 @@
 namespace WpMunich\lhpbp\plugin\i18n;
 use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function load_plugin_textdomain;
 

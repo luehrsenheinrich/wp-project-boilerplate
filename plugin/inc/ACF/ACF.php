@@ -8,7 +8,7 @@
 namespace WpMunich\lhpbp\plugin\ACF;
 use WpMunich\lhpbp\plugin\Plugin_Component;
 
-use function WpMunich\lhpbp\plugin\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 use function acf_add_options_page;
 use function add_action;
 use function add_filter;
