@@ -105,6 +105,6 @@ class Plugin {
 	 * @return \DI\Container The DI container.
 	 */
 	public function container() {
-		return lh_plugin_container();
+		return plugin_container();
 	}
 }

@@ -23,7 +23,7 @@ function plugin() {
 		 *
 		 * @var Plugin $plugin
 		 */
-		$plugin = lh_plugin_container()->get( Plugin::class );
+		$plugin = plugin_container()->get( Plugin::class );
 	}
 
 	return $plugin;
@@ -35,7 +35,7 @@ function plugin() {
  * @link https://github.com/PHP-DI/PHP-DI
  * @return \DI\Container The plugin's DI container.
  */
-function lh_plugin_container() {
+function plugin_container() {
 	static $container = null;
 
 	if ( null === $container ) {

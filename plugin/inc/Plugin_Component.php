@@ -15,6 +15,6 @@ abstract class Plugin_Component extends Abstracts\Component {
 	 * {@inheritDoc}
 	 */
 	protected function container() {
-		return lh_plugin_container();
+		return plugin_container();
 	}
 }
