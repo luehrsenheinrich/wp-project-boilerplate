@@ -1,6 +1,6 @@
 <?php
 /**
- * The `lh_theme()` function.
+ * The `theme()` function.
  *
  * @package lhpbp\theme
  */
@@ -16,7 +16,7 @@ use function WpMunich\lhpbp\plugin\plugin_container;
  *
  * @return Theme The main theme component.
  */
-function lh_theme() {
+function theme() {
 	static $theme = null;
 
 	/**

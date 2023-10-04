@@ -9,7 +9,7 @@
 
 namespace WpMunich\lhpbp\theme;
 
-lh_theme()->styles()->print( 'lhpbpt-footer' );
+theme()->styles()->print( 'lhpbpt-footer' );
 ?>
 
 <footer>

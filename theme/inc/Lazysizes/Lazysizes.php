@@ -8,7 +8,7 @@
 namespace WpMunich\lhpbp\theme\Lazysizes;
 use WpMunich\lhpbp\theme\Theme_Component;
 
-use function WpMunich\lhpbp\theme\lh_theme;
+use function WpMunich\lhpbp\theme\theme;
 use function add_action;
 
 /**
@@ -161,7 +161,7 @@ class Lazysizes extends Theme_Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), theme()->get_theme_version(), true );
 	}
 
 	/**

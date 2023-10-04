@@ -8,7 +8,7 @@
 namespace WpMunich\lhpbp\theme\Scripts;
 use WpMunich\lhpbp\theme\Theme_Component;
 
-use function WpMunich\lhpbp\theme\lh_theme;
+use function WpMunich\lhpbp\theme\theme;
 use function add_action;
 use function comments_open;
 use function get_option;
@@ -42,7 +42,7 @@ class Scripts extends Theme_Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
 
 		$translation_array = array(
 			'themeUrl' => get_template_directory_uri(),
@@ -59,6 +59,6 @@ class Scripts extends Theme_Component {
 	 * Enqueue admin scripts.
 	 */
 	public function enqueue_admin_scripts() {
-		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
 	}
 }

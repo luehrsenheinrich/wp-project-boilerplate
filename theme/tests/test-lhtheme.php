@@ -5,7 +5,7 @@
  * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbp\theme\lh_theme;
+use function WpMunich\lhpbp\theme\theme;
 
 /**
  * Class LHTheme_Basic_Test

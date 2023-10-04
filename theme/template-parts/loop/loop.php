@@ -26,7 +26,7 @@ $pagination_args = array(
 	'query'      => $args['query'],
 );
 
-lh_theme()->styles()->print( 'lhpbpt-loop' );
+theme()->styles()->print( 'lhpbpt-loop' );
 ?>
 
 <div class="<?php echo esc_attr( $loop_class_names ); ?>">

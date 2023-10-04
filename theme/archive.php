@@ -10,7 +10,7 @@
 namespace WpMunich\lhpbp\theme;
 
 get_header();
-lh_theme()->styles()->print( 'lhpbpt-archive' );
+theme()->styles()->print( 'lhpbpt-archive' );
 ?>
 
 <div id="content" class="content-area">
