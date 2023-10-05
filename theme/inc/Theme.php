@@ -35,8 +35,6 @@ class Theme {
 		private Styles\Styles $styles,
 		private Theme_Supports\Theme_Supports $theme_supports
 	) {
-		do_action( 'qm/start', 'theme_initialization' );
-		do_action( 'qm/stop', 'theme_initialization' );
 	}
 
 	/**

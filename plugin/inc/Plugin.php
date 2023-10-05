@@ -31,8 +31,6 @@ class Plugin {
 		private REST\REST $rest,
 		private SVG\SVG $svg
 	) {
-		do_action( 'qm/start', 'plugin_initialization' );
-		do_action( 'qm/stop', 'plugin_initialization' );
 	}
 
 	/**

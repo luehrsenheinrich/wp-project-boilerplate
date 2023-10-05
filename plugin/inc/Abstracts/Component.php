@@ -24,8 +24,6 @@ abstract class Component {
 	 * @return void
 	 */
 	public function __construct() {
-		do_action( 'qm/start', get_class( $this ) . ' initialized' );
-		do_action( 'qm/stop', get_class( $this ) . ' initialized' );
 		$this->add_actions();
 		$this->add_filters();
 	}
