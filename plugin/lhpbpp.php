@@ -15,6 +15,7 @@
  */
 
 use function WpMunich\lhpbp\plugin\plugin;
+use function WpMunich\lhpbp\plugin\plugin_requirements_are_met;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -41,7 +42,7 @@ require plugin_dir_path( LHPBPP_FILE ) . 'inc/functions.php';
 call_user_func( 'WpMunich\lhpbp\plugin\plugin' );
 
 // Initialize the plugin update checker.
-if ( class_exists( 'Puc_v4_Factory' ) ) {
+if ( class_exists( 'Puc_v4_Factory' ) && plugin_requirements_are_met() ) {
 	Puc_v4_Factory::buildUpdateChecker(
 		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . plugin()->get_plugin_slug(),
 		__FILE__, // Full path to the main plugin file or functions.php.
