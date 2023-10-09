@@ -2,12 +2,13 @@
 /**
  * LHPBPP\Blocks\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\Blocks;
-use WpMunich\lhpbpp\Component;
-use function WpMunich\lhpbpp\lh_plugin;
+namespace WpMunich\lhpbp\plugin\Blocks;
+use WpMunich\lhpbp\plugin\Plugin_Component;
+
+use function WpMunich\lhpbp\plugin\plugin;
 use function acf_register_block_type;
 use function add_action;
 use function add_filter;
@@ -21,7 +22,7 @@ use function wp_set_script_translations;
 /**
  * A class to handle the plugins blocks.
  */
-class Blocks extends Component {
+class Blocks extends Plugin_Component {
 
 	/**
 	 * {@inheritDoc}
@@ -56,7 +57,7 @@ class Blocks extends Component {
 				'category'        => 'lhpbpp-blocks',
 				'icon'            => 'screenoptions',
 				'keywords'        => array( __( 'ACF', 'lhpbpp' ), __( 'Demo', 'lhpbpp' ), __( 'Block', 'lhpbpp' ) ),
-				'render_template' => apply_filters( 'lh_acf_block_template_path', lh_plugin()->get_plugin_path() . 'blocks/acf/template.php', 'acf-demo-block' ),
+				'render_template' => apply_filters( 'lh_acf_block_template_path', plugin()->get_plugin_path() . 'blocks/acf/template.php', 'acf-demo-block' ),
 				'mode'            => 'auto',
 				'supports'        => array(
 					'align' => array( 'wide', 'full' ),
@@ -90,13 +91,13 @@ class Blocks extends Component {
 	public function enqueue_block_editor_assets() {
 		$screen = get_current_screen();
 
-		$assets = wp_json_file_decode( lh_plugin()->get_plugin_path() . '/admin/dist/assets.json', array( 'associative' => true ) );
+		$assets = wp_json_file_decode( plugin()->get_plugin_path() . '/admin/dist/assets.json', array( 'associative' => true ) );
 
 		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
 				'lhpbpp-blocks-helper',
-				lh_plugin()->get_plugin_url() . 'admin/dist/js/blocks-helper.min.js',
+				plugin()->get_plugin_url() . 'admin/dist/js/blocks-helper.min.js',
 				array_merge( array(), $block_helper_assets['dependencies'] ),
 				$block_helper_assets['version'],
 				true
@@ -106,7 +107,7 @@ class Blocks extends Component {
 		$block_assets = $assets['js/blocks.min.js'] ?? array();
 		wp_enqueue_script(
 			'lhpbpp-blocks',
-			lh_plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
+			plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
 			array_merge( array(), $block_assets['dependencies'] ),
 			$block_assets['version'],
 			true
@@ -114,16 +115,16 @@ class Blocks extends Component {
 
 		wp_enqueue_style(
 			'lhpbpp-admin-components',
-			lh_plugin()->get_plugin_url() . '/admin/dist/css/components.min.css',
+			plugin()->get_plugin_url() . '/admin/dist/css/components.min.css',
 			array(),
-			lh_plugin()->get_plugin_version(),
+			plugin()->get_plugin_version(),
 			'all'
 		);
 
 		/**
 		 * Load the translations for the block editor assets.
 		 */
-		$dir  = lh_plugin()->get_plugin_path();
+		$dir  = plugin()->get_plugin_path();
 		$path = $dir . '/languages/';
 
 		wp_set_script_translations(
@@ -143,7 +144,7 @@ class Blocks extends Component {
 	 * Register the blocks.
 	 */
 	public function register_blocks() {
-		$blocks_path = lh_plugin()->get_plugin_path() . 'blocks/';
+		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
 
 		$custom_blocks = array(
 			'demo',
@@ -169,7 +170,7 @@ class Blocks extends Component {
 	 * @return string The rendered block.
 	 */
 	public function provide_render_callback( $attributes, $content, $block ) {
-		$blocks_path = lh_plugin()->get_plugin_path() . 'blocks/';
+		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
 		ob_start();
 
 		switch ( $block->name ) {

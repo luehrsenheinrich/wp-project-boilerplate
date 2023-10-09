@@ -2,12 +2,13 @@
 /**
  * LHPBPT\Scripts\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Scripts;
-use WpMunich\lhpbpt\Component;
-use function WpMunich\lhpbpt\lh_theme;
+namespace WpMunich\lhpbp\theme\Scripts;
+use WpMunich\lhpbp\theme\Theme_Component;
+
+use function WpMunich\lhpbp\theme\theme;
 use function add_action;
 use function comments_open;
 use function get_option;
@@ -20,7 +21,7 @@ use function wp_localize_script;
 /**
  * A class to enqueue the needed scripts..
  */
-class Scripts extends Component {
+class Scripts extends Theme_Component {
 
 	/**
 	 * {@inheritdoc}
@@ -41,7 +42,7 @@ class Scripts extends Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
 
 		$translation_array = array(
 			'themeUrl' => get_template_directory_uri(),
@@ -58,6 +59,6 @@ class Scripts extends Component {
 	 * Enqueue admin scripts.
 	 */
 	public function enqueue_admin_scripts() {
-		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
 	}
 }

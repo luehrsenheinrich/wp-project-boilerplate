@@ -2,21 +2,22 @@
 /**
  * LHPBPP\ACF\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\ACF;
-use WpMunich\lhpbpp\Component;
-use function WpMunich\lhpbpp\lh_plugin;
+namespace WpMunich\lhpbp\plugin\ACF;
+use WpMunich\lhpbp\plugin\Plugin_Component;
+
+use function WpMunich\lhpbp\plugin\plugin;
 use function acf_add_options_page;
 use function add_action;
 use function add_filter;
 use function wp_get_environment_type;
 
 /**
- * A class to handle acf related logic..
+ * A class to handle acf related logic.
  */
-class ACF extends Component {
+class ACF extends Plugin_Component {
 	/**
 	 * Validated and final page settings.
 	 *
@@ -52,7 +53,7 @@ class ACF extends Component {
 	 * @return string       Save path.
 	 */
 	public function acf_json_save_point( $path ) {
-		$path = lh_plugin()->get_plugin_path() . 'acf-json';
+		$path = plugin()->get_plugin_path() . 'acf-json';
 		return $path;
 	}
 
@@ -64,7 +65,7 @@ class ACF extends Component {
 	 * @return array        An array of paths.
 	 */
 	public function acf_json_load_point( $paths ) {
-		$paths[] = lh_plugin()->get_plugin_path() . 'acf-json';
+		$paths[] = plugin()->get_plugin_path() . 'acf-json';
 
 		return $paths;
 	}
@@ -82,7 +83,7 @@ class ACF extends Component {
 				'page_title' => __( 'L//H Settings', 'lhpbpp' ),
 				'menu_title' => __( 'L//H Settings', 'lhpbpp' ),
 				'menu_slug'  => 'lhpbpp-plugin-general-settings',
-				'icon_url'   => lh_plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
+				'icon_url'   => plugin()->svg()->get_admin_menu_icon( 'img/icons/slashes.svg' ),
 				'capability' => 'edit_posts',
 				'redirect'   => false,
 			)

@@ -2,10 +2,10 @@
 /**
  * The basic tests for the plugin.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 
 /**
  * Class Lhpbpp_Basic_Test
@@ -16,7 +16,7 @@ class LHPlugin_Basic_Test extends WP_UnitTestCase {
 	 * Test if the plugin exists.
 	 */
 	public function test_plugin_exists() {
-		$this->assertTrue( function_exists( 'WpMunich\lhpbpp\lh_plugin' ) );
+		$this->assertTrue( function_exists( 'WpMunich\lhpbp\plugin\plugin' ) );
 	}
 
 	/**

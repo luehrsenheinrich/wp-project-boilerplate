@@ -2,12 +2,13 @@
 /**
  * LHPBPT\FSE\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\FSE;
+namespace WpMunich\lhpbp\theme\FSE;
 
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbp\theme\Theme_Component;
+
 use function add_action;
 use function add_filter;
 use function remove_theme_support;
@@ -15,7 +16,7 @@ use function remove_theme_support;
 /**
  * A class to handle fullsite editing & theme.json
  */
-class FSE extends Component {
+class FSE extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */

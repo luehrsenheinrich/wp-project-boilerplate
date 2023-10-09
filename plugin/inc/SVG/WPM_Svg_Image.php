@@ -2,10 +2,10 @@
 /**
  * The class that holds one svg image.
  *
- * @package lhpbpp/SVG
+ * @package lhpbp\plugin/SVG
  */
 
-namespace WpMunich\lhpbpp\SVG;
+namespace WpMunich\lhpbp\plugin\SVG;
 use \DOMDocument;
 use function wp_parse_args;
 

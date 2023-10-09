@@ -2,18 +2,19 @@
 /**
  * Lhtheme\Lazysizes\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Lazysizes;
-use WpMunich\lhpbpt\Component;
-use function WpMunich\lhpbpt\lh_theme;
+namespace WpMunich\lhpbp\theme\Lazysizes;
+use WpMunich\lhpbp\theme\Theme_Component;
+
+use function WpMunich\lhpbp\theme\theme;
 use function add_action;
 
 /**
  * Add a class to handle lazy loading of images.
  */
-class Lazysizes extends Component {
+class Lazysizes extends Theme_Component {
 
 	/**
 	 * {@inheritDoc}
@@ -160,7 +161,7 @@ class Lazysizes extends Component {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), lh_theme()->get_theme_version(), true );
+		wp_enqueue_script( 'lhtheme-lazysizes', get_template_directory_uri() . '/dist/js/lazysizes.min.js', array(), theme()->get_theme_version(), true );
 	}
 
 	/**

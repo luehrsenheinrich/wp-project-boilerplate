@@ -26,6 +26,7 @@
 		Thank you Human Made!
 		-->
 		<exclude name="WordPress.PHP.YodaConditions" />
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 	</rule>
 	<rule ref="WordPress-Docs"/>
 

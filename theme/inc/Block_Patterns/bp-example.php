@@ -2,7 +2,7 @@
 /**
  * The block pattern for the example pattern.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
 ?>

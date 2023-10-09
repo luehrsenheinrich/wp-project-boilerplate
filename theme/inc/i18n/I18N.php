@@ -2,19 +2,20 @@
 /**
  * LHPBPT\i18n\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\i18n;
+namespace WpMunich\lhpbp\theme\i18n;
 
-use WpMunich\lhpbpt\Component;
+use WpMunich\lhpbp\theme\Theme_Component;
+
 use function add_action;
 use function load_theme_textdomain;
 
 /**
  * A class to handle textdomains and other i18n related logic..
  */
-class I18N extends Component {
+class I18N extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */

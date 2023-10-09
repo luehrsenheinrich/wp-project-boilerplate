@@ -2,11 +2,12 @@
 /**
  * LHPBPT\Nav_Menus\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Nav_Menus;
-use WpMunich\lhpbpt\Component;
+namespace WpMunich\lhpbp\theme\Nav_Menus;
+use WpMunich\lhpbp\theme\Theme_Component;
+
 use function esc_html__;
 use function get_pagenum_link;
 use function has_nav_menu;
@@ -17,7 +18,7 @@ use function wp_parse_args;
 /**
  * Class for managing navigation menus.
  */
-class Nav_Menus extends Component {
+class Nav_Menus extends Theme_Component {
 	/**
 	 * Associative array of theme navigations, keyed by their slug.
 	 *

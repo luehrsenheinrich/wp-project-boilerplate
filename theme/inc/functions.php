@@ -1,11 +1,13 @@
 <?php
 /**
- * The `lh_theme()` function.
+ * The `theme()` function.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
+
+use function WpMunich\lhpbp\plugin\plugin_container;
 
 /**
  * Provides access to the business logic of the theme.
@@ -14,7 +16,8 @@ namespace WpMunich\lhpbpt;
  *
  * @return Theme The main theme component.
  */
-function lh_theme() {
+function theme() {
+	static $theme = null;
 
 	/**
 	 * Check if the requirements for the current theme are met.
@@ -25,13 +28,8 @@ function lh_theme() {
 		return null;
 	}
 
-	static $theme = null;
-
 	if ( null === $theme ) {
-		$builder   = new \DI\ContainerBuilder();
-		$container = $builder->build();
-
-		$theme = $container->get( Theme::class );
+		$theme = plugin_container()->get( Theme::class );
 	}
 
 	return $theme;
@@ -46,7 +44,7 @@ function theme_requirements_are_met() {
 	/**
 	 * The accompanying plugin is required.
 	 */
-	if ( ! function_exists( '\WPMunich\lhpbpp\lh_plugin' ) || \WPMunich\lhpbpp\lh_plugin() === null ) {
+	if ( ! function_exists( '\WpMunich\lhpbp\plugin\plugin' ) || \WpMunich\lhpbp\plugin\plugin() === null ) {
 		return false;
 	}
 
@@ -68,7 +66,7 @@ function requirements_template() {
 		wp_die( 'The requirements for this theme are not met.' );
 	}
 }
-add_action( 'template_redirect', '\WpMunich\lhpbpt\requirements_template' );
+add_action( 'template_redirect', '\WpMunich\lhpbp\theme\requirements_template' );
 
 /**
  * Display an admin notice if the requirements are not met.
@@ -83,7 +81,7 @@ function theme_requirements_notice__error() {
 
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
-add_action( 'admin_notices', '\WpMunich\lhpbpt\theme_requirements_notice__error' );
+add_action( 'admin_notices', '\WpMunich\lhpbp\theme\theme_requirements_notice__error' );
 
 /**
  * Render an array of html attributes into a string.

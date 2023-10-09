@@ -6,10 +6,10 @@
  * @param string   $content The block content.
  * @param WP_Block $block The block type.
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 
 $attr = wp_parse_args(
 	$attributes,
@@ -18,7 +18,7 @@ $attr = wp_parse_args(
 	)
 );
 
-$icon = lh_plugin()->svg()->get_svg(
+$icon = plugin()->svg()->get_svg(
 	$attr['icon'],
 	array(
 		'attributes' => array(

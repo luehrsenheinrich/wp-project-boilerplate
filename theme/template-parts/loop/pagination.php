@@ -2,10 +2,10 @@
 /**
  * The template for the pagination within the loop.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 $args = wp_parse_args(
 	$args,
@@ -44,7 +44,7 @@ if ( $args['query']->max_num_pages > 1 ) : ?>
 	</div>
 	<?php
 		echo wp_kses_post(
-			lh_theme()->nav_menus()->paginate_links(
+			theme()->nav_menus()->paginate_links(
 				array(
 					'total'   => $total,
 					'current' => $current,

@@ -2,10 +2,10 @@
 /**
  * The template part to display the loop.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 global $wp_query, $post;
 
@@ -26,7 +26,7 @@ $pagination_args = array(
 	'query'      => $args['query'],
 );
 
-lh_theme()->styles()->print( 'lhpbpt-loop' );
+theme()->styles()->print( 'lhpbpt-loop' );
 ?>
 
 <div class="<?php echo esc_attr( $loop_class_names ); ?>">

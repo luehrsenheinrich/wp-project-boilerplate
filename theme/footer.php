@@ -4,12 +4,12 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
-lh_theme()->styles()->print( 'lhpbpt-footer' );
+theme()->styles()->print( 'lhpbpt-footer' );
 ?>
 
 <footer>
@@ -20,3 +20,5 @@ lh_theme()->styles()->print( 'lhpbpt-footer' );
 
 </body>
 </html>
+<?php
+do_action( 'qm/stop', 'template_render' );

@@ -6,10 +6,11 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
+do_action( 'qm/start', 'template_render' );
 
 ?>
 <!doctype html>
@@ -25,9 +26,9 @@ namespace WpMunich\lhpbpt;
 <a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'lhpbpt' ); ?></a>
 
 <?php
-if ( lh_theme()->nav_menus()->is_nav_menu_active( 'header' ) ) {
+if ( theme()->nav_menus()->is_nav_menu_active( 'header' ) ) {
 	$menu_args = array(
 		'theme_location' => 'header',
 	);
-	lh_theme()->nav_menus()->display_nav_menu( $menu_args );
+	theme()->nav_menus()->display_nav_menu( $menu_args );
 }

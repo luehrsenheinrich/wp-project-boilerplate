@@ -2,10 +2,10 @@
 /**
  * The template part to display a single post in the loop.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt;
+namespace WpMunich\lhpbp\theme;
 
 global $post;
 

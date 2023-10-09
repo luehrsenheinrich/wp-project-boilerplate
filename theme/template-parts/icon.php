@@ -2,10 +2,10 @@
 /**
  * The template for displaying a single icon.
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 
 $args = wp_parse_args(
 	$args ?? array(),
@@ -26,7 +26,7 @@ $args['iconAttributes'] = wp_parse_args(
 	)
 );
 
-$icon_svg = lh_plugin()->svg()->get_svg(
+$icon_svg = plugin()->svg()->get_svg(
 	$args['pointer'],
 	array(
 		'attributes' => $args['iconAttributes'],

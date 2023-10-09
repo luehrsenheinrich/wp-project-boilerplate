@@ -2,14 +2,14 @@
 /**
  * LHPBPP\REST\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\REST;
+namespace WpMunich\lhpbp\plugin\REST;
 
-use WpMunich\lhpbpp\Component;
+use WpMunich\lhpbp\plugin\Plugin_Component;
 use \WP_REST_Server;
-use function WpMunich\lhpbpp\lh_plugin;
+use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function apply_filters;
 use function esc_attr;
@@ -20,7 +20,7 @@ use function wp_parse_args;
 /**
  * A class to register custom REST endpoints.
  */
-class REST extends Component {
+class REST extends Plugin_Component {
 	/**
 	 * The namespace for REST endpoints in this component.
 	 *
@@ -81,7 +81,7 @@ class REST extends Component {
 	 */
 	public function rest_get_icons( $request ) {
 		$slugs     = $request->get_param( 'slugs' );
-		$lib_icons = lh_plugin()->svg()->get_icon_library()->get_icons();
+		$lib_icons = plugin()->svg()->get_icon_library()->get_icons();
 		$res_icons = array();
 
 		// Slugs param is expected to be a comma separated value string.
@@ -98,7 +98,7 @@ class REST extends Component {
 				$res_icons[] = wp_parse_args(
 					$icon->jsonSerialize( array( 'slug', 'title' ) ),
 					array(
-						'svg' => lh_plugin()->svg()->get_svg( $icon->get_slug() ),
+						'svg' => plugin()->svg()->get_svg( $icon->get_slug() ),
 					)
 				);
 			}
@@ -118,13 +118,13 @@ class REST extends Component {
 		$path = $request->get_param( 'path' );
 		$args = $this->get_args_from_request( $request );
 
-		$svg = lh_plugin()->svg()->get_svg( $slug );
+		$svg = plugin()->svg()->get_svg( $slug );
 
 		if ( ! $svg && $path && ! empty( $path ) ) {
-			$svg = lh_plugin()->svg()->get_svg( $path );
+			$svg = plugin()->svg()->get_svg( $path );
 		}
 
-		$icon = $slug && $svg ? lh_plugin()->svg()->get_icon_library()->get_icon( $slug )->jsonSerialize( array( 'slug', 'title' ) ) : array();
+		$icon = $slug && $svg ? plugin()->svg()->get_icon_library()->get_icon( $slug )->jsonSerialize( array( 'slug', 'title' ) ) : array();
 
 		$response = apply_filters(
 			'lhpbpp_rest_get_svg_response',

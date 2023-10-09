@@ -2,19 +2,20 @@
 /**
  * LHPBPP\i18n\Component class
  *
- * @package lhpbpp
+ * @package lhpbp\plugin
  */
 
-namespace WpMunich\lhpbpp\i18n;
-use WpMunich\lhpbpp\Component;
-use function WpMunich\lhpbpp\lh_plugin;
+namespace WpMunich\lhpbp\plugin\i18n;
+use WpMunich\lhpbp\plugin\Plugin_Component;
+
+use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function load_plugin_textdomain;
 
 /**
  * A class to handle textdomains and other i18n related logic..
  */
-class I18N extends Component {
+class I18N extends Plugin_Component {
 
 	/**
 	 * {@inheritDoc}
@@ -32,7 +33,7 @@ class I18N extends Component {
 	 * Load the plugin text domain for translation.
 	 */
 	public function load_plugin_textdomain() {
-		$dir  = str_replace( WP_PLUGIN_DIR, '', lh_plugin()->get_plugin_path() );
+		$dir  = str_replace( WP_PLUGIN_DIR, '', plugin()->get_plugin_path() );
 		$path = $dir . '/languages/';
 
 		load_plugin_textdomain(

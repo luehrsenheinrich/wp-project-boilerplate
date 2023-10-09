@@ -2,13 +2,14 @@
 /**
  * LHPBPT\Styles\Component class
  *
- * @package lhpbpt
+ * @package lhpbp\theme
  */
 
-namespace WpMunich\lhpbpt\Styles;
+namespace WpMunich\lhpbp\theme\Styles;
 
-use WpMunich\lhpbpt\Component;
-use function WpMunich\lhpbpt\lh_theme;
+use WpMunich\lhpbp\theme\Theme_Component;
+
+use function WpMunich\lhpbp\theme\theme;
 use function _doing_it_wrong;
 use function add_action;
 use function add_editor_style;
@@ -25,7 +26,7 @@ use function wp_styles;
 /**
  * A class to enqueue the needed styles.
  */
-class Styles extends Component {
+class Styles extends Theme_Component {
 
 	/**
 	 * The variable where our CSS files are saved.
@@ -218,10 +219,10 @@ class Styles extends Component {
 			 * enqueued based on whether they are necessary for the page content).
 			 */
 			if ( $data['global'] || ! $preloading_styles_enabled && is_callable( $data['preload_callback'] ) && call_user_func( $data['preload_callback'] ) ) {
-				wp_enqueue_style( $handle, $src, array(), lh_theme()->get_theme_version(), $data['media'] );
+				wp_enqueue_style( $handle, $src, array(), theme()->get_theme_version(), $data['media'] );
 				$this->css_files[ $handle ]['enqueued'] = true;
 			} else {
-				wp_register_style( $handle, $src, array(), lh_theme()->get_theme_version(), $data['media'] );
+				wp_register_style( $handle, $src, array(), theme()->get_theme_version(), $data['media'] );
 			}
 
 			wp_style_add_data( $handle, 'precache', true );
@@ -286,7 +287,7 @@ class Styles extends Component {
 			$src = $css_uri . $data['file'];
 
 			if ( ! $data['global'] && $data['preloaded'] && ! $data['enqueued'] ) {
-				wp_enqueue_style( $handle, $src, array(), lh_theme()->get_theme_version(), $data['media'] );
+				wp_enqueue_style( $handle, $src, array(), theme()->get_theme_version(), $data['media'] );
 			}
 		}
 	}
@@ -305,7 +306,7 @@ class Styles extends Component {
 	 * Enqueue assets directly for the editor.
 	 */
 	public function enqueue_block_editor_assets() {
-		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/dist/css/vars.min.css' ), array(), lh_theme()->get_theme_version() );
+		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/dist/css/vars.min.css' ), array(), theme()->get_theme_version() );
 	}
 
 	/**
