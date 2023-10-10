@@ -5,9 +5,11 @@
 	"plugins": [
 		"./plugin"
 	],
-	"phpVersion": "8.1",
 	"mappings": {
-		"php.ini": "./bin/php.ini"
+		"./../.htaccess": "./htaccess.txt",
+    "lifecycleScripts": "./bin/lifecycleScripts/",
+    "wp-cli.yml": "./wp-cli.yml",
+    "required-plugins": "./required-plugins/"
 	},
 	"env": {
 		"development": {

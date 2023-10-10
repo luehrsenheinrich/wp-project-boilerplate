@@ -15,6 +15,8 @@
     "stop": "npx wp-env stop",
     "watch": "webpack --watch",
     "env:clean": "npx wp-env clean all",
+    "env:init": "npx wp-env run cli sh ./lifecycleScripts/initialize.sh",
+    "env:reset": "npm run env:clean && npm run env:init",
     "update:schemas": "node bin/updateThemeJsonSchema.js",
     "update:versions": "node bin/updatePluginVersion.js && node bin/updateThemeVersion.js",
     "lint:php": "composer run lint",
