@@ -37,6 +37,7 @@ function theme() {
 
 /**
  * Check if the requirements for the current theme are met.
+ * The only requirement for the theme is the accompanying plugin.
  *
  * @return bool True if requirements are met, false otherwise.
  */
@@ -48,13 +49,6 @@ function theme_requirements_are_met() {
 		return false;
 	}
 
-	/**
-	 * The Advanced Custom Fields plugin is required.
-	 */
-	if ( ! function_exists( 'get_field' ) ) {
-		return false;
-	}
-
 	return true;
 }
 
@@ -63,7 +57,7 @@ function theme_requirements_are_met() {
  */
 function requirements_template() {
 	if ( ! theme_requirements_are_met() ) {
-		wp_die( 'The requirements for this theme are not met.' );
+		wp_die( 'The requirements for this theme are not met. Please install and activate the accompanying plugin.' );
 	}
 }
 add_action( 'template_redirect', '\WpMunich\lhpbp\theme\requirements_template' );
@@ -77,7 +71,7 @@ function theme_requirements_notice__error() {
 	}
 
 	$class   = 'notice notice-error';
-	$message = 'The requirements for this theme are not met.';
+	$message = 'The requirements for this theme are not met. Please install and activate the accompanying plugin.';
 
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
