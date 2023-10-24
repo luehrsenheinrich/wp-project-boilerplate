@@ -42,7 +42,14 @@ const LHIcon = (props) => {
 			`lh-icon icon-${icon?.slug || slug || 'svg'}`
 		);
 
-		return <WPIcon {...props} icon={parsedSvg} className={className} />;
+		return (
+			<WPIcon
+				{...props}
+				icon={parsedSvg}
+				className={className}
+				size={parseInt(icon?.width || icon?.height) || null}
+			/>
+		);
 	}
 
 	return <></>;
