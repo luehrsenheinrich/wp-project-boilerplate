@@ -5,12 +5,10 @@
  * @package lhpbp\plugin
  */
 
-use function WpMunich\lhpbp\plugin\plugin;
-
 /**
  * Class Lhpbpp_Basic_Test
  */
-class LHPlugin_Basic_Test extends WP_UnitTestCase {
+class Lhpbpp_Test extends WP_UnitTestCase {
 
 	/**
 	 * Test if the plugin exists.
@@ -24,5 +22,14 @@ class LHPlugin_Basic_Test extends WP_UnitTestCase {
 	 */
 	public function test_lhpbpp_file_constant() {
 		$this->assertTrue( defined( 'LHPBPP_FILE' ) );
+	}
+
+	/**
+	 * Workaround to allow the tests to run on PHPUnit 10.
+	 *
+	 * @link https://core.trac.wordpress.org/ticket/59486
+	 */
+	public function expectDeprecated(): void {
+		return;
 	}
 }
