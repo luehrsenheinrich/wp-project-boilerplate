@@ -84,7 +84,9 @@ const EntitySelectControl = ({
 	const onSortEnd = (event) => {
 		const { active, over } = event;
 
-		if (!active || !over) return;
+		if (!active || !over) {
+			return;
+		}
 
 		const oldIndex = selectValue.findIndex(
 			(item) => item.value === active.id
