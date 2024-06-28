@@ -6,7 +6,7 @@
  */
 
 namespace WpMunich\lhpbp\plugin\SVG;
-use \DOMDocument;
+use DOMDocument;
 use function wp_parse_args;
 
 defined( 'ABSPATH' ) || exit;

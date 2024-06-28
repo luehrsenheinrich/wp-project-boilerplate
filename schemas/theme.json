@@ -2009,9 +2009,6 @@
     "stylesBlocksPropertiesComplete": {
       "type": "object",
       "properties": {
-        "variations": {
-          "$ref": "#/definitions/stylesBlocksSharedVariationProperties"
-        },
         "core/archives": {
           "$ref": "#/definitions/stylesPropertiesAndElementsComplete"
         },
@@ -2342,15 +2339,15 @@
         }
       ]
     },
-    "stylesBlocksSharedVariationProperties": {
+    "stylesVariationsProperties": {
       "type": "object",
       "patternProperties": {
         "^[a-z][a-z0-9-]*$": {
-          "$ref": "#/definitions/stylesSharedVariationProperties"
+          "$ref": "#/definitions/stylesVariationProperties"
         }
       }
     },
-    "stylesSharedVariationProperties": {
+    "stylesVariationProperties": {
       "type": "object",
       "allOf": [
         {
@@ -2358,16 +2355,6 @@
         },
         {
           "properties": {
-            "title": {
-              "type": "string",
-              "description": "Style variation name."
-            },
-            "blockTypes": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
             "border": {},
             "color": {},
             "dimensions": {},
@@ -2906,6 +2893,9 @@
                 }
               },
               "additionalProperties": false
+            },
+            "variations": {
+              "$ref": "#/definitions/stylesVariationsProperties"
             }
           },
           "additionalProperties": false

@@ -31,10 +31,13 @@ wp plugin delete --all --exclude=plugin
 echo "----- Installing plugins."
 
 # From the WordPress plugin repository.
-wp plugin install wordpress-seo wordpress-importer --activate
+wp plugin install wordpress-seo wordpress-importer query-monitor debug-bar --activate
 
 # From a local file.
 # wp plugin install ./required-plugins/advanced-custom-fields-pro.zip ./required-plugins/gravityforms.zip --activate
+
+# From a remote URL.
+wp plugin install "https://www.luehrsen-heinrich.de/updates/?action=download&slug=lhbasicsp" --activate
 
 # Activate the theme we want to use.
 echo "----- Activating working theme."

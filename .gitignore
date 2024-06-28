@@ -15,6 +15,7 @@
 
 # phpunit
 .phpunit.result.cache
+.phpunit.cache
 
 # OS
 .DS_Store

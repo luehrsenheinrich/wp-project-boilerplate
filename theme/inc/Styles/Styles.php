@@ -59,7 +59,7 @@ class Styles extends Theme_Component {
 	 *
 	 * @return array Associative array of $handle => $data pairs.
 	 */
-	protected function get_css_files() : array {
+	protected function get_css_files(): array {
 
 		if ( is_array( $this->css_files ) ) {
 			return $this->css_files;
@@ -174,7 +174,7 @@ class Styles extends Theme_Component {
 
 		$handles = array_filter(
 			$handles,
-			function( $handle ) use ( $css_files ) {
+			function ( $handle ) use ( $css_files ) {
 				$is_valid = isset( $css_files[ $handle ] ) && ! $css_files[ $handle ]['global'];
 
 				if ( ! $is_valid ) {

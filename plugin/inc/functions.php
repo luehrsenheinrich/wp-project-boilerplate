@@ -64,7 +64,7 @@ function plugin_requirements_are_met() {
 	/**
 	 * Advanced Custom Fields Pro is required.
 	 */
-	if ( ! function_exists( '\acf_add_options_page' ) ) {
+	if ( ! function_exists( '\WpMunich\basics\plugin\plugin' ) ) {
 		return false;
 	}
 
