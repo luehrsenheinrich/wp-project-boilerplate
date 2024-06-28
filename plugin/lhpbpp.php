@@ -14,6 +14,8 @@
  * Domain Path: /languages
  */
 
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
 use function WpMunich\lhpbp\plugin\plugin;
 use function WpMunich\lhpbp\plugin\plugin_requirements_are_met;
 
@@ -42,8 +44,8 @@ require plugin_dir_path( LHPBPP_FILE ) . 'inc/functions.php';
 call_user_func( 'WpMunich\lhpbp\plugin\plugin' );
 
 // Initialize the plugin update checker.
-if ( class_exists( 'Puc_v4_Factory' ) && plugin_requirements_are_met() ) {
-	Puc_v4_Factory::buildUpdateChecker(
+if ( class_exists( 'YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) && plugin_requirements_are_met() ) {
+	PucFactory::buildUpdateChecker(
 		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . plugin()->get_plugin_slug(),
 		__FILE__, // Full path to the main plugin file or functions.php.
 		plugin()->get_plugin_slug()
