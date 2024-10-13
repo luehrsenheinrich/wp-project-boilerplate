@@ -61,10 +61,7 @@ function plugin_container() {
  * @return bool True if requirements are met, false otherwise.
  */
 function plugin_requirements_are_met() {
-	/**
-	 * Advanced Custom Fields Pro is required.
-	 */
-	if ( ! function_exists( '\WpMunich\basics\plugin\plugin' ) ) {
+	if ( ! function_exists( '\WpMunich\lhpbp\plugin\plugin' ) ) {
 		return false;
 	}
 
