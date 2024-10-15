@@ -10,7 +10,7 @@
       "defaultPresets": false
     },
     "spacing": {
-      "blockGap": true,
+      "blockGap": false,
       "margin": true,
       "padding": true,
       "customSpacingSize": false
