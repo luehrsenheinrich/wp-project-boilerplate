@@ -3,7 +3,7 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: normal;
-	font-weight: var(--font-weight-light);
+	font-weight: 300;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-300.woff2) format("woff2");
 }
 
@@ -12,7 +12,7 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: italic;
-	font-weight: var(--font-weight-light);
+	font-weight: 300;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-300italic.woff2) format("woff2");
 }
 
@@ -21,7 +21,7 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: normal;
-	font-weight: var(--font-weight-regular);
+	font-weight: 400;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-regular.woff2) format("woff2");
 }
 
@@ -30,7 +30,7 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: italic;
-	font-weight: var(--font-weight-regular);
+	font-weight: 400;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-italic.woff2) format("woff2");
 }
 
@@ -39,7 +39,7 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: normal;
-	font-weight: var(--font-weight-bold);
+	font-weight: 700;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-700.woff2) format("woff2");
 }
 
@@ -48,6 +48,6 @@
 	font-display: swap;
 	font-family: "Fira Sans";
 	font-style: italic;
-	font-weight: var(--font-weight-bold);
+	font-weight: 700;
 	src: url(../../fonts/fira-sans/fira-sans-v17-latin-700italic.woff2) format("woff2");
 }
