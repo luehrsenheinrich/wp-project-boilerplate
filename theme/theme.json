@@ -1,55 +1,18 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
+  "version": 3,
   "settings": {
+    "appearanceTools": false,
+    "lightbox": {
+      "enabled": false
+    },
+    "shadow": {
+      "defaultPresets": false
+    },
     "spacing": {
       "blockGap": true,
       "margin": true,
       "padding": true,
-      "units": [
-        "em",
-        "rem",
-        "vh",
-        "vw",
-        "%"
-      ],
-      "spacingSizes": [
-        {
-          "slug": "20",
-          "size": "calc(var(--wp--style--block-gap) * 0.4)",
-          "name": "X-Small"
-        },
-        {
-          "slug": "30",
-          "size": "calc(var(--wp--style--block-gap) * 0.6)",
-          "name": "Smaller"
-        },
-        {
-          "slug": "40",
-          "size": "calc(var(--wp--style--block-gap) * 0.8)",
-          "name": "Small"
-        },
-        {
-          "slug": "50",
-          "size": "calc(var(--wp--style--block-gap) * 1)",
-          "name": "Medium"
-        },
-        {
-          "slug": "60",
-          "size": "calc(var(--wp--style--block-gap) * 1.2)",
-          "name": "Large"
-        },
-        {
-          "slug": "70",
-          "size": "calc(var(--wp--style--block-gap) * 1.4)",
-          "name": "Larger"
-        },
-        {
-          "slug": "80",
-          "size": "calc(var(--wp--style--block-gap) * 1.6)",
-          "name": "X-Large"
-        }
-      ],
       "customSpacingSize": false
     },
     "typography": {
@@ -86,6 +49,8 @@
       ]
     },
     "layout": {
+      "allowCustomContentAndWideSize": false,
+      "allowEditing": false,
       "contentSize": "var(--content-width)",
       "wideSize": "var(--last-bp)"
     },
@@ -95,6 +60,7 @@
       "custom": false,
       "customGradient": false,
       "defaultDuotone": false,
+      "customDuotone": false,
       "palette": [
         {
           "name": "Primary 300",
@@ -202,6 +168,9 @@
   "styles": {
     "spacing": {
       "blockGap": "var(--grid-gutter-height)"
+    },
+    "filter": {
+      "duotone": {}
     }
   }
 }
