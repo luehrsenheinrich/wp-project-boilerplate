@@ -18,7 +18,7 @@ const withBranding = (BlockEdit) => {
 			<InspectorControls>
 				<PanelBody>
 					<span className="lh-block-branding">
-						{__('This block is made with ♥ by ', 'lhpbpp')}
+						{__('This block is made with ♥ by', 'lhpbpp')}
 						<span>Luehrsen&nbsp;//&nbsp;Heinrich</span>
 					</span>
 				</PanelBody>
