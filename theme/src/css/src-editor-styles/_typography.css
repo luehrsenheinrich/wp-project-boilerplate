@@ -1,5 +1,7 @@
 h1, h2, h3, h4, h5, h6 {
+
 	&.is-selected {
+
 		/* We have a default uppercase transform on headings, disable it when editing */
 		text-transform: none;
 	}
