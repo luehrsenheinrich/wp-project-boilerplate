@@ -17,21 +17,21 @@ class Theme {
 	 * Constructor.
 	 *
 	 * @param Block_Patterns\Block_Patterns $block_patterns Block_Patterns component.
-	 * @param FSE\FSE                       $fse FSE component.
 	 * @param i18n\I18N                     $i18n I18N component.
 	 * @param Nav_Menus\Nav_Menus           $nav_menus Nav_Menus component.
 	 * @param Scripts\Scripts               $scripts Scripts component.
 	 * @param Styles\Styles                 $styles Styles component.
 	 * @param Theme_Supports\Theme_Supports $theme_supports Theme_Supports component.
+	 * @param Strip_Editor\Strip_Editor     $strip_editor Strip_Editor component.
 	 */
 	public function __construct(
 		private Block_Patterns\Block_Patterns $block_patterns,
-		private FSE\FSE $fse,
 		private i18n\I18N $i18n,
 		private Nav_Menus\Nav_Menus $nav_menus,
 		private Scripts\Scripts $scripts,
 		private Styles\Styles $styles,
-		private Theme_Supports\Theme_Supports $theme_supports
+		private Theme_Supports\Theme_Supports $theme_supports,
+		private Strip_Editor\Strip_Editor $strip_editor
 	) {
 	}
 
