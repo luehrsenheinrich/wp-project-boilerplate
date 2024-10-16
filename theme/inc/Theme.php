@@ -18,7 +18,6 @@ class Theme {
 	 *
 	 * @param Block_Patterns\Block_Patterns $block_patterns Block_Patterns component.
 	 * @param i18n\I18N                     $i18n I18N component.
-	 * @param Lazysizes\Lazysizes           $lazysizes Lazysizes component.
 	 * @param Nav_Menus\Nav_Menus           $nav_menus Nav_Menus component.
 	 * @param Scripts\Scripts               $scripts Scripts component.
 	 * @param Styles\Styles                 $styles Styles component.
@@ -28,7 +27,6 @@ class Theme {
 	public function __construct(
 		private Block_Patterns\Block_Patterns $block_patterns,
 		private i18n\I18N $i18n,
-		private Lazysizes\Lazysizes $lazysizes,
 		private Nav_Menus\Nav_Menus $nav_menus,
 		private Scripts\Scripts $scripts,
 		private Styles\Styles $styles,
