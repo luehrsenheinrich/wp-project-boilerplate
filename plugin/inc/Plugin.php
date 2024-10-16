@@ -32,24 +32,13 @@ class Plugin {
 	 * @param Blocks\Blocks $blocks Blocks component.
 	 * @param i18n\I18N     $i18n Internationalization (i18n) component.
 	 * @param REST\REST     $rest REST API component.
-	 * @param SVG\SVG       $svg SVG component.
 	 */
 	public function __construct(
 		private ACF\ACF $acf,
 		private Blocks\Blocks $blocks,
 		private i18n\I18N $i18n,
-		private REST\REST $rest,
-		private SVG\SVG $svg
+		private REST\REST $rest
 	) {
-	}
-
-	/**
-	 * Access the SVG component.
-	 *
-	 * @return SVG\SVG The SVG component.
-	 */
-	public function svg() {
-		return $this->svg;
 	}
 
 	/**
