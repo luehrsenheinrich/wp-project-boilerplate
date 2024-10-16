@@ -1,18 +1,21 @@
 <?php
 /**
- * LHPBPP\Blocks\Component class
+ * The Blocks component.
+ *
+ * This file defines the `Blocks` class, which handles the registration, categorization,
+ * and management of custom blocks within the plugin. This includes enqueuing necessary
+ * assets for block editing and providing callback functions for rendering.
  *
  * @package lhpbp\plugin
  */
 
 namespace WpMunich\lhpbp\plugin\Blocks;
+
 use WpMunich\lhpbp\plugin\Plugin_Component;
 
 use function WpMunich\lhpbp\plugin\plugin;
-use function acf_register_block_type;
 use function add_action;
 use function add_filter;
-use function apply_filters;
 use function get_current_screen;
 use function register_block_type;
 use function wp_enqueue_script;
@@ -20,7 +23,10 @@ use function wp_json_file_decode;
 use function wp_set_script_translations;
 
 /**
- * A class to handle the plugins blocks.
+ * Blocks
+ *
+ * A class to handle the plugin's custom blocks. It registers blocks, assigns them to custom
+ * categories, enqueues block editor assets, and defines rendering callbacks for block display.
  */
 class Blocks extends Plugin_Component {
 
@@ -28,10 +34,6 @@ class Blocks extends Plugin_Component {
 	 * {@inheritDoc}
 	 */
 	protected function add_actions() {
-		if ( function_exists( 'acf_register_block_type' ) ) {
-			add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
-		}
-
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 		add_action( 'init', array( $this, 'register_blocks' ) );
 	}
@@ -44,34 +46,12 @@ class Blocks extends Plugin_Component {
 	}
 
 	/**
-	 * Register ACF driven blocks.
+	 * Register the plugin's custom block category.
 	 *
-	 * @return void
-	 */
-	public function register_acf_block_types() {
-		acf_register_block_type(
-			array(
-				'name'            => 'acf-demo-block',
-				'title'           => __( 'Demo Block', 'lhpbpp' ),
-				'description'     => __( 'A demo block to show that everything is working.', 'lhpbpp' ),
-				'category'        => 'lhpbpp-blocks',
-				'icon'            => 'screenoptions',
-				'keywords'        => array( __( 'ACF', 'lhpbpp' ), __( 'Demo', 'lhpbpp' ), __( 'Block', 'lhpbpp' ) ),
-				'render_template' => apply_filters( 'lh_acf_block_template_path', plugin()->get_plugin_path() . 'blocks/acf/template.php', 'acf-demo-block' ),
-				'mode'            => 'auto',
-				'supports'        => array(
-					'align' => array( 'wide', 'full' ),
-					'mode'  => 'auto',
-				),
-			)
-		);
-	}
-
-	/**
-	 * Register the plugins custom block category.
+	 * @param array   $categories The existing block categories.
+	 * @param WP_Post $post       The current post being edited.
 	 *
-	 * @param array   $categories The block categories.
-	 * @param WP_Post $post     The current post that is edited.
+	 * @return array The updated array of block categories, including the custom category.
 	 */
 	public function add_block_categories( $categories, $post ) {
 		return array_merge(
@@ -86,13 +66,18 @@ class Blocks extends Plugin_Component {
 	}
 
 	/**
-	 * Enqueue the block scripts and styles.
+	 * Enqueue the block editor scripts and styles.
+	 *
+	 * Enqueues JavaScript and CSS assets required for the block editor, including helper scripts
+	 * and translations for the block UI.
 	 */
 	public function enqueue_block_editor_assets() {
 		$screen = get_current_screen();
 
+		// Load asset configuration.
 		$assets = wp_json_file_decode( plugin()->get_plugin_path() . '/admin/dist/assets.json', array( 'associative' => true ) );
 
+		// Enqueue block helper script outside the widgets screen.
 		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
@@ -121,9 +106,7 @@ class Blocks extends Plugin_Component {
 			'all'
 		);
 
-		/**
-		 * Load the translations for the block editor assets.
-		 */
+		// Load translations for block editor assets.
 		$dir  = plugin()->get_plugin_path();
 		$path = $dir . '/languages/';
 
@@ -141,7 +124,10 @@ class Blocks extends Plugin_Component {
 	}
 
 	/**
-	 * Register the blocks.
+	 * Register custom blocks for the plugin.
+	 *
+	 * Registers block types from the specified directory, setting a render callback function
+	 * for custom rendering of each block.
 	 */
 	public function register_blocks() {
 		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
@@ -161,13 +147,16 @@ class Blocks extends Plugin_Component {
 	}
 
 	/**
-	 * Provide the render callback for the block.
+	 * Provide the render callback for custom blocks.
+	 *
+	 * Captures block-specific HTML output using a buffer and includes the block's template file
+	 * based on its name. This allows dynamic block content rendering on the frontend.
 	 *
 	 * @param array    $attributes The block attributes.
-	 * @param string   $content The block content.
-	 * @param WP_Block $block The block type.
+	 * @param string   $content    The block content.
+	 * @param WP_Block $block      The block instance.
 	 *
-	 * @return string The rendered block.
+	 * @return string The rendered block HTML.
 	 */
 	public function provide_render_callback( $attributes, $content, $block ) {
 		$blocks_path = plugin()->get_plugin_path() . 'blocks/';

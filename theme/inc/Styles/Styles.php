@@ -1,6 +1,10 @@
 <?php
 /**
- * LHPBPT\Styles\Component class
+ * The Styles component.
+ *
+ * This file defines the `Styles` class, responsible for managing the loading and registration
+ * of CSS files in the theme. It ensures that stylesheets are appropriately enqueued, preloaded,
+ * and cached, and provides support for editor styles.
  *
  * @package lhpbp\theme
  */
@@ -24,12 +28,15 @@ use function wp_style_add_data;
 use function wp_styles;
 
 /**
- * A class to enqueue the needed styles.
+ * Styles
+ *
+ * A class that handles enqueuing, preloading, and printing of CSS files for the theme, as well as
+ * managing editor styles and removing unnecessary assets like WordPress emojis.
  */
 class Styles extends Theme_Component {
 
 	/**
-	 * The variable where our CSS files are saved.
+	 * Associative array of CSS files for the theme.
 	 *
 	 * @var mixed
 	 */
@@ -54,13 +61,17 @@ class Styles extends Theme_Component {
 	 * {@inheritdoc}
 	 */
 	protected function add_filters() {}
+
 	/**
-	 * Gets all CSS files.
+	 * Retrieves all CSS files for the theme.
 	 *
-	 * @return array Associative array of $handle => $data pairs.
+	 * This method constructs an associative array of CSS files for the theme, storing them in
+	 * `$this->css_files`. Each CSS file can have additional properties, such as global status
+	 * and preload callback.
+	 *
+	 * @return array Associative array of CSS file handles and data pairs.
 	 */
 	protected function get_css_files(): array {
-
 		if ( is_array( $this->css_files ) ) {
 			return $this->css_files;
 		}
@@ -98,11 +109,9 @@ class Styles extends Theme_Component {
 		/**
 		 * Filters default CSS files.
 		 *
+		 * Allows other functions to modify or add to the theme's default CSS files.
+		 *
 		 * @param array $css_files Associative array of CSS files, as $handle => $data pairs.
-		 *                         $data must be an array with keys 'file' (file path relative to 'css'
-		 *                         directory), and optionally 'global' (whether the file should immediately be
-		 *                         enqueued instead of just being registered) and 'preload_callback' (callback)
-		 *                         function determining whether the file should be preloaded for the current request).
 		 */
 		$css_files = apply_filters( 'lh_theme_css_files', $css_files );
 
@@ -132,40 +141,33 @@ class Styles extends Theme_Component {
 	}
 
 	/**
-	 * Determines whether to preload stylesheets and inject their link tags directly within the page content.
+	 * Determines if preloading stylesheets is enabled.
 	 *
-	 * Using this technique generally improves performance, however may not be preferred under certain circumstances.
-	 * For example, since AMP will include all style rules directly in the head, it must not be used in that context.
-	 * By default, this method returns true unless the page is being served in AMP. The
-	 * {@see 'lhpbpt_preloading_styles_enabled'} filter can be used to tweak the return value.
+	 * By default, preloading is enabled unless the page is served in AMP. This helps with
+	 * performance, but can be customized via the `lh_theme_preloading_styles_enabled` filter.
 	 *
-	 * @return bool True if preloading stylesheets and injecting them is enabled, false otherwise.
+	 * @return bool True if preloading is enabled, false otherwise.
 	 */
 	protected function preloading_styles_enabled() {
 		$preloading_styles_enabled = true;
 
 		/**
-		 * Filters whether to preload stylesheets and inject their link tags within the page content.
+		 * Filters whether to enable preloading of stylesheets.
 		 *
-		 * @param bool $preloading_styles_enabled Whether preloading stylesheets and injecting them is enabled.
+		 * @param bool $preloading_styles_enabled Whether preloading is enabled.
 		 */
 		return apply_filters( 'lh_theme_preloading_styles_enabled', $preloading_styles_enabled );
 	}
 
 	/**
-	 * Prints stylesheet link tags directly.
+	 * Prints specific stylesheets directly in the page.
 	 *
-	 * This should be used for stylesheets that aren't global and thus should only be loaded if the HTML markup
-	 * they are responsible for is actually present. Template parts should use this method when the related markup
-	 * requires a specific stylesheet to be loaded. If preloading stylesheets is disabled, this method will not do
-	 * anything.
-	 *
-	 * If the `<link>` tag for a given stylesheet has already been printed, it will be skipped.
+	 * This method prints `<link>` tags for specified stylesheets if they have not been globally
+	 * enqueued. Only stylesheets needed for the current content are printed, improving performance.
 	 *
 	 * @param string ...$handles One or more stylesheet handles.
 	 */
 	public function print( string ...$handles ) {
-		// If preloading styles is disabled (and thus they have already been enqueued), return early.
 		if ( ! $this->preloading_styles_enabled() ) {
 			return;
 		}
@@ -178,7 +180,7 @@ class Styles extends Theme_Component {
 				$is_valid = isset( $css_files[ $handle ] ) && ! $css_files[ $handle ]['global'];
 
 				if ( ! $is_valid ) {
-					/* translators: %s: stylesheet handle */
+					// translators: %s is the stylesheet handle.
 					_doing_it_wrong( __CLASS__ . '::print()', esc_html( sprintf( __( 'Invalid theme stylesheet handle: %s', 'lhpbpt' ), $handle ) ), 'lhpbpt' );
 				}
 
@@ -192,17 +194,17 @@ class Styles extends Theme_Component {
 
 		wp_print_styles( $handles );
 
-		/* Mark the printed style as enqueued */
+		// Mark the printed styles as enqueued.
 		foreach ( $handles as $handle ) {
 			$this->css_files[ $handle ]['enqueued'] = true;
 		}
 	}
 
-
 	/**
-	 * Registers or enqueues stylesheets.
+	 * Enqueues or registers theme stylesheets.
 	 *
-	 * Stylesheets that are global are enqueued. All other stylesheets are only registered, to be enqueued later.
+	 * Global stylesheets are enqueued immediately. Other stylesheets are only registered
+	 * unless preloading is disabled, in which case they are enqueued conditionally.
 	 */
 	public function action_enqueue_styles() {
 		$css_uri = get_theme_file_uri( '/dist/css/' );
@@ -213,12 +215,7 @@ class Styles extends Theme_Component {
 		foreach ( $css_files as $handle => $data ) {
 			$src = $css_uri . $data['file'];
 
-			/*
-			 * Enqueue global stylesheets immediately and register the other ones for later use
-			 * (unless preloading stylesheets is disabled, in which case stylesheets should be immediately
-			 * enqueued based on whether they are necessary for the page content).
-			 */
-			if ( $data['global'] || ! $preloading_styles_enabled && is_callable( $data['preload_callback'] ) && call_user_func( $data['preload_callback'] ) ) {
+			if ( $data['global'] || ( ! $preloading_styles_enabled && is_callable( $data['preload_callback'] ) && call_user_func( $data['preload_callback'] ) ) ) {
 				wp_enqueue_style( $handle, $src, array(), theme()->get_theme_version(), $data['media'] );
 				$this->css_files[ $handle ]['enqueued'] = true;
 			} else {
@@ -230,18 +227,12 @@ class Styles extends Theme_Component {
 	}
 
 	/**
-	 * Preloads in-body stylesheets depending on what templates are being used.
+	 * Preloads specific stylesheets in the header.
 	 *
-	 * Only stylesheets that have a 'preload_callback' provided will be considered. If that callback evaluates to true
-	 * for the current request, the stylesheet will be preloaded.
-	 *
-	 * Preloading is disabled when AMP is active, as AMP injects the stylesheets inline.
-	 *
-	 * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
+	 * This method preloads stylesheets for templates based on defined callback functions.
+	 * It outputs `<link rel="preload">` tags for each stylesheet that meets the preload criteria.
 	 */
 	public function action_preload_styles() {
-
-		// If preloading styles is disabled, return early.
 		if ( ! $this->preloading_styles_enabled() ) {
 			return;
 		}
@@ -250,19 +241,7 @@ class Styles extends Theme_Component {
 
 		$css_files = $this->get_css_files();
 		foreach ( $css_files as $handle => $data ) {
-
-			// Skip if stylesheet not registered.
-			if ( ! isset( $wp_styles->registered[ $handle ] ) ) {
-				continue;
-			}
-
-			// Skip if no preload callback provided.
-			if ( ! is_callable( $data['preload_callback'] ) ) {
-				continue;
-			}
-
-			// Skip if preloading is not necessary for this request.
-			if ( ! call_user_func( $data['preload_callback'] ) ) {
+			if ( ! isset( $wp_styles->registered[ $handle ] ) || ! is_callable( $data['preload_callback'] ) || ! call_user_func( $data['preload_callback'] ) ) {
 				continue;
 			}
 
@@ -276,10 +255,9 @@ class Styles extends Theme_Component {
 	}
 
 	/**
-	 * Enqueues preloaded stylesheets in the footer, if they have not yet been printed.
+	 * Enqueues preloaded stylesheets in the footer if not already enqueued.
 	 */
 	public function action_print_preloaded_styles() {
-
 		$css_uri = get_theme_file_uri( '/dist/css/' );
 
 		$css_files = $this->get_css_files();
@@ -293,24 +271,22 @@ class Styles extends Theme_Component {
 	}
 
 	/**
-	 * Enqueues WordPress theme styles for the editor.
+	 * Enqueues styles for the WordPress block editor.
 	 */
 	public function action_add_editor_styles() {
-
-		// Enqueue block editor stylesheet.
 		add_editor_style( 'dist/css/font-fira-sans.min.css' );
 		add_editor_style( 'dist/css/editor-styles.min.css' );
 	}
 
 	/**
-	 * Enqueue assets directly for the editor.
+	 * Enqueues block editor assets.
 	 */
 	public function enqueue_block_editor_assets() {
 		wp_enqueue_style( 'lhpbpt-editor-vars', get_theme_file_uri( '/dist/css/vars.min.css' ), array(), theme()->get_theme_version() );
 	}
 
 	/**
-	 * Remove WP Emojis.
+	 * Removes WP Emoji styles and scripts.
 	 *
 	 * @return void
 	 */

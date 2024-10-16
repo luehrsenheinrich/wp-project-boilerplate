@@ -1,6 +1,12 @@
 <?php
 /**
- * LHPBPT\Block_Patterns\Component class
+ * The Block_Patterns component.
+ *
+ * This file defines the `Block_Patterns` class, responsible for managing custom block patterns
+ * and pattern categories within the WordPress block editor. It registers custom categories,
+ * unregisters default categories, and provides utility functions to retrieve and register block patterns.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
  *
  * @package lhpbp\theme
  */
@@ -15,9 +21,14 @@ use function register_block_pattern_category;
 use function unregister_block_pattern_category;
 
 /**
- * A class to handle Block Patterns.
+ * Block_Patterns
+ *
+ * A class that manages the block patterns and pattern categories within the WordPress block editor.
+ * By defining custom categories and patterns, this component helps structure and simplify the editor
+ * with patterns specific to the theme, enhancing the user experience.
  */
 class Block_Patterns extends Theme_Component {
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -33,7 +44,10 @@ class Block_Patterns extends Theme_Component {
 	protected function add_filters() {}
 
 	/**
-	 * Unregister core block pattern categories.
+	 * Unregisters default core block pattern categories.
+	 *
+	 * This method removes specific categories of block patterns provided by WordPress core,
+	 * aiming to streamline the editor by reducing unnecessary pattern categories.
 	 *
 	 * @return void
 	 */
@@ -49,9 +63,12 @@ class Block_Patterns extends Theme_Component {
 	}
 
 	/**
-	 * Register custom pattern categories.
+	 * Registers custom pattern categories.
 	 *
-	 * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
+	 * This method defines custom block pattern categories specific to the theme, making it easier
+	 * for editors to find theme-specific patterns. Each category is registered with a unique label
+	 * and can be used by patterns associated with this theme.
+	 *
 	 * @return void
 	 */
 	public function register_block_pattern_categories() {
@@ -62,7 +79,11 @@ class Block_Patterns extends Theme_Component {
 	}
 
 	/**
-	 * Load the block patterns..
+	 * Registers custom block patterns.
+	 *
+	 * This method registers individual block patterns that the theme provides, linking them with
+	 * the custom pattern categories. Block patterns are useful for quickly setting up reusable
+	 * content structures in the block editor.
 	 *
 	 * @see https://developer.wordpress.org/reference/functions/register_block_pattern/
 	 * @return void
@@ -86,11 +107,15 @@ class Block_Patterns extends Theme_Component {
 	}
 
 	/**
-	 * Get the block pattern file.
+	 * Retrieves the block pattern content from a PHP file.
 	 *
-	 * @param  string $path The path to the block pattern php file.
+	 * This utility function loads the content of a specified PHP file, intended to be
+	 * used as the HTML content for a block pattern. It uses output buffering to capture
+	 * the file content as a string.
 	 *
-	 * @return string       The block pattern code.
+	 * @param  string $path The path to the block pattern PHP file.
+	 *
+	 * @return string The HTML content for the block pattern, or an empty string if the file does not exist.
 	 */
 	private function get_block_pattern_string( $path = '' ) {
 		$block_pattern = '';

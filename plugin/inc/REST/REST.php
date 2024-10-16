@@ -1,6 +1,9 @@
 <?php
 /**
- * LHPBPP\REST\Component class
+ * The REST component.
+ *
+ * This file defines the `REST` class, which registers and manages custom REST API endpoints
+ * for the plugin.
  *
  * @package lhpbp\plugin
  */
@@ -9,6 +12,7 @@ namespace WpMunich\lhpbp\plugin\REST;
 
 use WpMunich\lhpbp\plugin\Plugin_Component;
 use WP_REST_Server;
+
 use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function apply_filters;
@@ -18,9 +22,12 @@ use function rest_ensure_response;
 use function wp_parse_args;
 
 /**
- * A class to register custom REST endpoints.
+ * REST
+ *
+ * A class to register and manage the plugin's custom REST API endpoints.
  */
 class REST extends Plugin_Component {
+
 	/**
 	 * The namespace for REST endpoints in this component.
 	 *
@@ -41,12 +48,12 @@ class REST extends Plugin_Component {
 	protected function add_filters() {}
 
 	/**
-	 * Register the needed rest routes for this component.
+	 * Register custom REST API routes.
 	 *
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		// Icons.
+		// Route to retrieve all icons.
 		register_rest_route(
 			$this->rest_namespace,
 			'icons',
@@ -56,6 +63,8 @@ class REST extends Plugin_Component {
 				'permission_callback' => '__return_true',
 			)
 		);
+
+		// Route to retrieve a single icon by slug.
 		register_rest_route(
 			$this->rest_namespace,
 			'icon(?:/(?<slug>[a-z0-9-]+))?',
@@ -73,22 +82,27 @@ class REST extends Plugin_Component {
 	}
 
 	/**
-	 * Return all icons from the library via REST.
+	 * Retrieve all icons from the icon library via REST.
+	 *
+	 * Returns a filtered list of icons available in the plugin's icon library. This includes
+	 * options to restrict results based on specific icon slugs provided as a comma-separated
+	 * parameter in the request.
 	 *
 	 * @param  WP_REST_Request $request The request.
 	 *
-	 * @return WP_REST_Response The response.
+	 * @return WP_REST_Response The response containing icon data.
 	 */
 	public function rest_get_icons( $request ) {
 		$slugs     = $request->get_param( 'slugs' );
 		$lib_icons = plugin()->svg()->get_icon_library()->get_icons();
 		$res_icons = array();
 
-		// Slugs param is expected to be a comma separated value string.
+		// Process the `slugs` parameter, if provided.
 		if ( $slugs && ! empty( $slugs ) ) {
 			$slugs = explode( ',', $slugs );
 		}
 
+		// Loop through icons and filter based on visibility in REST API.
 		foreach ( $lib_icons as $icon ) {
 			if ( $icon->show_in_rest() ) {
 				if ( is_array( $slugs ) && ! in_array( $icon->get_slug(), $slugs, true ) ) {
@@ -107,11 +121,14 @@ class REST extends Plugin_Component {
 	}
 
 	/**
-	 * Return a single icon via REST by slug.
+	 * Retrieve a single icon by slug via REST.
+	 *
+	 * Accepts a `slug` parameter to identify the icon, and optional parameters for SVG attributes.
+	 * This enables API clients to specify icon attributes dynamically.
 	 *
 	 * @param  WP_REST_Request $request The request.
 	 *
-	 * @return WP_REST_Response         The respone.
+	 * @return WP_REST_Response The response containing the requested icon data.
 	 */
 	public function rest_get_icon( $request ) {
 		$slug = $request->get_param( 'slug' );
@@ -120,6 +137,7 @@ class REST extends Plugin_Component {
 
 		$svg = plugin()->svg()->get_svg( $slug );
 
+		// Fallback to using `path` parameter if slug is not found.
 		if ( ! $svg && $path && ! empty( $path ) ) {
 			$svg = plugin()->svg()->get_svg( $path );
 		}
@@ -140,10 +158,13 @@ class REST extends Plugin_Component {
 	}
 
 	/**
-	 * Helper function to map flat request args to get_svg $args array.
+	 * Helper function to map request parameters to SVG attributes.
+	 *
+	 * Extracts relevant attributes from the request and maps them to a format suitable
+	 * for the plugin's `get_svg` function, supporting dynamic SVG generation.
 	 *
 	 * @param WP_REST_Request $request The request to check for params.
-	 * @return array                   The $args array to use for $this->load.
+	 * @return array The $args array for `get_svg`.
 	 */
 	private function get_args_from_request( $request ) {
 		$args = array();
@@ -165,7 +186,7 @@ class REST extends Plugin_Component {
 			$attr['fill'] = esc_attr( $request['fill'] );
 		}
 
-		// Merge $attr to $args['attributes'] if any are set.
+		// Add attributes to $args if any were set.
 		if ( count( $attr ) ) {
 			$args['attributes'] = $attr;
 		}
@@ -176,7 +197,9 @@ class REST extends Plugin_Component {
 	/**
 	 * Get the current REST namespace.
 	 *
-	 * @return string The namespace.
+	 * Returns the namespace used for this component’s REST routes.
+	 *
+	 * @return string The REST namespace.
 	 */
 	public function get_namespace() {
 		return $this->rest_namespace;
