@@ -11,14 +11,14 @@ dispatch(coreStore).addEntities([
 		label: 'Icon',
 		name: 'icon',
 		kind: 'single',
-		baseURL: '/lhpbpp/v1/icon',
+		baseURL: '/lhbasics/v1/icon',
 		key: 'slug',
 	},
 	{
 		label: 'Icons',
 		name: 'icons',
 		kind: 'root',
-		baseURL: '/lhpbpp/v1/icons',
+		baseURL: '/lhbasics/v1/icons',
 		key: 'slug',
 	},
 ]);
