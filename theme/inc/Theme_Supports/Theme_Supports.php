@@ -1,20 +1,30 @@
 <?php
 /**
- * LHPBPT\Theme_Supports\Component class
+ * The Theme_Supports component.
+ *
+ * This file defines the `Theme_Supports` class, which is responsible for adding various
+ * WordPress theme support features, enhancing the theme's compatibility with core WordPress
+ * functionalities.
  *
  * @package lhpbp\theme
  */
 
 namespace WpMunich\lhpbp\theme\Theme_Supports;
+
 use WpMunich\lhpbp\theme\Theme_Component;
 
 use function add_action;
 use function add_theme_support;
 
 /**
- * Add theme supports.
+ * Theme_Supports
+ *
+ * A class that enables WordPress core theme support features to enhance theme functionality.
+ * These supports include features like automatic feed links, post thumbnails, responsive embeds,
+ * and editor styles.
  */
 class Theme_Supports extends Theme_Component {
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -28,7 +38,10 @@ class Theme_Supports extends Theme_Component {
 	public function add_filters() {}
 
 	/**
-	 * Enable several theme supports for this theme.
+	 * Adds support for various WordPress features.
+	 *
+	 * This method enables several core WordPress functionalities that improve the theme's
+	 * flexibility and integration with WordPress features.
 	 *
 	 * @return void
 	 */
@@ -39,23 +52,23 @@ class Theme_Supports extends Theme_Component {
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
+		 * This allows the theme to designate a "featured image" for posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// Responsive embedded content.
+		// Enable responsive embeds for a better mobile experience.
 		add_theme_support( 'responsive-embeds' );
 
 		/*
 		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
+		 * This theme does not use a hard-coded <title> tag in the document head,
+		 * allowing WordPress to provide it dynamically based on context.
 		 */
 		add_theme_support( 'title-tag' );
 
-		// Add support for editor styles.
+		// Add support for editor styles to apply theme styling in the editor.
 		add_theme_support( 'editor-styles' );
 	}
 }

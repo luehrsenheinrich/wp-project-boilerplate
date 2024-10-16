@@ -1,11 +1,16 @@
 <?php
 /**
- * LHPBPP\ACF\Component class
+ * The ACF component.
+ *
+ * This file defines the `ACF` class, which handles logic related to Advanced Custom Fields (ACF)
+ * in the plugin. This includes setting up options pages, managing JSON save/load points, and
+ * configuring ACF-specific settings based on the environment.
  *
  * @package lhpbp\plugin
  */
 
 namespace WpMunich\lhpbp\plugin\ACF;
+
 use WpMunich\lhpbp\plugin\Plugin_Component;
 
 use function WpMunich\lhpbp\plugin\plugin;
@@ -15,11 +20,15 @@ use function add_filter;
 use function wp_get_environment_type;
 
 /**
- * A class to handle acf related logic.
+ * ACF
+ *
+ * A class to handle ACF-related functionality in the plugin. This class manages the creation
+ * of ACF options pages, JSON save/load paths, and environment-specific settings for ACF.
  */
 class ACF extends Plugin_Component {
+
 	/**
-	 * Validated and final page settings.
+	 * Validated and finalized settings for the ACF options page.
 	 *
 	 * @see https://www.advancedcustomfields.com/resources/acf_add_options_page/
 	 *
@@ -46,11 +55,15 @@ class ACF extends Plugin_Component {
 	}
 
 	/**
-	 * Add the json save point for acf.
+	 * Set the JSON save path for ACF.
 	 *
-	 * @param  string $path Save path.
+	 * This method configures the directory where ACF JSON data is saved, allowing for
+	 * custom save points in development environments. This feature is helpful for version
+	 * control of ACF fields.
 	 *
-	 * @return string       Save path.
+	 * @param  string $path The default save path.
+	 *
+	 * @return string The modified save path for ACF JSON data.
 	 */
 	public function acf_json_save_point( $path ) {
 		$path = plugin()->get_plugin_path() . 'acf-json';
@@ -58,11 +71,15 @@ class ACF extends Plugin_Component {
 	}
 
 	/**
-	 * Add the json load point for acf.
+	 * Add a custom JSON load path for ACF.
+	 *
+	 * This method adds the specified directory to the list of locations from which
+	 * ACF JSON data can be loaded. This setup enables shared ACF configurations across
+	 * different environments.
 	 *
 	 * @param  array $paths An array of paths.
 	 *
-	 * @return array        An array of paths.
+	 * @return array The modified array of JSON load paths.
 	 */
 	public function acf_json_load_point( $paths ) {
 		$paths[] = plugin()->get_plugin_path() . 'acf-json';
@@ -71,7 +88,11 @@ class ACF extends Plugin_Component {
 	}
 
 	/**
-	 * Add a theme options page.
+	 * Add an ACF options page for theme settings.
+	 *
+	 * This method creates a custom options page for managing theme-specific settings
+	 * via ACF. It sets up page attributes like title, menu slug, icon, and user
+	 * capability requirements.
 	 */
 	public function add_options_page() {
 		if ( ! function_exists( 'acf_add_options_page' ) ) {

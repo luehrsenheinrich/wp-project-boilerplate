@@ -2,6 +2,10 @@
 /**
  * The main file of the plugin.
  *
+ * This file defines the main plugin metadata, initializes the plugin, loads necessary files,
+ * and sets up an automatic update checker. It serves as the primary entry point for the plugin's
+ * functionality within WordPress.
+ *
  * @package lhpbp\plugin
  *
  * Plugin Name: WordPress Project Boilerplate
@@ -29,25 +33,28 @@ if ( ! defined( 'LHPBPP_FILE' ) ) {
 	/**
 	 * The path to the main file of the plugin.
 	 *
+	 * This constant provides a reference to the main plugin file, used for determining the
+	 * plugin directory and for other relative paths within the plugin.
+	 *
 	 * @var string
 	 */
 	define( 'LHPBPP_FILE', __FILE__ );
 }
 
-// Load the autoloader.
+// Load the Composer autoloader to include third-party dependencies.
 require plugin_dir_path( LHPBPP_FILE ) . 'vendor/autoload.php';
 
-// Load the `wp_lhpbpp()` entry point function.
+// Load the main `wp_lhpbpp()` entry point function, which initializes the plugin's components.
 require plugin_dir_path( LHPBPP_FILE ) . 'inc/functions.php';
 
-// Initialize the plugin.
+// Initialize the plugin by calling the main entry point function.
 call_user_func( 'WpMunich\lhpbp\plugin\plugin' );
 
-// Initialize the plugin update checker.
+// Initialize the plugin update checker if all plugin requirements are met.
 if ( class_exists( 'YahnisElsts\PluginUpdateChecker\v5\PucFactory' ) && plugin_requirements_are_met() ) {
 	PucFactory::buildUpdateChecker(
 		'https://www.luehrsen-heinrich.de/updates/?action=get_metadata&slug=' . plugin()->get_plugin_slug(),
-		__FILE__, // Full path to the main plugin file or functions.php.
+		__FILE__, // Full path to the main plugin file (used for update tracking).
 		plugin()->get_plugin_slug()
 	);
 }
