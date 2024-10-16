@@ -56,6 +56,12 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: ⚙️ Install Composer Packages
+        run: composer install --prefer-dist
+
+      - name: ⚙️ Install Node Packages
+        run: npm ci
+
       - name: 🧹 Lint the code
         run: npm run lint
 
