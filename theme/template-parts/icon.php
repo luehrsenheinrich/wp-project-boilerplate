@@ -5,7 +5,11 @@
  * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbp\plugin\plugin;
+if ( ! function_exists( '\WpMunich\basics\plugin\plugin' ) ) {
+	return;
+}
+
+use function WpMunich\basics\plugin\plugin;
 
 $args = wp_parse_args(
 	$args ?? array(),
