@@ -37,6 +37,7 @@ class Strip_Editor extends Theme_Component {
 	private $allowed_blocks = array(
 		'core/block',
 		'core/code',
+		'core/cover',
 		'core/embed',
 		'core/freeform',
 		'core/gallery',

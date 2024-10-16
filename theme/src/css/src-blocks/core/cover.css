@@ -1,8 +1,14 @@
-@media (--xs-query) {
+:root .wp-block-cover {
+	padding: var(--grid-gutter-height) 0;
 
-	:root .wp-block-cover {
+	& > .wp-block-cover__inner-container {
+		width:100%;
+		max-width: calc(var(--content-width) + var(--grid-gutter-width) * 2);
+	}
 
-		&.alignwide {
+	&.alignwide {
+
+		@media (--xs-query) {
 			max-width: none;
 			width: auto;
 			margin-left: calc(var(--grid-gutter-width) * -1);
