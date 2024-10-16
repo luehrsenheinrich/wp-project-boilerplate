@@ -15,6 +15,8 @@ import {
 	store as blocksStore,
 } from '@wordpress/blocks';
 
+import { unregisterFormatType } from '@wordpress/rich-text';
+
 import { select } from '@wordpress/data';
 
 /**
@@ -73,7 +75,25 @@ function removeAllBlockVariations(blockName) {
 	}
 }
 
+/**
+ * Curates the allowed formats for the RichText component.
+ *
+ * This function removes disallowed formats from the RichText component,
+ *
+ * @return {void}
+ */
+function curateRichTextFormats() {
+	// Define the allowed formats for the RichText component.
+	const disallowedFormats = ['core/image', 'core/footnote'];
+
+	// Unregister each disallowed format.
+	for (const format of disallowedFormats) {
+		unregisterFormatType(format);
+	}
+}
+
 domReady(() => {
 	removeAllBlockVariations('core/group');
 	removeAllBlockStyles('core/quote');
+	curateRichTextFormats();
 });
