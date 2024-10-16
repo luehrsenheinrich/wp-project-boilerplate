@@ -5,7 +5,7 @@
  * @package lhpbp\theme
  */
 
-use function WpMunich\lhpbp\plugin\plugin;
+use function WpMunich\basics\plugin\plugin;
 
 $args = wp_parse_args(
 	$args ?? array(),

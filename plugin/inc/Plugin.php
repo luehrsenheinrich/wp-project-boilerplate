@@ -28,13 +28,11 @@ class Plugin {
 	 *
 	 * Initializes the plugin by injecting core components.
 	 *
-	 * @param ACF\ACF       $acf ACF component.
 	 * @param Blocks\Blocks $blocks Blocks component.
 	 * @param i18n\I18N     $i18n Internationalization (i18n) component.
 	 * @param REST\REST     $rest REST API component.
 	 */
 	public function __construct(
-		private ACF\ACF $acf,
 		private Blocks\Blocks $blocks,
 		private i18n\I18N $i18n,
 		private REST\REST $rest
