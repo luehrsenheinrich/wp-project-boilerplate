@@ -1,65 +1,76 @@
-# Contributing to this project
+# Contributing to this Project
 
-Hi! Thank you for your interest in contributing to this project, we really appreciate it.
+Hello! Thank you for your interest in contributing to this project. We appreciate every bit of help, whether it’s through reporting bugs, suggesting new features, fixing issues, or submitting pull requests.
 
-There are many ways to contribute – reporting bugs, feature suggestions, fixing bugs, submitting pull requests for enhancements.
+## How You Can Contribute
 
-## Reporting Bugs, Asking Questions, Sending Suggestions
+### Reporting Bugs, Asking Questions, Making Suggestions
 
-Just [file a GitHub issue](./issues/new), that’s all! If you want to prefix the title with a “Question:”, “Bug:”, or the general area of the issue, that would be helpful, but by no means mandatory. If you have write access, add the appropriate labels.
+For any of these, simply [open a GitHub issue](../../issues/new). If you’d like, prefix the title with “Question:”, “Bug:”, or a relevant area, but this isn’t mandatory. Adding appropriate labels can also be helpful if you have write access.
 
-If you’re filing a bug, specific steps to reproduce are helpful. Please include the URL of the page that has the bug, along with what you expected to see and what happened instead.
+When reporting a bug, please include:
+- Clear steps to reproduce the issue.
+- The URL where the issue appears (if applicable).
+- What you expected to see and what actually happened.
 
-## Setting up the dev environment
+### Setting Up the Development Environment
 
-If you want to contribute code to the project you have to set up the environment locally. Make sure that you have `node`, `npm`, `docker` and `webpack` installed.
+To contribute code, you’ll need to set up the environment locally. Make sure you have `node`, `npm`, `docker`, and `webpack` installed.
 
-The working directories are the `theme` & `plugin` directories. If you change something in another location of the repository the pull request will be ignored.
+The **`theme`** and **`plugin`** directories contain the working files where code changes should be made. Pull requests with changes outside these directories will not be accepted.
 
-The development server and all dependencies are handled by [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/). Make sure you have [docker installed](https://docs.docker.com/compose/install/) and run `npm start` in the directory. Your spawned WordPress instance will be available under `http://localhost` with the account `admin:password`.
+This project’s development server and dependencies are managed by [@wordpress/env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/). Here’s how to get started:
 
-Please be aware, that you should usually not write code directly on the main branch.
+1. Ensure [Docker is installed](https://docs.docker.com/compose/install/).
+2. Run `npm start` from the project’s root directory to initialize the WordPress environment. You’ll find the WordPress instance at `http://localhost` with the credentials `admin:password`.
+3. Start the live reloading watcher by running `npm run watch`. This ensures that any changes you make are compiled automatically, and [LiveReload](http://livereload.com/extensions/) refreshes your browser.
 
-Start the watcher with the terminal command `npm run watch`. Webpack will make sure that the code will be compiled and that your browser gets a [LiveReload](http://livereload.com/extensions/) command.
+Before committing any changes, run `npm run test` to make sure your code adheres to the coding standards and passes all tests.
 
-Before committing execute the command `npm run test` to test if your code follows the general coding standards.
+> **Note**: Please work in a branch rather than directly on the main branch.
 
-This project uses the `@wordpress\env` package to provide the development server. Please refer to the [`wp-env`-documentation](https://github.com/WordPress/gutenberg/tree/master/packages/env) for more details.
+For more details, see the [`wp-env` documentation](https://github.com/WordPress/gutenberg/tree/master/packages/env).
 
-## I'm stuck, what do I do?
+## Need Help?
 
-Not knowing what to do is perfectly normal for any developer or programmer. One of the main skills of a good programmer is the ability to quickly adapt patterns and find solutions. In short: Being able type the right question into Google. If you are stuck somewhere in project development we suggest the following:
+It’s normal to get stuck! Here are some resources to help you move forward:
 
-1. Check out the [WordPress Codex](https://codex.wordpress.org) and read the documentation of what you're trying to build.
-2. Look at how others do it. Places to look for best practices are the [TwentyNinteen project](https://github.com/WordPress/twentynineteen), the [Underscores project](https://github.com/automattic/_s) or the [TwentySeventeen project](https://github.com/WordPress/twentyseventeen).
-3. Ask a senior programmer nearby
+1. **WordPress Codex**: Refer to the [WordPress Codex](https://codex.wordpress.org) for detailed documentation.
+2. **Reference Projects**: See best practices in action with projects like [TwentyNineteen](https://github.com/WordPress/twentynineteen), [Underscores](https://github.com/automattic/_s), and [TwentySeventeen](https://github.com/WordPress/twentyseventeen).
+3. **Ask for Help**: Reach out to a senior developer or mentor for guidance.
 
 ## Development Workflow
 
-To keep the work in this repository structured and maintainable, we follow a certain way to add changes and code. A good workflow is structured like this:
+To keep contributions organized and maintainable, please follow this workflow:
 
-1. Write or take an issue about the problem you want to solve
-2. Add your own branch to the repository and add code to this branch
-3. As soon as you have a presentable solution, add a pull request to the master branch
-4. Get reviews for your solution and make sure the automated tests pass
-5. Before merging the PR to the master branch, update your branch from master to resolve conflicts
-6. Merge the PR into the master branch, test the solution and delete your branch
+1. Create or choose an existing issue related to your contribution.
+2. Create a new branch for your work.
+3. Implement your changes.
+4. Submit a pull request (PR) to the `main` branch for review.
+5. Ensure all automated tests pass and address any feedback.
+6. Resolve conflicts by updating your branch from `main`.
+7. Once approved, merge the PR, test your changes, and delete your branch.
 
-### Naming branches
+### Naming Branches
 
-Ideally name your branches with prefixes and descriptions, like this: [type]/[change]. A good prefix would be:
+Use prefixes to describe the type of work being done. Suggested formats are:
+- **add/** – for new features.
+- **try/** – for experimental or tentative changes.
+- **update/** – for enhancements to existing features.
+- **fix/** – for bug fixes or addressing unwanted behavior.
 
-* add/ = add a new feature
-* try/ = experimental feature, "tentatively add"
-* update/ = update an existing feature
-* fix/ = fix a bug or unwanted behavior
-
-For example, add/gallery-block means you're working on adding a new gallery block.
+For example, `add/gallery-block` describes a branch where you’re adding a new gallery block.
 
 ## Releasing Updates
 
-The release workflow is more or less automated. A github workflow takes the code, runs the tests and builds it into a release-ready zip. This zip is then attached to a GitHub release, from where it is then pushed to our own update server. To create a release refer to the [`Create Release`-Action](./actions/workflows/release.yml), trigger it with the `Run Workflow` button and define the specifics of the new version.
+The release process is largely automated. Our GitHub workflow will build the code and package it into a release-ready zip file, which is attached to a GitHub release and distributed via our update server.
 
-Please refer to the documentation of [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) to learn more about how to set the version. In determining which version should be the next one we try to follow the SemVer Specification. Read [more about that here](https://semver.org/).
+To create a release:
+1. Go to the [`Create Release` action](./actions/workflows/release.yml) and trigger it with the `Run Workflow` button.
+2. Specify the version details for the new release.
 
-While theoretically everyone with write access to the repository has the ability to push a release, the release should only be done by one person, either the *build master* or the *project manager*.
+> **Note**: We follow [Semantic Versioning (SemVer)](https://semver.org/), so please review [npm’s versioning guidelines](https://docs.npmjs.com/cli/v7/commands/npm-version) to choose an appropriate version.
+
+While anyone with write access can initiate a release, it’s recommended that only the *build master* or *project manager* handle this to maintain consistency.
+
+Thank you for contributing to the project!
