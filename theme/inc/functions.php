@@ -1,6 +1,10 @@
 <?php
 /**
- * The `theme()` function.
+ * The theme initialization functions and helpers.
+ *
+ * This file provides the main `theme()` function to initialize the theme, along with helper functions
+ * for verifying theme requirements, rendering attributes, and displaying notices when requirements
+ * are not met.
  *
  * @package lhpbp\theme
  */
@@ -10,24 +14,22 @@ namespace WpMunich\lhpbp\theme;
 use function WpMunich\lhpbp\plugin\plugin_container;
 
 /**
- * Provides access to the business logic of the theme.
+ * Initializes and provides access to the main Theme instance.
  *
- * When called for the first time, the function will initialize the theme.
+ * This function checks if all theme requirements are met before initializing the main theme component.
+ * It initializes the theme on its first call and provides access to the theme's business logic.
  *
- * @return Theme The main theme component.
+ * @return Theme|null The main Theme component if requirements are met, null otherwise.
  */
 function theme() {
 	static $theme = null;
 
-	/**
-	 * Check if the requirements for the current theme are met.
-	 * If the requirements are not met, we might get severe errors. Therefore, we
-	 * return null and do not initialize the theme.
-	 */
+	// Check if the theme requirements are satisfied.
 	if ( ! theme_requirements_are_met() ) {
 		return null;
 	}
 
+	// Initialize the theme only once.
 	if ( null === $theme ) {
 		$theme = plugin_container()->get( Theme::class );
 	}
@@ -36,15 +38,16 @@ function theme() {
 }
 
 /**
- * Check if the requirements for the current theme are met.
- * The only requirement for the theme is the accompanying plugin.
+ * Validates that the theme requirements are met.
  *
- * @return bool True if requirements are met, false otherwise.
+ * Currently, the only requirement is the accompanying plugin. If the plugin is not active,
+ * theme functionality may be limited or unavailable. This function ensures compatibility
+ * between the theme and its required plugin.
+ *
+ * @return bool True if all requirements are met, false otherwise.
  */
 function theme_requirements_are_met() {
-	/**
-	 * The accompanying plugin is required.
-	 */
+	// Confirm the accompanying plugin is active.
 	if ( ! function_exists( '\WpMunich\lhpbp\plugin\plugin' ) || \WpMunich\lhpbp\plugin\plugin() === null ) {
 		return false;
 	}
@@ -53,7 +56,11 @@ function theme_requirements_are_met() {
 }
 
 /**
- * Display a template if the requirements are not met.
+ * Displays an error template if theme requirements are not met.
+ *
+ * This function interrupts the page load to display an error message, notifying the user
+ * that required components for the theme are missing or inactive. It halts further processing
+ * and prompts the user to activate the required plugin.
  */
 function requirements_template() {
 	if ( ! theme_requirements_are_met() ) {
@@ -63,7 +70,11 @@ function requirements_template() {
 add_action( 'template_redirect', '\WpMunich\lhpbp\theme\requirements_template' );
 
 /**
- * Display an admin notice if the requirements are not met.
+ * Displays an admin notice if theme requirements are not met.
+ *
+ * If the theme requirements are not met, this function displays an admin notice
+ * with an error message, guiding the user to activate the necessary plugin for
+ * full theme functionality.
  */
 function theme_requirements_notice__error() {
 	if ( theme_requirements_are_met() ) {
@@ -78,11 +89,15 @@ function theme_requirements_notice__error() {
 add_action( 'admin_notices', '\WpMunich\lhpbp\theme\theme_requirements_notice__error' );
 
 /**
- * Render an array of html attributes into a string.
+ * Renders an array of HTML attributes into a formatted string.
  *
- * @param array $attributes The attributes to render.
+ * This helper function takes an associative array of attributes and their values
+ * and converts them into a valid HTML attribute string, which can then be added
+ * to HTML elements. Only attributes with non-empty values are rendered.
  *
- * @return string The rendered attributes.
+ * @param array $attributes Associative array of attribute names and values.
+ *
+ * @return string The rendered attribute string, ready for inclusion in an HTML tag.
  */
 function render_attributes( array $attributes ) {
 	$rendered_attributes = '';
