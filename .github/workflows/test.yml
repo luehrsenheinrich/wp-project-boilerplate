@@ -56,6 +56,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: 🧹 Lint the code
+        run: npm run lint
+
       - name: 🚀 Start the environment
         run: npm start
 
