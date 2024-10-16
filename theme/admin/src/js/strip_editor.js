@@ -11,7 +11,46 @@ import domReady from '@wordpress/dom-ready';
 import {
 	unregisterBlockVariation,
 	getBlockVariations,
+	unregisterBlockStyle,
+	store as blocksStore,
 } from '@wordpress/blocks';
+
+import { select } from '@wordpress/data';
+
+/**
+ * Retrieves all styles for a specified block type.
+ *
+ * This function queries the block styles for a given block type,
+ * making it easy to access all registered styles for the specified block.
+ *
+ * @param {string} blockName The name of the block to retrieve styles from (e.g., 'core/quote').
+ * @return {Array} An array of block styles for the specified block type.
+ */
+function getBlockStyles(blockName) {
+	const { getBlockStyles: retrieveBlockStyles } = select(blocksStore);
+	return retrieveBlockStyles(blockName) || [];
+}
+
+/**
+ * Unregisters all styles for a specified block type.
+ *
+ * This function removes all registered styles of the given block type,
+ * except the default style (if defined as `isDefault: true`). This is useful
+ * for simplifying the editor interface by removing alternative options while retaining
+ * the primary block style.
+ *
+ * @param {string} blockName The name of the block to unregister styles from (e.g., 'core/quote').
+ */
+function removeAllBlockStyles(blockName) {
+	const styles = getBlockStyles(blockName);
+
+	// Unregister each style for the specified block type.
+	for (const style of styles) {
+		if (!style.isDefault) {
+			unregisterBlockStyle(blockName, style.name);
+		}
+	}
+}
 
 /**
  * Unregisters all variations for a specified block type.
@@ -36,4 +75,5 @@ function removeAllBlockVariations(blockName) {
 
 domReady(() => {
 	removeAllBlockVariations('core/group');
+	removeAllBlockStyles('core/quote');
 });
