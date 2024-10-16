@@ -1,10 +1,10 @@
 <?php
 /**
- * This file contains the abstract component class.
- * It is used to define the basic structure of a component, which we use to
- * extend the plugin and the accompanying theme. A component is a class that
- * contains all the logic for a specific feature of the plugin or theme. It combines
- * actions and filters, the logic and helper functions.
+ * The abstract base class for a component.
+ *
+ * This file defines the `Component` class, which provides the core structure for all plugin
+ * and theme components. Components encapsulate the logic, actions, filters, and helper functions
+ * needed for specific features within the plugin or theme.
  *
  * @package lhpbp\plugin
  */
@@ -14,12 +14,22 @@ namespace WpMunich\lhpbp\plugin\Abstracts;
 use function WpMunich\lhpbp\plugin\plugin_container;
 
 /**
- * Abstract class for a component.
+ * Component
+ *
+ * An abstract class that defines the structure and behavior for components within the plugin
+ * or theme. Components extending this class should implement `add_actions()` and `add_filters()`
+ * methods to define their WordPress-specific hooks.
+ *
+ * @abstract
  */
 abstract class Component {
+
 	/**
 	 * Constructor.
-	 * Used to initialize the component and add the needed actions and filters.
+	 *
+	 * Initializes the component by calling the `add_actions()` and `add_filters()` methods,
+	 * which child classes must implement. This constructor ensures each component sets up
+	 * its actions and filters when instantiated.
 	 *
 	 * @return void
 	 */
@@ -29,30 +39,35 @@ abstract class Component {
 	}
 
 	/**
-	 * Add the needed WordPress actions for the component.
+	 * Register WordPress actions for the component.
 	 *
 	 * @see https://codex.wordpress.org/Plugin_API/Action_Reference
+	 * @return void
 	 */
 	abstract protected function add_actions();
 
 	/**
-	 * Add the needed WordPress filters for the component.
+	 * Register WordPress filters for the component.
 	 *
 	 * @see https://codex.wordpress.org/Plugin_API/Filter_Reference
+	 * @return void
 	 */
 	abstract protected function add_filters();
 
 	/**
-	 * Get the parent class.
+	 * Get the parent class of the component instance.
 	 *
-	 * @return Object The parent class.
+	 * @return string|false The name of the parent class, or false if no parent.
 	 */
 	public function get_parent() {
 		return get_parent_class( $this );
 	}
 
 	/**
-	 * Get the DI container.
+	 * Access the Dependency Injection (DI) container.
+	 *
+	 * The DI container provides access to shared services and instances used throughout
+	 * the plugin or theme, promoting reusability and modularity.
 	 *
 	 * @return \DI\Container The DI container.
 	 */
