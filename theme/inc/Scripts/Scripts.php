@@ -1,11 +1,16 @@
 <?php
 /**
- * LHPBPT\Scripts\Component class
+ * The Scripts component.
+ *
+ * This file defines the `Scripts` class, which is responsible for managing
+ * the enqueueing of JavaScript files in both the front-end and admin dashboard.
+ * It ensures the theme's scripts are properly loaded, localized, and versioned.
  *
  * @package lhpbp\theme
  */
 
 namespace WpMunich\lhpbp\theme\Scripts;
+
 use WpMunich\lhpbp\theme\Theme_Component;
 
 use function WpMunich\lhpbp\theme\theme;
@@ -19,7 +24,10 @@ use function wp_enqueue_script;
 use function wp_localize_script;
 
 /**
- * A class to enqueue the needed scripts..
+ * Scripts
+ *
+ * A class that manages the enqueueing and localization of JavaScript files
+ * required by the theme in both front-end and admin areas.
  */
 class Scripts extends Theme_Component {
 
@@ -37,12 +45,18 @@ class Scripts extends Theme_Component {
 	protected function add_filters() {}
 
 	/**
-	 * Enqueue needed scripts.
+	 * Enqueues the main front-end scripts.
 	 *
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'lhpbpt-script', get_template_directory_uri() . '/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
+		wp_enqueue_script(
+			'lhpbpt-script',
+			get_template_directory_uri() . '/dist/js/script.min.js',
+			array(),
+			theme()->get_theme_version(),
+			true
+		);
 
 		$translation_array = array(
 			'themeUrl' => get_template_directory_uri(),
@@ -56,9 +70,20 @@ class Scripts extends Theme_Component {
 	}
 
 	/**
-	 * Enqueue admin scripts.
+	 * Enqueues scripts for the admin dashboard.
+	 *
+	 * This method enqueues a separate JavaScript file intended specifically
+	 * for use in the WordPress admin area.
+	 *
+	 * @return void
 	 */
 	public function enqueue_admin_scripts() {
-		wp_enqueue_script( 'lhpbpt-admin-script', get_template_directory_uri() . '/admin/dist/js/script.min.js', array(), theme()->get_theme_version(), true );
+		wp_enqueue_script(
+			'lhpbpt-admin-script',
+			get_template_directory_uri() . '/admin/dist/js/script.min.js',
+			array(),
+			theme()->get_theme_version(),
+			true
+		);
 	}
 }
