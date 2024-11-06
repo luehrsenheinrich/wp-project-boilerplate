@@ -6,7 +6,7 @@ This boilerplate provides a structured project template for creating a **Hybrid 
 
 Learn more about Hybrid Themes [here](https://gutenbergmarket.com/news/what-are-hybrid-wordpress-themes).
 
-[![WordPress Project Boilerplate](./.github/boilerplate.jpg)]
+![WordPress Project Boilerplate](./.github/boilerplate.jpg)
 
 ## Getting Started
 
