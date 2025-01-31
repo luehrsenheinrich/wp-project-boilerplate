@@ -12,6 +12,9 @@
 
 namespace WpMunich\lhpbp\plugin;
 
+use DI\ContainerBuilder;
+use DI\Container;
+
 /**
  * Access the main plugin instance.
  *
@@ -24,12 +27,10 @@ namespace WpMunich\lhpbp\plugin;
 function plugin() {
 	static $plugin = null;
 
-	// Ensure all requirements are met before initializing the plugin.
 	if ( ! plugin_requirements_are_met() ) {
-		return null;
+		return null; // Prevent fatal error while allowing WordPress backend access.
 	}
 
-	// Initialize the plugin only once.
 	if ( null === $plugin ) {
 		/**
 		 * The main plugin component.
@@ -49,14 +50,13 @@ function plugin() {
  * services and dependencies within the plugin.
  *
  * @link https://github.com/PHP-DI/PHP-DI
- * @return \DI\Container The plugin's DI container.
+ * @return Container The plugin's DI container.
  */
 function plugin_container() {
 	static $container = null;
 
-	// Initialize the container if it has not been created yet.
 	if ( null === $container ) {
-		$builder   = new \DI\ContainerBuilder();
+		$builder   = new ContainerBuilder();
 		$container = $builder->build();
 	}
 
@@ -69,11 +69,24 @@ function plugin_container() {
  * Verifies that all necessary dependencies and functions are available. This prevents errors
  * that could arise if required components are missing.
  *
- * @return bool True if requirements are met, false otherwise.
+ * @return bool True if all requirements are met, false otherwise.
  */
 function plugin_requirements_are_met() {
-	if ( ! function_exists( '\WpMunich\lhpbp\plugin\plugin' ) ) {
-		return false;
+	$requirements = array(
+		'function_exists' => array(
+			'\WpMunich\lhpbp\plugin\plugin',
+		),
+		'class_exists' => array(
+			'DI\\ContainerBuilder',
+		),
+	);
+
+	foreach ( $requirements as $check => $items ) {
+		foreach ( $items as $item ) {
+			if ( ! call_user_func( $check, $item ) ) {
+				return false;
+			}
+		}
 	}
 
 	return true;
