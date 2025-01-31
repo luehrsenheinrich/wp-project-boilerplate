@@ -11,8 +11,9 @@
 namespace WpMunich\lhpbp\plugin\REST;
 
 use WpMunich\lhpbp\plugin\Plugin_Component;
-
+use WP_REST_Server;
 use function add_action;
+use function register_rest_route;
 
 /**
  * REST
@@ -43,15 +44,17 @@ class REST extends Plugin_Component {
 	/**
 	 * Register custom REST API routes.
 	 *
+	 * This method is intended to be overridden by developers when adding REST routes.
+	 * Example usage is provided in the comments below.
+	 *
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		/* phpcs:disable */
-		// Route to retrieve all examples.
 		/*
+		Example route: Retrieve all examples
 		register_rest_route(
 			$this->rest_namespace,
-			'examples',
+			'/examples/',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'rest_get_examples' ),
@@ -59,22 +62,23 @@ class REST extends Plugin_Component {
 			)
 		);
 		*/
-		/* phpcs:enable */
 
-		/* phpcs:disable */
-		// Route to retrieve a single example by slug.
 		/*
+		Example route: Retrieve a single example by slug
 		register_rest_route(
 			$this->rest_namespace,
-			'example(?:/(?<slug>[a-z0-9-]+))?',
+			'/example/(?P<slug>[a-z0-9-]+)/',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'rest_get_example' ),
 				'permission_callback' => '__return_true',
 				'args'                => array(
 					'slug' => array(
-						'type' => 'string',
-					),
+						'required' => true,
+						'validate_callback' => function( $param ) {
+							return is_string( $param ) && preg_match( '/^[a-z0-9-]+$/', $param );
+						}
+					)
 				),
 			)
 		);

@@ -6,7 +6,7 @@
  */
 
 /**
- * Class Lhpbpp_Basic_Test
+ * Class Lhpbpp_Test
  */
 class Lhpbpp_Test extends WP_UnitTestCase {
 

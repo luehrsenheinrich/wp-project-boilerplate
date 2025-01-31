@@ -12,7 +12,6 @@
 namespace WpMunich\lhpbp\plugin\Blocks;
 
 use WpMunich\lhpbp\plugin\Plugin_Component;
-
 use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function add_filter;
@@ -72,19 +71,18 @@ class Blocks extends Plugin_Component {
 	 * and translations for the block UI.
 	 */
 	public function enqueue_block_editor_assets() {
-		$screen = get_current_screen();
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 
-		// Load asset configuration.
-		$assets = wp_json_file_decode( plugin()->get_plugin_path() . '/admin/dist/assets.json', array( 'associative' => true ) );
+		$assets_path = plugin()->get_plugin_path() . '/admin/dist/assets.json';
+		$assets      = file_exists( $assets_path ) ? wp_json_file_decode( $assets_path, array( 'associative' => true ) ) : array();
 
-		// Enqueue block helper script outside the widgets screen.
-		if ( ! in_array( $screen->id, array( 'widgets' ), true ) ) {
+		if ( $screen && ! in_array( $screen->id, array( 'widgets' ), true ) ) {
 			$block_helper_assets = $assets['js/blocks-helper.min.js'] ?? array();
 			wp_enqueue_script(
 				'lhpbpp-blocks-helper',
 				plugin()->get_plugin_url() . 'admin/dist/js/blocks-helper.min.js',
-				array_merge( array(), $block_helper_assets['dependencies'] ),
-				$block_helper_assets['version'],
+				$block_helper_assets['dependencies'] ?? array(),
+				$block_helper_assets['version'] ?? false,
 				true
 			);
 		}
@@ -93,8 +91,8 @@ class Blocks extends Plugin_Component {
 		wp_enqueue_script(
 			'lhpbpp-blocks',
 			plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
-			array_merge( array(), $block_assets['dependencies'] ),
-			$block_assets['version'],
+			$block_assets['dependencies'] ?? array(),
+			$block_assets['version'] ?? false,
 			true
 		);
 
@@ -106,28 +104,13 @@ class Blocks extends Plugin_Component {
 			'all'
 		);
 
-		// Load translations for block editor assets.
-		$dir  = plugin()->get_plugin_path();
-		$path = $dir . '/languages/';
-
-		wp_set_script_translations(
-			'lhpbpp-blocks',
-			'lhpbpp',
-			$path
-		);
-
-		wp_set_script_translations(
-			'lhpbpp-blocks-helper',
-			'lhpbpp',
-			$path
-		);
+		$path = plugin()->get_plugin_path() . '/languages/';
+		wp_set_script_translations( 'lhpbpp-blocks', 'lhpbpp', $path );
+		wp_set_script_translations( 'lhpbpp-blocks-helper', 'lhpbpp', $path );
 	}
 
 	/**
 	 * Register custom blocks for the plugin.
-	 *
-	 * Registers block types from the specified directory, setting a render callback function
-	 * for custom rendering of each block.
 	 */
 	public function register_blocks() {
 		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
@@ -149,9 +132,6 @@ class Blocks extends Plugin_Component {
 	/**
 	 * Provide the render callback for custom blocks.
 	 *
-	 * Captures block-specific HTML output using a buffer and includes the block's template file
-	 * based on its name. This allows dynamic block content rendering on the frontend.
-	 *
 	 * @param array    $attributes The block attributes.
 	 * @param string   $content    The block content.
 	 * @param WP_Block $block      The block instance.
@@ -168,8 +148,6 @@ class Blocks extends Plugin_Component {
 				break;
 		}
 
-		$block_html = ob_get_clean();
-
-		return $block_html;
+		return ob_get_clean();
 	}
 }
