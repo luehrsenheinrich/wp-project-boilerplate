@@ -64,7 +64,7 @@
     "css-loader": "^7.1.2",
     "cssnano": "^7.0.6",
     "glob": "^11.0.0",
-    "html-react-parser": "^5.1.18",
+    "html-react-parser": "^5.2.2",
     "ignore": "^6.0.2",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.9.2",
