@@ -118,4 +118,4 @@ jobs:
           SOURCE: "./archives/"
           REMOTE_HOST: ${{ secrets.UPDATE_SERVER_HOST }}
           REMOTE_USER: ${{ secrets.UPDATE_SERVER_USER }}
-          TARGET: /
+          TARGET: ${{ secrets.UPDATE_SERVER_PATH }}
