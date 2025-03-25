@@ -5,7 +5,7 @@
  * Description: A base boilerplate for Luehrsen // Heinrich WordPress projects.
  * Author: Luehrsen // Heinrich
  * Author URI: https://www.luehrsen-heinrich.de
- * Version: 0.0.19
+ * Version: 0.0.20
  * Text Domain: lhpbpp
  * Domain Path: /languages
  *
