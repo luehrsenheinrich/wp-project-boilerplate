@@ -112,10 +112,10 @@ jobs:
 
       - name: 🚢 Deploy to Update Server
         if: ${{ success() }}
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        uses: easingthemes/ssh-deploy@main
         with:
-          server: ${{ secrets.UPDATE_SERVER_HOST }}
-          username: ${{ secrets.UPDATE_SERVER_USER }}
-          password: ${{ secrets.UPDATE_SERVER_PASSWORD }}
-          local-dir: ./archives/
-          state-name: .${{ steps.package.outputs.slug }}-sync-state.json
+          SSH_PRIVATE_KEY: ${{ secrets.UPDATE_SERVER_PRIVATE_KEY }}
+          SOURCE: "./archives/"
+          REMOTE_HOST: ${{ secrets.UPDATE_SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.UPDATE_SERVER_USER }}
+          TARGET: /
