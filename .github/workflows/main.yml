@@ -3,7 +3,7 @@
 # It assumes that `npm install`, `composer install` and `npx grunt release` are valid commands.
 # The action expects a valid zip file in the `./update/` folder and the `slug` key in the
 # `package.json` to be set.
-name: 🧪 Test
+name: 🏗 Build & Deploy
 
 on:
   push:
@@ -19,7 +19,8 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  main:
+  bnd:
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -57,36 +58,33 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: ⚙️ Install Composer Packages
-        run: composer install --prefer-dist
+        run: composer install --prefer-dist --optimize-autoloader
 
       - name: ⚙️ Install Node Packages
         run: npm ci
 
-      - name: 🧹 Lint the code
+      - name: 🔎 Lint the code
         run: npm run lint
 
-      - name: 🚀 Start the environment
-        run: npm start
+      - name: 🏗 Build the code release
+        run: npm run release
 
-      - name: 🧪 Run tests
-        run: npm test
+      # - name: 🚢 Deploy plugin to InstaWP
+      #   if: ${{ github.event_name == 'push' && success() }}
+      #   uses: easingthemes/ssh-deploy@main
+      #   with:
+      #     SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
+      #     SOURCE: "./plugin/"
+      #     REMOTE_HOST: ${{ secrets.INSTAWP_FTP_HOST }}
+      #     REMOTE_USER: ${{ secrets.INSTAWP_FTP_USER }}
+      #     TARGET: /home/${{ secrets.INSTAWP_FTP_USER }}/web/${{ secrets.INSTAWP_FTP_HOST }}/public_html/wp-content/plugins/lhagenturp/
 
-      - name: 🚢 Deploy plugin to InstaWP
-        if: ${{ github.event_name == 'push' && success() }}
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
-          SOURCE: "./plugin/"
-          REMOTE_HOST: ${{ secrets.INSTAWP_SFTP_HOST }}
-          REMOTE_USER: ${{ secrets.INSTAWP_SFTP_USER }}
-          TARGET: /home/${{ secrets.INSTAWP_SFTP_USER }}/web/${{ secrets.INSTAWP_SFTP_HOST }}/public_html/wp-content/plugins/lhpbpp/
-
-      - name: 🚢 Deploy theme to InstaWP
-        if: ${{ github.event_name == 'push' && success() }}
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
-          SOURCE: "./theme/"
-          REMOTE_HOST: ${{ secrets.INSTAWP_SFTP_HOST }}
-          REMOTE_USER: ${{ secrets.INSTAWP_SFTP_USER }}
-          TARGET: /home/${{ secrets.INSTAWP_SFTP_USER }}/web/${{ secrets.INSTAWP_SFTP_HOST }}/public_html/wp-content/themes/lhpbpt/
+      # - name: 🚢 Deploy theme to InstaWP
+      #   if: ${{ github.event_name == 'push' && success() }}
+      #   uses: easingthemes/ssh-deploy@main
+      #   with:
+      #     SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
+      #     SOURCE: "./theme/"
+      #     REMOTE_HOST: ${{ secrets.INSTAWP_FTP_HOST }}
+      #     REMOTE_USER: ${{ secrets.INSTAWP_FTP_USER }}
+      #     TARGET: /home/${{ secrets.INSTAWP_FTP_USER }}/web/${{ secrets.INSTAWP_FTP_HOST }}/public_html/wp-content/themes/lhagenturt/
