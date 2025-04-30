@@ -1,6 +1,6 @@
 # WordPress Project Boilerplate
 
-[![🧪 Tests](../../actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
+[![🧪 Tests](../../actions/workflows/main.yml/badge.svg)](../../actions/workflows/main.yml)
 
 This boilerplate provides a structured project template for creating a **Hybrid WordPress Theme**, which combines traditional classic theme features with the block-based capabilities introduced by the WordPress Block Editor (Gutenberg). Leveraging **@wordpress/env**, **webpack**, and **PostCSS**, this boilerplate adheres to WordPress best practices by separating data and business logic (plugin) from presentation and styling (theme).
 
