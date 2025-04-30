@@ -6,11 +6,11 @@
  * Author: Luehrsen // Heinrich
  * Author URI: https://www.luehrsen-heinrich.de
  * x-release-please-start-version
- * Version: 0.0.20
+ * Version: 0.0.22
  * x-release-please-end
  * Text Domain: lhpbpp
  * Domain Path: /languages
- * Last Updated: 2025-04-24 // x-release-please-date
+ * Last Updated: 2025-04-30 // x-release-please-date
  *
  * @package lhpbp\plugin
  */
