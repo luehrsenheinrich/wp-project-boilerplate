@@ -53,7 +53,9 @@ class Nav_Menus extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function add_actions() {}
+	protected function add_actions() {
+		add_action( 'init', array( $this, 'action_register_nav_menus' ) );
+	}
 
 	/**
 	 * {@inheritdoc}
