@@ -2,7 +2,7 @@
 /**
  * Class SampleTest
  *
- * @package citations
+ * @package lhpbp\theme
  */
 
 /**
