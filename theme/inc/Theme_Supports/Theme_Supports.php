@@ -70,5 +70,18 @@ class Theme_Supports extends Theme_Component {
 
 		// Add support for editor styles to apply theme styling in the editor.
 		add_theme_support( 'editor-styles' );
+
+		/*
+		 * Overwrite default image sizes.
+		 *
+		 * Adjust WordPress core defaults for "thumbnail" and "medium" sizes to
+		 * match the Luehrsen // Heinrich project requirements.
+		 */
+		set_post_thumbnail_size( 300, 300, true );
+		update_option( 'thumbnail_size_w', 300 );
+		update_option( 'thumbnail_size_h', 300 );
+		update_option( 'thumbnail_crop', 1 );
+		update_option( 'medium_size_w', 600 );
+		update_option( 'medium_size_h', 600 );
 	}
 }
