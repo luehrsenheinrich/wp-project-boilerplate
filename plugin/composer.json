@@ -1,5 +1,5 @@
 {
-  "name": "wpmunich/lhbpp",
+  "name": "wpmunich/lhpbpp",
   "type": "wordpress-plugin",
   "optimize-autoloader": true,
   "require": {
