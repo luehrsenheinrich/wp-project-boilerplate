@@ -170,6 +170,12 @@
         "backgroundImage":false,
         "backgroundSize":false
      },
+     "border": {
+        "color": false,
+        "radius": false,
+        "style": false,
+        "width": false
+     },
      "blocks": {
       "core/cover": {
         "color": {
