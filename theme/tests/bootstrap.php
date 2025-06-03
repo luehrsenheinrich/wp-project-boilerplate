@@ -29,11 +29,15 @@ if ( ! file_exists( "{$_tests_dir}/includes/functions.php" ) ) {
 require_once "{$_tests_dir}/includes/functions.php";
 
 /**
- * Manually load the plugin being tested.
+ * Manually load the theme & plugin being tested.
  */
 function _manually_load_theme() {
 	switch_theme( 'lhpbpt' );
+	activate_plugin( 'plugin/lhpbpp.php' );
+	activate_plugin( 'lhbasicsp/lhbasicsp.php' );
 	require WP_CONTENT_DIR . '/themes/theme/inc/functions.php';
+
+	call_user_func( 'WpMunich\lhpbp\theme\theme' );
 }
 
 tests_add_filter( 'after_setup_theme', '_manually_load_theme' );
