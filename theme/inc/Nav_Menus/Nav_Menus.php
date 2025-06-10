@@ -43,11 +43,6 @@ class Nav_Menus extends Theme_Component {
 	public function __construct() {
 		$this->add_actions();
 		$this->add_filters();
-
-		$this->nav_menu_list = array(
-			'header' => esc_html__( 'Header', 'lhpbpt' ),
-			'footer' => esc_html__( 'Footer', 'lhpbpt' ),
-		);
 	}
 
 	/**
@@ -63,6 +58,24 @@ class Nav_Menus extends Theme_Component {
 	protected function add_filters() {}
 
 	/**
+	 * Retrieves the list of navigation menus.
+	 *
+	 * Returns an associative array of navigation menu slugs and their display names.
+	 * This list is used to register menus in WordPress and can be extended by child classes.
+	 *
+	 * @return array Associative array of navigation menu slugs and their display names.
+	 */
+	private function get_nav_menu_list() {
+		if ( empty( $this->nav_menu_list ) ) {
+			$this->nav_menu_list = array(
+				'header' => esc_html__( 'Header', 'lhpbpt' ),
+				'footer' => esc_html__( 'Footer', 'lhpbpt' ),
+			);
+		}
+		return $this->nav_menu_list;
+	}
+
+	/**
 	 * Registers the theme navigation menus.
 	 *
 	 * Associates menu slugs in `$nav_menu_list` with their display names for WordPress, enabling
@@ -71,7 +84,7 @@ class Nav_Menus extends Theme_Component {
 	 * @return void
 	 */
 	public function action_register_nav_menus() {
-		register_nav_menus( $this->nav_menu_list );
+		register_nav_menus( $this->get_nav_menu_list() );
 	}
 
 	/**
@@ -81,7 +94,7 @@ class Nav_Menus extends Theme_Component {
 	 * @return bool True if the specified menu is active, false otherwise.
 	 */
 	public function is_nav_menu_active( $slug ) {
-		if ( ! isset( $this->nav_menu_list[ $slug ] ) ) {
+		if ( ! isset( $this->get_nav_menu_list()[ $slug ] ) ) {
 			return false;
 		}
 
