@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0](https://github.com/luehrsenheinrich/wp-project-boilerplate/compare/wp-project-boilerplate-v0.0.22...wp-project-boilerplate-v0.1.0) (2025-07-16)
+
+
+### Features
+
+* **theme:** overwrite default image sizes ([#749](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/749)) ([4c051d3](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/4c051d3192425912e59bb70aa0f9381145e1c183))
+* **theme:** register nav menus on init ([#751](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/751)) ([66f0f1a](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/66f0f1a3f6441d66c2845bc41354f5f4b7d867ea))
+
+
+### Bug Fixes
+
+* **theme:** Wrap nav_menu_list in getter to prevent i18n race condition issue ([#771](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/771)) ([11d0824](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/11d0824bd46029af53b647c87ee00e5897a8bd46))
+
 ## 0.0.22 (2025-04-30)
 
 
