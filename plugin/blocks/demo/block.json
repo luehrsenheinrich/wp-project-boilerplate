@@ -9,18 +9,7 @@
   "supports": {
     "align": [ "wide" ]
   },
-  "attributes": {
-    "icon": {
-      "type": "string"
-    },
-    "post": {
-      "type": "array",
-      "default": []
-    },
-    "postSingle": {
-      "type": "number"
-    }
-  },
+  "attributes": {},
   "example": {},
   "editorScript": "lhpbpp-blocks"
 }
