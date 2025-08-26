@@ -67,7 +67,7 @@
     "html-react-parser": "^5.2.6",
     "ignore": "^7.0.5",
     "lodash": "^4.17.21",
-    "mini-css-extract-plugin": "^2.9.2",
+    "mini-css-extract-plugin": "^2.9.4",
     "normalize.css": "^8.0.1",
     "null-loader": "^4.0.1",
     "postcss": "^8.5.6",
