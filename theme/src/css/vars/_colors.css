@@ -33,11 +33,11 @@
 	 * Grayscale colors.
 	 */
 	--color-gray-0: #fff;
-	--color-gray-100: #f5f5f5;
-	--color-gray-300: #e5e5e5;
-	--color-gray-500: #9e9e9e;
-	--color-gray-700: #616161;
-	--color-gray-900: #212121;
+	--color-gray-100: #f2f6f7;
+	--color-gray-300: #e4ebec;
+	--color-gray-500: #939ea0;
+	--color-gray-700: #5f696a;
+	--color-gray-900: #151310;
 	--color-gray-1000: #000;
 
 	/**
