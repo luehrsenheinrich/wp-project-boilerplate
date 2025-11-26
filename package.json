@@ -63,7 +63,7 @@
     "classnames": "^2.5.1",
     "css-loader": "^7.1.2",
     "cssnano": "^7.1.1",
-    "glob": "^11.0.3",
+    "glob": "^13.0.0",
     "html-react-parser": "^5.2.7",
     "ignore": "^7.0.5",
     "lodash": "^4.17.21",
