@@ -86,7 +86,7 @@ npm run env:reset  # Clean + reinitialize
 - `.distignore` - Excludes `/admin/src/` from releases
 
 **`theme/` - WordPress Theme**
-- `style.css` - Main stylesheet (text domain: `lhpbp`)
+- `style.css` - Main stylesheet (text domain: `lhpbpt`)
 - `functions.php`, `inc/` - Theme logic
 - `src/{js,css}/` - Frontend source → `dist/` (gitignored)
 - `admin/src/{js,css}/` - Admin source → `admin/dist/` (gitignored)
@@ -156,7 +156,7 @@ npm run release
 ## PHP Standards Customizations (phpcs.xml)
 - **Disabled:** YodaConditions, ValidHookName.UseUnderscores, FileName
 - **Target:** PHP 8.1+ (PHPCompatibilityWP)
-- **Text domains:** Plugin=`lhpbpp`, Theme=`lhpbp`
+- **Text domains:** Plugin=`lhpbpp`, Theme=`lhpbpt` (phpcs.xml expects `lhpbp` - may need update)
 - CI ignores warnings (`ignore_warnings_on_exit`)
 
 ## Quick Checklist
