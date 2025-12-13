@@ -1,7 +1,7 @@
-# Copilot Instructions for WordPress Hybrid Theme Project
+# Copilot Instructions for WordPress Project
 
 ## Overview
-WordPress Hybrid Theme combining classic and block-based features (Gutenberg). Separates business logic (`plugin/`) from presentation (`theme/`).
+WordPress project combining classic and block-based features (Gutenberg). Separates business logic (`plugin/`) from presentation (`theme/`).
 
 **Stack:** PHP 8.1+, JavaScript (ES6+), CSS, webpack 5, PostCSS, Babel, @wordpress/env (Docker), PHPUnit 10
 
