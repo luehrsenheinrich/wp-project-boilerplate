@@ -1,7 +1,7 @@
-# Copilot Instructions for WordPress Project Boilerplate
+# Copilot Instructions for WordPress Hybrid Theme Project
 
 ## Overview
-WordPress Hybrid Theme Boilerplate combining classic and block-based features (Gutenberg). Separates business logic (`plugin/`) from presentation (`theme/`).
+WordPress Hybrid Theme combining classic and block-based features (Gutenberg). Separates business logic (`plugin/`) from presentation (`theme/`).
 
 **Stack:** PHP 8.1+, JavaScript (ES6+), CSS, webpack 5, PostCSS, Babel, @wordpress/env (Docker), PHPUnit 10
 
@@ -9,7 +9,7 @@ WordPress Hybrid Theme Boilerplate combining classic and block-based features (G
 
 ## Code Modification Rules
 ✅ **ALLOWED:** `plugin/` and `theme/` directories, documentation  
-❌ **FORBIDDEN:** Code outside `plugin/`/`theme/`, vendor directories, node_modules
+❌ **FORBIDDEN:** Code outside `plugin/`/`theme/`, generated/dependency directories (`vendor/`, `node_modules/`, `dist/`)
 
 ## Installation (ALWAYS follow this order)
 
@@ -62,7 +62,8 @@ Individual: `npm run test:unit:env:plugin|theme`
 ```bash
 npm start  # First run: ~5-10min, subsequent: ~30s
 ```
-**Access:** http://localhost (admin/password)  
+**Access:** http://localhost  
+**Credentials:** username=`admin`, password=`password`  
 **Prereq:** Docker running  
 **First run auto-executes:** `npm install && composer install && npm run update:schemas && npm run build`
 
@@ -134,7 +135,7 @@ Failure at any step stops workflow.
 
 **Composer GitHub Auth Warnings**
 - "Could not authenticate" = NORMAL (rate limits)
-- Composer falls back to git clone
+- Composer falls back to cloning from git
 - Installation completes successfully (just slower)
 
 **babel deprecation warning**
@@ -142,7 +143,7 @@ Failure at any step stops workflow.
 - Builds succeed normally
 
 **npm vulnerabilities**
-- Dev dependencies only, typically safe for boilerplate
+- Dev dependencies only, typically safe to ignore for development
 
 ## Release Process
 ```bash
@@ -181,4 +182,4 @@ npm run release
 - **PostCSS:** Reads vars from `theme/src/css/vars.css`, applies preset-env stage 1, cssnano minification
 - **Config files:** `.wp-env.json` (port 80, WP_DEBUG true), `phpunit.xml` (both dirs)
 
-**Trust these instructions.** Only search codebase if info incomplete/unclear or errors not documented.
+**Trust these instructions as a starting point.** Search the codebase when you need to understand specific implementation details, encounter undocumented errors, or find instructions incomplete.
