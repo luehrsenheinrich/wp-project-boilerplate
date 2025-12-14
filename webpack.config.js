@@ -136,7 +136,6 @@ const wordpressJsLoader = {
 			presets: ['@wordpress/babel-preset-default'],
 			plugins: [
 				'@wordpress/babel-plugin-import-jsx-pragma',
-				'@babel/plugin-transform-react-jsx',
 				'lodash',
 			],
 		},
