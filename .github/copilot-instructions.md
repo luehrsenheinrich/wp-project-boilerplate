@@ -3,9 +3,9 @@
 ## Overview
 WordPress project combining classic and block-based features (Gutenberg). Separates business logic (`plugin/`) from presentation (`theme/`).
 
-**Stack:** PHP 8.1+, JavaScript (ES6+), CSS, webpack 5, PostCSS, Babel, @wordpress/env (Docker), PHPUnit 10
+**Stack:** PHP 8.4+, JavaScript (ES6+), CSS, webpack 5, PostCSS, Babel, @wordpress/env (Docker), PHPUnit 10
 
-**Versions:** Node.js v20.x, npm v10.x, PHP 8.1+, Composer v2.x, Docker v20.x+
+**Versions:** Node.js v20.x, npm v10.x, PHP 8.4+, Composer v2.x, Docker v20.x+
 
 ## Code Modification Rules
 ✅ **ALLOWED:** `plugin/` and `theme/` directories, documentation  

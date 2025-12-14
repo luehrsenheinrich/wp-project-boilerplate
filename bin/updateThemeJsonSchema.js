@@ -1,26 +1,42 @@
 /* eslint-disable no-console */
 
-const request = require('request');
-const fs = require('fs');
+const https = require('node:https');
+const fs = require('node:fs');
 
 /**
  * Load the default theme schema.
  */
-request.get('https://schemas.wp.org/trunk/theme.json', (err, res, body) => {
-	if (!err && res.statusCode === 200) {
-		/**
-		 * @see https://schemas.wp.org/trunk/theme.json
-		 */
-		const themeJsonSchema = JSON.parse(body);
+https.get('https://schemas.wp.org/trunk/theme.json', (res) => {
+	let body = '';
 
-		const fileContent = JSON.stringify(themeJsonSchema, null, 2);
+	res.on('data', (chunk) => {
+		body += chunk;
+	});
 
-		fs.writeFile('./schemas/theme.json', fileContent, (error) => {
-			if (error) {
-				console.error(error);
-			} else {
-				console.log('Theme schema updated.');
+	res.on('end', () => {
+		if (res.statusCode === 200) {
+			try {
+				/**
+				 * @see https://schemas.wp.org/trunk/theme.json
+				 */
+				const themeJsonSchema = JSON.parse(body);
+
+				const fileContent = JSON.stringify(themeJsonSchema, null, 2);
+
+				fs.writeFile('./schemas/theme.json', fileContent, (error) => {
+					if (error) {
+						console.error(error);
+					} else {
+						console.log('Theme schema updated.');
+					}
+				});
+			} catch (error) {
+				console.error('Error parsing JSON:', error);
 			}
-		});
-	}
+		} else {
+			console.error(`HTTP error: ${res.statusCode}`);
+		}
+	});
+}).on('error', (err) => {
+	console.error('Request error:', err);
 });

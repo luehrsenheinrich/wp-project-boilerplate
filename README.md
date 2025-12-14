@@ -2,21 +2,27 @@
 
 [![🧪 Tests](../../actions/workflows/main.yml/badge.svg)](../../actions/workflows/main.yml)
 
-This boilerplate provides a structured project template for creating a **Hybrid WordPress Theme**, which combines traditional classic theme features with the block-based capabilities introduced by the WordPress Block Editor (Gutenberg). Leveraging **@wordpress/env**, **webpack**, and **PostCSS**, this boilerplate adheres to WordPress best practices by separating data and business logic (plugin) from presentation and styling (theme).
+This boilerplate serves as a **production-ready template** for Luehrsen // Heinrich agency client projects. It provides a structured foundation for creating **Hybrid WordPress Themes** that combine traditional classic theme features with modern block-based capabilities (Gutenberg). 
+
+Built with **@wordpress/env**, **webpack**, and **PostCSS**, this template adheres to WordPress best practices by cleanly separating business logic (plugin) from presentation (theme). The boilerplate includes a complete development environment, CI/CD workflows, and automated release management—ready to clone and customize for any client project.
 
 Learn more about Hybrid Themes [here](https://gutenbergmarket.com/news/what-are-hybrid-wordpress-themes).
 
 ![WordPress Project Boilerplate](./.github/boilerplate.jpg)
 
-## Getting Started
+## Using This Template
 
-Follow these steps to set up your project and start coding:
+This repository is designed to be cloned as a starting point for new client projects. Follow these steps to set up your project:
 
 ### Prerequisites
 
-1. **Use as Repository Template**: Create a new repository from this template to avoid manually setting up the structure.
-2. **Project Slug**: Choose a unique slug that won’t conflict with other repositories or projects.
+Before starting, ensure you have:
+- **Docker** installed and running (required for local development environment)
+- **Node.js 20.x** (LTS) and **npm 10.x**
+- **PHP 8.4+** and **Composer 2.x**
 
+1. **Use as Repository Template**: Click "Use this template" on GitHub to create a new repository for your client project.
+2. **Project Slug**: Choose a unique slug that won't conflict with other projects (recommended: client abbreviation + project type).
 ### Step 1: Set Up Project Slug and Names
 
 1. **Replace Project Slug**:
@@ -40,16 +46,15 @@ Follow these steps to set up your project and start coding:
    - Open `http://localhost/wp-admin` in your browser.
    - Use the credentials `admin` (username) and `password` (password) to log in.
 
-### Step 3: Test the Release Workflow
+### Step 3: Understand the Release Workflow
 
-1. **Set up GitHub Secrets**:
-   - Add `GH_ADMIN_TOKEN` to [GitHub Action secrets](../../settings/secrets/actions) and [Dependabot secrets](../../settings/secrets/dependabot).
+Releases are automated via **release-please**:
 
-2. **Create a Test Release**:
-   - Trigger a patch release via the [GitHub release action](../../actions/workflows/release.yml).
+1. **Make Changes**: Commit changes using Conventional Commits format (e.g., `feat:`, `fix:`, `chore:`).
+2. **Automatic Release PR**: When merged to `main`, release-please creates/updates a release PR with changelog and version bumps.
+3. **Merge Release PR**: When the release PR is merged, a GitHub release is created with built artifacts automatically.
+4. **Setup Required**: Ensure `GH_ADMIN_TOKEN` is configured in [GitHub Action secrets](../../settings/secrets/actions).
 
-3. **Verify Release**:
-   - Check the [releases](../../releases) section on GitHub to confirm the release was created and uploaded.
 
 ### Step 4: Finalize Documentation
 
