@@ -7,6 +7,18 @@ WordPress project combining classic and block-based features (Gutenberg). Separa
 
 **Versions:** Node.js v20.x, npm v10.x, PHP 8.4+, Composer v2.x, Docker v20.x+
 
+## Installed Skills
+
+Use the installed skills from `.agents/skills/` when they fit the task instead of relying on generic guidance.
+
+Skill routing for this repository:
+
+- Discover relevant skills from `.agents/skills/` before starting non-trivial WordPress work.
+- Keep business logic in `plugin/` and presentation in `theme/`.
+- Treat `.agents/skills/` as the source of truth for available skills and names.
+
+These skills should be treated as the first-choice workflow for WordPress-specific tasks in this repository.
+
 ## Code Modification Rules
 ✅ **ALLOWED:** `plugin/` and `theme/` directories, documentation  
 ❌ **FORBIDDEN:** Code outside `plugin/`/`theme/`, generated/dependency directories (`vendor/`, `node_modules/`, `dist/`)
