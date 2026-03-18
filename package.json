@@ -58,7 +58,7 @@
     "glob": "^13.0.0",
     "ignore": "^7.0.5",
     "lodash": "^4.17.21",
-    "mini-css-extract-plugin": "^2.9.4",
+    "mini-css-extract-plugin": "^2.10.1",
     "normalize.css": "^8.0.1",
     "null-loader": "^4.0.1",
     "postcss": "^8.5.6",
