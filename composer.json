@@ -15,8 +15,8 @@
 		"php-stubs/wordpress-stubs": "^6.3"
 	},
 	"scripts": {
-		"lint": "phpcs -d memory_limit=-1",
-		"fix": "phpcbf -d memory_limit=-1",
+		"lint": "php -d error_reporting='E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED' ./vendor/bin/phpcs -d memory_limit=-1",
+		"fix": "php -d error_reporting='E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED' ./vendor/bin/phpcbf -d memory_limit=-1",
 		"post-install-cmd": [
 			"cd theme && composer install",
 			"cd plugin && composer install"

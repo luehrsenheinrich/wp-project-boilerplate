@@ -19,7 +19,7 @@
     "env:reset": "npm run env:clean && npm run env:init",
     "update:versions": "node bin/updatePluginVersion.js && node bin/updateThemeVersion.js",
     "lint:php": "composer run lint",
-    "lint:js": "eslint './{theme,plugin}/**/src/js/**/*.js'",
+    "lint:js": "BROWSERSLIST_IGNORE_OLD_DATA=1 eslint './{theme,plugin}/**/src/js/**/*.js'",
     "lint:css": "stylelint './{theme,plugin}/**/src/css/**/*.css'",
     "lint": "npm run lint:php && npm run lint:js && npm run lint:css",
     "lint:php:fix": "composer run fix",
