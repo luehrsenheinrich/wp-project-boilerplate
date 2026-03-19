@@ -92,7 +92,7 @@ class Block_Patterns extends Theme_Component {
 	 * @return void
 	 */
 	public function register_block_patterns() {
-		$pattern_paths = glob( get_stylesheet_directory() . '/inc/Block_Patterns/*.php' );
+		$pattern_paths = glob( get_stylesheet_directory() . '/inc/Block_Patterns/bp-*.php' );
 		if ( false === $pattern_paths ) {
 			$pattern_paths = array();
 		}
