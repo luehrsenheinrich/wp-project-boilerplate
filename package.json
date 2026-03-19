@@ -57,7 +57,7 @@
     "cssnano": "^7.1.2",
     "glob": "^13.0.6",
     "ignore": "^7.0.5",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mini-css-extract-plugin": "^2.10.1",
     "normalize.css": "^8.0.1",
     "null-loader": "^4.0.1",
