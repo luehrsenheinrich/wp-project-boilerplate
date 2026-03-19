@@ -151,7 +151,8 @@ class Blocks extends Plugin_Component {
 	 */
 	public function provide_render_callback( $attributes, $content, $block ) {
 		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
-		$template    = $blocks_path . str_replace( 'lh/', '', $block->name ) . '/template.php';
+		$block_slug  = basename( $block->name );
+		$template    = $blocks_path . $block_slug . '/template.php';
 
 		if ( ! file_exists( $template ) ) {
 			return $content;
