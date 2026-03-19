@@ -65,7 +65,7 @@
     "postcss-import": "^16.1.1",
     "postcss-loader": "^8.2.0",
     "postcss-preset-env": "^11.2.0",
-    "terser-webpack-plugin": "^5.3.16",
+    "terser-webpack-plugin": "^5.4.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
     "webpack-livereload-plugin": "^3.0.2",
