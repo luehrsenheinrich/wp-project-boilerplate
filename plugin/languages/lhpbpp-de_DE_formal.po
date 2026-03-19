@@ -34,33 +34,9 @@ msgstr "Eine Basis-Boilerplate für Luehrsen // Heinrich WordPress-Projekte."
 msgid "Luehrsen // Heinrich"
 msgstr "Luehrsen // Heinrich"
 
-#: blocks/demo/template.php:15 admin/dist/js/blocks.js:49
-msgid "This is a demo block."
-msgstr "Dies ist ein Demo-Block."
-
 #: inc/ACF/ACF.php:72 inc/ACF/ACF.php:73
 msgid "L//H Settings"
 msgstr "L//H Einstellungen"
-
-#: inc/Blocks/Blocks.php:47
-msgid "Demo Block"
-msgstr "Demo Block"
-
-#: inc/Blocks/Blocks.php:48
-msgid "A demo block to show that everything is working."
-msgstr "Ein Demoblock, um zu zeigen, dass alles funktioniert."
-
-#: inc/Blocks/Blocks.php:51
-msgid "ACF"
-msgstr "ACF"
-
-#: inc/Blocks/Blocks.php:51
-msgid "Demo"
-msgstr "Demo"
-
-#: inc/Blocks/Blocks.php:51
-msgid "Block"
-msgstr "Block"
 
 #: inc/SVG/SVG.php:51 inc/SVG/SVG.php:56 inc/SVG/SVG.php:61
 msgid "Slashes"
@@ -73,13 +49,3 @@ msgstr "Dieser Block wurde mit ♥ erstellt von "
 #: admin/dist/js/blocks.js:49
 msgid "Settings"
 msgstr "Einstellungen"
-
-#: blocks/demo/block.json
-msgctxt "block title"
-msgid "Demo Block"
-msgstr "Demo Block"
-
-#: blocks/demo/block.json
-msgctxt "block description"
-msgid "A demo block"
-msgstr "Ein Demo-Block"
