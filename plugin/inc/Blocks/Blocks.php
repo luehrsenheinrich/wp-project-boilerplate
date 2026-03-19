@@ -15,6 +15,12 @@ use WpMunich\lhpbp\plugin\Plugin_Component;
 use function WpMunich\lhpbp\plugin\plugin;
 use function add_action;
 use function add_filter;
+use function array_filter;
+use function array_map;
+use function basename;
+use function dirname;
+use function file_exists;
+use function glob;
 use function get_current_screen;
 use function register_block_type;
 use function wp_enqueue_script;
@@ -113,10 +119,15 @@ class Blocks extends Plugin_Component {
 	 * Register custom blocks for the plugin.
 	 */
 	public function register_blocks() {
-		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
+		$blocks_path   = plugin()->get_plugin_path() . 'blocks/';
+		$block_configs = glob( $blocks_path . '*/block.json' );
+		if ( false === $block_configs ) {
+			$block_configs = array();
+		}
 
-		$custom_blocks = array(
-			'demo',
+		$custom_blocks = array_map(
+			static fn( $path ) => basename( dirname( $path ) ),
+			array_filter( $block_configs )
 		);
 
 		foreach ( $custom_blocks as $block ) {
@@ -140,13 +151,14 @@ class Blocks extends Plugin_Component {
 	 */
 	public function provide_render_callback( $attributes, $content, $block ) {
 		$blocks_path = plugin()->get_plugin_path() . 'blocks/';
-		ob_start();
+		$template    = $blocks_path . str_replace( 'lh/', '', $block->name ) . '/template.php';
 
-		switch ( $block->name ) {
-			case 'lh/demo':
-				include $blocks_path . 'demo/template.php';
-				break;
+		if ( ! file_exists( $template ) ) {
+			return $content;
 		}
+
+		ob_start();
+		include $template;
 
 		return ob_get_clean();
 	}

@@ -51,8 +51,6 @@ class Lhpbpt_Test extends WP_UnitTestCase {
 
 		$result = \WpMunich\lhpbp\theme\render_attributes( $attributes );
 
-		var_dump( $result ); // For debugging purposes, remove in production.
-
 		$this->assertStringContainsString( 'class="btn primary"', $result );
 		$this->assertStringContainsString( 'id="main-btn"', $result );
 		$this->assertStringContainsString( 'data-test="value"', $result );

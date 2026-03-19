@@ -16,6 +16,9 @@ namespace WpMunich\lhpbp\theme\Block_Patterns;
 use WpMunich\lhpbp\theme\Theme_Component;
 
 use function add_action;
+use function get_stylesheet_directory;
+use function glob;
+use function pathinfo;
 use function register_block_pattern;
 use function register_block_pattern_category;
 use function unregister_block_pattern_category;
@@ -89,21 +92,24 @@ class Block_Patterns extends Theme_Component {
 	 * @return void
 	 */
 	public function register_block_patterns() {
-		register_block_pattern(
-			'lhpbpt/example-pattern',
-			array(
-				'title'         => _x( 'Example Pattern', 'pattern title', 'lhpbpt' ),
-				'description'   => __( 'A simple example pattern. If you can read this at prod call an admin.', 'lhpbpt' ),
-				// phpcs:disable
-				'content'       => $this->get_block_pattern_string( get_stylesheet_directory() . '/inc/Block_Patterns/bp-example.php' ),
-				// phpcs:enable
-				'categories'    => array( 'lhpbpt-pattern' ),
-				'keywords'      => array(
-					_x( 'Example', 'block pattern keywords', 'lhpbpt' ),
-				),
-				'viewportWidth' => 1440,
-			)
-		);
+		$pattern_paths = glob( get_stylesheet_directory() . '/inc/Block_Patterns/*.php' );
+		if ( false === $pattern_paths ) {
+			$pattern_paths = array();
+		}
+
+		foreach ( $pattern_paths as $pattern_path ) {
+			$pattern_name = pathinfo( $pattern_path, PATHINFO_FILENAME );
+
+			register_block_pattern(
+				'lhpbpt/' . $pattern_name,
+				array(
+					'title'         => esc_html( ucwords( str_replace( array( 'bp-', '-' ), array( '', ' ' ), $pattern_name ) ) ),
+					'content'       => $this->get_block_pattern_string( $pattern_path ),
+					'categories'    => array( 'lhpbpt-pattern' ),
+					'viewportWidth' => 1440,
+				)
+			);
+		}
 	}
 
 	/**
