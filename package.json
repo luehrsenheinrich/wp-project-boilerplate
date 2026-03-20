@@ -67,7 +67,7 @@
     "postcss-preset-env": "^11.2.0",
     "terser-webpack-plugin": "^5.3.16",
     "webpack": "^5.105.4",
-    "webpack-cli": "^6.0.1",
+    "webpack-cli": "^7.0.2",
     "webpack-livereload-plugin": "^3.0.2",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
