@@ -41,7 +41,7 @@ Every bit of help is highly appreciated. Even if you don't code, you can file an
 
 ## License
 
-This plugin is licensed under the [GNU General Public License v2 (or later)](./LICENSE.md).
+This plugin is licensed under the [GNU General Public License v2 (or later)](./LICENSE).
 
 ## Changelog
 

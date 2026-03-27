@@ -32,34 +32,9 @@ msgstr ""
 msgid "Luehrsen // Heinrich"
 msgstr ""
 
-#: blocks/demo/template.php:15
-#: admin/dist/js/blocks.js:49
-msgid "This is a demo block."
-msgstr ""
-
 #: inc/ACF/ACF.php:72
 #: inc/ACF/ACF.php:73
 msgid "L//H Settings"
-msgstr ""
-
-#: inc/Blocks/Blocks.php:47
-msgid "Demo Block"
-msgstr ""
-
-#: inc/Blocks/Blocks.php:48
-msgid "A demo block to show that everything is working."
-msgstr ""
-
-#: inc/Blocks/Blocks.php:51
-msgid "ACF"
-msgstr ""
-
-#: inc/Blocks/Blocks.php:51
-msgid "Demo"
-msgstr ""
-
-#: inc/Blocks/Blocks.php:51
-msgid "Block"
 msgstr ""
 
 #: inc/SVG/SVG.php:51
@@ -74,14 +49,4 @@ msgstr ""
 
 #: admin/dist/js/blocks.js:49
 msgid "Settings"
-msgstr ""
-
-#: blocks/demo/block.json
-msgctxt "block title"
-msgid "Demo Block"
-msgstr ""
-
-#: blocks/demo/block.json
-msgctxt "block description"
-msgid "A demo block"
 msgstr ""

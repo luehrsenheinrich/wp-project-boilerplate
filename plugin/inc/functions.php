@@ -109,8 +109,8 @@ function plugin_requirements_notice__error() {
 			<?php
 			printf(
 				/* translators: %s: Plugin name. */
-				esc_html__( 'The requirements for the %s plugin are not met. Please install all requirements.', 'lhpbp' ),
-				'<strong>' . esc_html__( 'LHPBP Plugin', 'lhpbp' ) . '</strong>'
+				esc_html__( 'The requirements for the %s plugin are not met. Please install all requirements.', 'lhpbpp' ),
+				'<strong>' . esc_html__( 'WordPress Project Boilerplate Plugin', 'lhpbpp' ) . '</strong>'
 			);
 			?>
 		</p>
