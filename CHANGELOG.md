@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/luehrsenheinrich/wp-project-boilerplate/compare/wp-project-boilerplate-v0.1.0...wp-project-boilerplate-v0.2.0) (2026-04-23)
+
+
+### Features
+
+* add copilot-instructions.md for agent onboarding ([#886](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/886)) ([1eeb4ae](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/1eeb4ae6535d389c577054e6f1340cec3f4afd9c))
+
 ## [0.1.0](https://github.com/luehrsenheinrich/wp-project-boilerplate/compare/wp-project-boilerplate-v0.0.22...wp-project-boilerplate-v0.1.0) (2025-11-25)
 
 

@@ -2,7 +2,7 @@
   "name": "wp-project-boilerplate",
   "title": "WordPress Project Boilerplate",
   "slug": "lhpbp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A base boilerplate for Luehrsen // Heinrich WordPress projects.",
   "scripts": {
     "build": "webpack",
@@ -45,7 +45,7 @@
     "@csstools/postcss-global-data": "^4.0.0",
     "@svgr/webpack": "^8.1.0",
     "@wordpress/babel-plugin-import-jsx-pragma": "^5.42.0",
-    "@wordpress/babel-preset-default": "^8.43.0",
+    "@wordpress/babel-preset-default": "^8.41.0",
     "@wordpress/dependency-extraction-webpack-plugin": "^6.42.0",
     "@wordpress/env": "^11.2.0",
     "@wordpress/eslint-plugin": "^24.4.0",
@@ -66,7 +66,7 @@
     "postcss-loader": "^8.2.1",
     "postcss-preset-env": "^11.2.0",
     "terser-webpack-plugin": "^5.3.16",
-    "webpack": "^5.106.0",
+    "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2",
     "webpack-livereload-plugin": "^3.0.2",
     "webpack-remove-empty-scripts": "^1.1.1"
