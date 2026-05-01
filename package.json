@@ -41,7 +41,7 @@
   "authorUrl": "https://www.luehrsen-heinrich.de",
   "license": "GPLv2",
   "devDependencies": {
-    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-env": "^7.29.3",
     "@csstools/postcss-global-data": "^4.0.0",
     "@svgr/webpack": "^8.1.0",
     "@wordpress/babel-plugin-import-jsx-pragma": "^5.44.0",
