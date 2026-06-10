@@ -12,7 +12,7 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"wp-cli/wp-cli-bundle": "^2.7",
 		"php-stubs/wordpress-tests-stubs": "^7.0",
-		"php-stubs/wordpress-stubs": "^6.3"
+		"php-stubs/wordpress-stubs": "^7.0"
 	},
 	"scripts": {
 		"lint": "php -d error_reporting='E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED' ./vendor/bin/phpcs -d memory_limit=-1",
