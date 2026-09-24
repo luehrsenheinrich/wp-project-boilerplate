@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   verify:
+    # Keep this name aligned with the required status check in the main ruleset.
+    name: Build & Deploy
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
