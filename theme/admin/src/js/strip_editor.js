@@ -8,12 +8,7 @@
  */
 
 import domReady from '@wordpress/dom-ready';
-import {
-	unregisterBlockVariation,
-	getBlockVariations,
-	unregisterBlockStyle,
-	store as blocksStore,
-} from '@wordpress/blocks';
+import { unregisterBlockStyle, store as blocksStore } from '@wordpress/blocks';
 
 import { unregisterFormatType } from '@wordpress/rich-text';
 
@@ -55,27 +50,6 @@ function removeAllBlockStyles(blockName) {
 }
 
 /**
- * Unregisters all variations for a specified block type.
- *
- * This function removes all registered variations of the given block type,
- * except the default variation (if defined as `isDefault: true`). This is useful
- * for simplifying the editor interface by removing alternative options while retaining
- * the primary block variation.
- *
- * @param {string} blockName The name of the block to unregister variations from (e.g., 'core/group').
- */
-function removeAllBlockVariations(blockName) {
-	const variations = getBlockVariations(blockName);
-
-	// Unregister each variation for the specified block type.
-	for (const variation of variations) {
-		if (!variation.isDefault) {
-			unregisterBlockVariation(blockName, variation.name);
-		}
-	}
-}
-
-/**
  * Curates the allowed formats for the RichText component.
  *
  * This function removes disallowed formats from the RichText component,
@@ -93,7 +67,6 @@ function curateRichTextFormats() {
 }
 
 domReady(() => {
-	removeAllBlockVariations('core/group');
 	removeAllBlockStyles('core/quote');
 	curateRichTextFormats();
 });

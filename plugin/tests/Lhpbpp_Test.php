@@ -24,6 +24,30 @@ class Lhpbpp_Test extends WP_UnitTestCase {
 		$this->assertTrue( defined( 'LHPBPP_FILE' ) );
 	}
 
+	/** The reference block is registered from its metadata. */
+	public function test_editorial_note_is_registered() {
+		$block = WP_Block_Type_Registry::get_instance()->get_registered( 'lhpbpp/editorial-note' );
+		$this->assertNotNull( $block );
+		$this->assertSame( 'lhpbpp-blocks', $block->editor_script_handles[0] );
+	}
+
+	/** Plugin rendering is available independently of the active theme. */
+	public function test_editorial_note_renders_safe_content() {
+		$markup = serialize_block(
+			array(
+				'blockName'    => 'lhpbpp/editorial-note',
+				'attrs'        => array( 'content' => '<strong>Editor context</strong><script>alert(1)</script>' ),
+				'innerBlocks'  => array(),
+				'innerHTML'    => '',
+				'innerContent' => array(),
+			)
+		);
+		$output = do_blocks( $markup );
+		$this->assertStringContainsString( '<strong>Editor context</strong>', $output );
+		$this->assertStringNotContainsString( '<script>', $output );
+		$this->assertStringContainsString( 'lhpbpp-editorial-note', $output );
+	}
+
 	/**
 	 * Workaround to allow the tests to run on PHPUnit 10.
 	 *

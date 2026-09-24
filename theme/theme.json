@@ -10,10 +10,15 @@
         "defaultPresets":false
      },
      "spacing":{
-        "blockGap":false,
+        "blockGap":true,
         "margin":true,
         "padding":true,
-        "customSpacingSize":false
+        "customSpacingSize":false,
+        "spacingSizes":[
+           {"slug":"small","name":"Small","size":"0.75rem"},
+           {"slug":"medium","name":"Medium","size":"1.5rem"},
+           {"slug":"large","name":"Large","size":"3rem"}
+        ]
      },
      "typography":{
         "dropCap":false,
@@ -52,7 +57,7 @@
      },
      "layout":{
         "allowCustomContentAndWideSize":false,
-        "allowEditing":false,
+        "allowEditing":true,
         "contentSize":"var(--content-width)",
         "wideSize":"var(--last-bp)"
      },

@@ -24,6 +24,7 @@ use function glob;
 use function get_current_screen;
 use function register_block_type;
 use function wp_enqueue_script;
+use function wp_register_script;
 use function wp_json_file_decode;
 use function wp_set_script_translations;
 
@@ -93,25 +94,7 @@ class Blocks extends Plugin_Component {
 			);
 		}
 
-		$block_assets = $assets['js/blocks.min.js'] ?? array();
-		wp_enqueue_script(
-			'lhpbpp-blocks',
-			plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
-			$block_assets['dependencies'] ?? array(),
-			$block_assets['version'] ?? false,
-			true
-		);
-
-		wp_enqueue_style(
-			'lhpbpp-admin-components',
-			plugin()->get_plugin_url() . 'admin/dist/css/style.min.css',
-			array(),
-			plugin()->get_plugin_version(),
-			'all'
-		);
-
 		$path = plugin()->get_plugin_path() . '/languages/';
-		wp_set_script_translations( 'lhpbpp-blocks', 'lhpbpp', $path );
 		wp_set_script_translations( 'lhpbpp-blocks-helper', 'lhpbpp', $path );
 	}
 
@@ -119,6 +102,21 @@ class Blocks extends Plugin_Component {
 	 * Register custom blocks for the plugin.
 	 */
 	public function register_blocks() {
+		$assets_path = plugin()->get_plugin_path() . 'admin/dist/assets.json';
+		$script_path = plugin()->get_plugin_path() . 'admin/dist/js/blocks.min.js';
+		if ( file_exists( $assets_path ) && file_exists( $script_path ) ) {
+			$assets       = wp_json_file_decode( $assets_path, array( 'associative' => true ) );
+			$block_assets = $assets['js/blocks.min.js'] ?? array();
+			wp_register_script(
+				'lhpbpp-blocks',
+				plugin()->get_plugin_url() . 'admin/dist/js/blocks.min.js',
+				$block_assets['dependencies'] ?? array(),
+				$block_assets['version'] ?? false,
+				true
+			);
+			wp_set_script_translations( 'lhpbpp-blocks', 'lhpbpp', plugin()->get_plugin_path() . 'languages/' );
+		}
+
 		$blocks_path   = plugin()->get_plugin_path() . 'blocks/';
 		$block_configs = glob( $blocks_path . '*/block.json' );
 		if ( false === $block_configs ) {

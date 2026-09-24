@@ -95,6 +95,12 @@ jobs:
           npm start
           npm test
 
+      - name: 🧭 Test the editor and front end
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+
       - name: 🏗 Build the code release
         if: ${{ steps.release.outputs.release_created }}
         run: npm run release

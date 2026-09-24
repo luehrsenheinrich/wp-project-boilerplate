@@ -57,6 +57,27 @@ class Lhpbpt_Test extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'empty=', $result );
 	}
 
+	/** Editors can compose with approved layout blocks and plugin blocks. */
+	public function test_curated_editor_allows_layout_and_plugin_blocks() {
+		$allowed = apply_filters( 'allowed_block_types_all', true );
+		foreach ( array( 'core/group', 'core/columns', 'core/cover', 'lhpbpp/editorial-note' ) as $name ) {
+			$this->assertContains( $name, $allowed );
+		}
+		$this->assertNotContains( 'core/site-title', $allowed );
+	}
+
+	/** Unsynced patterns remain editable, while explicitly locked ones do not. */
+	public function test_unsynced_patterns_are_composable() {
+		$settings = apply_filters( 'block_editor_settings_all', array() );
+		$this->assertTrue( $settings['disableContentOnlyForUnsyncedPatterns'] );
+		$this->assertTrue( WP_Block_Patterns_Registry::get_instance()->is_registered( 'lhpbpt/bp-editorial-split' ) );
+	}
+
+	/** The theme intentionally keeps PHP templates rather than Site Editor templates. */
+	public function test_theme_remains_classic() {
+		$this->assertFalse( wp_is_block_theme() );
+	}
+
 	/**
 	 * Workaround to allow the tests to run on PHPUnit 10.
 	 *

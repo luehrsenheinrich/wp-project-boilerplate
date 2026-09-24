@@ -4,8 +4,8 @@ const { execFileSync } = require('node:child_process');
 const { slug } = require('../package.json');
 
 for (const [suffix, required] of [
-	['p', ['vendor/autoload.php', `${slug}p.php`, 'admin/dist/js/blocks.min.js', 'admin/dist/css/style.min.css']],
-	['t', ['vendor/autoload.php', 'style.css', 'dist/css/base.min.css', 'dist/js/script.min.js']],
+	['p', ['vendor/autoload.php', `${slug}p.php`, 'admin/dist/js/blocks.min.js', 'blocks/editorial-note/block.json', 'blocks/editorial-note/template.php']],
+	['t', ['vendor/autoload.php', 'style.css', 'dist/css/base.min.css', 'dist/css/editorial-note.min.css', 'dist/js/script.min.js', 'inc/Block_Patterns/bp-editorial-split.php']],
 ]) {
 	const archive = path.resolve(__dirname, '..', 'archives', `${slug}${suffix}.zip`);
 	const prefix = `${slug}${suffix}/`;

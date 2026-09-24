@@ -39,6 +39,8 @@ jobs:
       - run: npm run check
       - run: npm start
       - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
       - run: npm run release
       - run: npm stop
         if: always()

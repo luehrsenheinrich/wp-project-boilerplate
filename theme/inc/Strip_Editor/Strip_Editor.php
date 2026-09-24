@@ -68,8 +68,8 @@ class Strip_Editor extends Theme_Component {
 	 */
 	protected function add_filters() {
 		add_filter( 'block_type_metadata', array( $this, 'filter_block_type_metadata' ) );
-		add_filter( 'block_type_metadata_settings', array( $this, 'filter_block_type_metadata_settings' ), 10, 2 );
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_block_types_all' ) );
+		add_filter( 'block_editor_settings_all', array( $this, 'allow_unsynced_pattern_composition' ) );
 
 		/**
 		 * Sets the inline CSS size limit to zero, preventing large styles from being inlined.
@@ -169,19 +169,14 @@ class Strip_Editor extends Theme_Component {
 	}
 
 	/**
-	 * Filters block type metadata settings to customize editor output.
+	 * Let editors rearrange ordinary, unsynced patterns after insertion.
+	 * Explicitly locked patterns remain content-only.
 	 *
-	 * This method processes settings and metadata for individual block types,
-	 * enabling customization of block behaviors and visibility within the editor.
-	 *
-	 * @param array $settings Settings for the currently processed block type, allowing
-	 *                        control over various block attributes and behaviors.
-	 * @param array $metadata Metadata for the currently processed block type, providing
-	 *                        information on the block's registration details and attributes.
-	 *
-	 * @return array Filtered settings.
+	 * @param array $settings Block editor settings.
+	 * @return array
 	 */
-	public function filter_block_type_metadata_settings( $settings, $metadata ) {
+	public function allow_unsynced_pattern_composition( $settings ) {
+		$settings['disableContentOnlyForUnsyncedPatterns'] = true;
 		return $settings;
 	}
 
@@ -226,17 +221,21 @@ class Strip_Editor extends Theme_Component {
 	 */
 	public function enqueue_block_editor_assets() {
 		// Retrieve assets from the JSON file.
-		$assets = wp_json_file_decode( get_theme_file_path( '/admin/dist/assets.json' ), array( 'associative' => true ) );
+		$assets_path = get_theme_file_path( '/admin/dist/assets.json' );
+		$assets      = file_exists( $assets_path ) ? wp_json_file_decode( $assets_path, array( 'associative' => true ) ) : array();
 
 		// Get block editor script details.
-		$block_assets = $assets['js/strip_editor.js'] ?? array();
+		$block_assets = $assets['js/strip_editor.min.js'] ?? array();
+		if ( ! file_exists( get_theme_file_path( '/admin/dist/js/strip_editor.min.js' ) ) ) {
+			return;
+		}
 
 		// Enqueue the script with dependencies and version from the assets file.
 		wp_enqueue_script(
 			'lhpbpt-strip_editor',
 			get_theme_file_uri( 'admin/dist/js/strip_editor.min.js' ),
 			array_merge( array(), $block_assets['dependencies'] ?? array() ),
-			$block_assets['version'],
+			$block_assets['version'] ?? false,
 			true
 		);
 	}
