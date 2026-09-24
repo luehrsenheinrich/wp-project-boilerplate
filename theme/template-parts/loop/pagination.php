@@ -12,10 +12,14 @@ namespace WpMunich\lhpbp\theme;
 $args = wp_parse_args(
 	$args,
 	array(
-		'query'      => $GLOBALS['wp_query'],
+		'query'      => $GLOBALS['wp_query'] ?? null,
 		'classNames' => '',
 	)
 );
+
+if ( ! $args['query'] instanceof \WP_Query ) {
+	return;
+}
 
 // Normalize pagination values before using them for links and visible text.
 $total   = max( 1, (int) $args['query']->max_num_pages );

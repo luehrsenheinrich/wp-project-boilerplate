@@ -146,11 +146,18 @@ class Nav_Menus extends Theme_Component {
 	 */
 	public function paginate_links( array $args = array() ) {
 		global $wp_query;
+		$default_current = 1;
+		$default_total   = 1;
+		if ( $wp_query instanceof \WP_Query ) {
+			$default_current = max( 1, (int) $wp_query->get( 'paged' ) );
+			$default_total   = max( 1, (int) $wp_query->max_num_pages );
+		}
+
 		$args = wp_parse_args(
 			$args,
 			array(
-				'current'   => max( 1, (int) $wp_query->get( 'paged' ) ),
-				'total'     => max( 1, (int) $wp_query->max_num_pages ),
+				'current' => $default_current,
+				'total'   => $default_total,
 			)
 		);
 
