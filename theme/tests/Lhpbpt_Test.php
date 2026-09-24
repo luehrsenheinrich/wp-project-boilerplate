@@ -57,6 +57,28 @@ class Lhpbpt_Test extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'empty=', $result );
 	}
 
+	/** Pagination identifies its controls and marks the current page. */
+	public function test_pagination_markup() {
+		$this->factory()->post->create_many( 3 );
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'post',
+				'posts_per_page' => 1,
+				'paged'          => 2,
+			)
+		);
+
+		ob_start();
+		get_template_part( 'template-parts/loop/pagination', null, array( 'query' => $query ) );
+		$markup = ob_get_clean();
+
+		$this->assertStringContainsString( 'aria-label="Pagination"', $markup );
+		$this->assertStringContainsString( 'aria-current="page"', $markup );
+		$this->assertStringContainsString( '>Previous</span>', $markup );
+		$this->assertStringContainsString( '>Next</span>', $markup );
+		$this->assertStringContainsString( '>Page 2</span>', $markup );
+	}
+
 	/** Editors can compose with approved layout blocks and plugin blocks. */
 	public function test_curated_editor_allows_layout_and_plugin_blocks() {
 		$allowed = apply_filters( 'allowed_block_types_all', true );
