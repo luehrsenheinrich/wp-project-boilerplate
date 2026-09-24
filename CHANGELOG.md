@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/luehrsenheinrich/wp-project-boilerplate/compare/wp-project-boilerplate-v0.1.0...wp-project-boilerplate-v0.2.0) (2026-09-24)
+
+
+### Features
+
+* add copilot-instructions.md for agent onboarding ([#886](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/886)) ([1eeb4ae](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/1eeb4ae6535d389c577054e6f1340cec3f4afd9c))
+* modernize hybrid editorial workflow and tooling ([#998](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/998)) ([6ed1b69](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/6ed1b69d77e39eac5fdcfcabcb0fceffb1d71230))
+
+
+### Bug Fixes
+
+* correct pagination markup and escaping ([#1004](https://github.com/luehrsenheinrich/wp-project-boilerplate/issues/1004)) ([3e2f8b8](https://github.com/luehrsenheinrich/wp-project-boilerplate/commit/3e2f8b85917463238def36c78b96fd94e28365da))
+
 ## [0.1.0](https://github.com/luehrsenheinrich/wp-project-boilerplate/compare/wp-project-boilerplate-v0.0.22...wp-project-boilerplate-v0.1.0) (2025-11-25)
 
 
