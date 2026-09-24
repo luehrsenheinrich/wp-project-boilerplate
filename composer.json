@@ -1,8 +1,11 @@
 {
 	"name": "luehrsenheinrich/wp-project-boilerplate",
-	"type": "wordpress-plugin",
+	"description": "Development tools for the Luehrsen // Heinrich WordPress project boilerplate.",
+	"type": "project",
 	"license": "GPL-2.0-or-later",
-	"optimize-autoloader": true,
+	"require": {
+		"php": "^8.4"
+	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
 		"squizlabs/php_codesniffer": "^3.6",
@@ -17,14 +20,6 @@
 	"scripts": {
 		"lint": "php -d error_reporting='E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED' ./vendor/bin/phpcs -d memory_limit=-1",
 		"fix": "php -d error_reporting='E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED' ./vendor/bin/phpcbf -d memory_limit=-1",
-		"post-install-cmd": [
-			"cd theme && composer install",
-			"cd plugin && composer install"
-		],
-		"post-update-cmd": [
-			"cd theme && composer update",
-			"cd plugin && composer update"
-		],
     "i18n-make-pot": [
       "wp i18n make-pot ./theme ./theme/languages/lhpbpt.pot --exclude=vendor,node_modules,src",
       "wp i18n make-pot ./plugin ./plugin/languages/lhpbpp.pot --exclude=vendor,node_modules,src,blocks/**/*.js"
@@ -35,6 +30,7 @@
     ]
 	},
 	"config": {
+		"optimize-autoloader": true,
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"composer/installers": true

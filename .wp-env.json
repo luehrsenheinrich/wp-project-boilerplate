@@ -1,4 +1,5 @@
 {
+	"core": "WordPress/WordPress#7.1.2",
 	"phpVersion": "8.4",
 	"themes": [
 		"./theme"
@@ -7,9 +8,7 @@
 		"./plugin"
 	],
 	"mappings": {
-		"./../.htaccess": "./htaccess.txt",
     "lifecycleScripts": "./bin/lifecycleScripts/",
-    "wp-cli.yml": "./wp-cli.yml",
     "required-plugins": "./required-plugins/"
 	},
 	"env": {

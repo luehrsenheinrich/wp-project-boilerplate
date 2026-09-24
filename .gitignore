@@ -16,6 +16,8 @@
 # phpunit
 .phpunit.result.cache
 .phpunit.cache
+/playwright-report/
+/test-results/
 
 # OS
 .DS_Store

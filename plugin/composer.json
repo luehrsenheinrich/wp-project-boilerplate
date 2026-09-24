@@ -1,8 +1,10 @@
 {
   "name": "wpmunich/lhpbpp",
+  "description": "Companion plugin for the WordPress project boilerplate.",
   "type": "wordpress-plugin",
-  "optimize-autoloader": true,
+  "license": "GPL-2.0-or-later",
   "require": {
+    "php": "^8.4",
     "cjstroud/classnames-php": "^1.0",
     "php-di/php-di": "^7.0",
     "yahnis-elsts/plugin-update-checker": "^5.4"
@@ -13,8 +15,9 @@
     }
   },
   "config": {
+    "optimize-autoloader": true,
     "platform": {
-      "php": "8.1"
+      "php": "8.4"
     }
   },
   "require-dev": {

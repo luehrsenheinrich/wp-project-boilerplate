@@ -10,6 +10,8 @@
  * x-release-please-end
  * Text Domain: lhpbpp
  * Domain Path: /languages
+ * Requires at least: 7.1
+ * Requires PHP: 8.4
  * Last Updated: 2025-11-25 // x-release-please-date
  *
  * @package lhpbp\plugin

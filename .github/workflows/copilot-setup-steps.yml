@@ -25,10 +25,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Set up Node.js 20 (with npm cache)
+      - name: Set up Node.js 24 (with npm cache)
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24.21.0"
           cache: "npm"
 
       - name: Set up PHP 8.4 + Composer v2
@@ -51,10 +51,15 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install Composer packages
-        run: composer install --prefer-dist --optimize-autoloader --no-interaction
+        run: |
+          composer install --prefer-dist --no-interaction
+          composer install --working-dir=theme --prefer-dist --no-interaction
+          composer install --working-dir=plugin --prefer-dist --no-interaction
 
       - name: Install Node packages
-        run: npm ci
+        run: |
+          npm install -g npm@11.20.0
+          npm ci
 
       # Optional: if Copilot frequently needs lint feedback quickly, you can keep this.
       # Otherwise, you can remove to shorten setup time.

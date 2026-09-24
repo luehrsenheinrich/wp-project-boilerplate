@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lhpbpp/editorial-note",
+  "title": "Editorial Note",
+  "category": "lhpbpp-blocks",
+  "icon": "editor-paragraph",
+  "description": "A reusable, theme-styled note for editorial context.",
+  "textdomain": "lhpbpp",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "color": false,
+    "spacing": false,
+    "typography": false
+  },
+  "editorScript": "lhpbpp-blocks"
+}

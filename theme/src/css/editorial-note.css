@@ -1,0 +1,13 @@
+.wp-block-lhpbpp-editorial-note {
+	border-inline-start: 0.25rem solid var(--color-primary-500);
+	background: var(--color-gray-100);
+	padding: var(--grid-gutter-height) var(--grid-gutter-width);
+}
+
+.lhpbpp-editorial-note__content > :first-child {
+	margin-block-start: 0;
+}
+
+.lhpbpp-editorial-note__content > :last-child {
+	margin-block-end: 0;
+}

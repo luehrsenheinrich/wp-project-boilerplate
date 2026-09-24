@@ -1,91 +1,46 @@
-# This workflow tests if the commit or pr meets the requirements and deploys to
-# a development server upon success.
-# It assumes that `npm install`, `composer install` and `npx grunt release` are valid commands.
-# The action expects a valid zip file in the `./update/` folder and the `slug` key in the
-# `package.json` to be set.
-name: 🏗 Build & Deploy
+name: Build and test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  bnd:
+  verify:
+    # Keep this name aligned with the required status check in the main ruleset.
     name: Build & Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
-
-      - name: ⚙️ Setup PHP with tools
-        uses: shivammathur/setup-php@v2
+          node-version: '24.21.0'
+          cache: npm
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           tools: composer:v2
-          github-token: ''
-
-      - name: 💾 Get node.js cache directory
-        id: node-cache-dir
-        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT # Use $(yarn cache dir) for yarn
-
-      - name: 💾 Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.node-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Use '**/yarn.lock' for yarn
-          restore-keys: ${{ runner.os }}-node-
-
-      - name: 💾 Get composer cache directory
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: ⚙️ Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: ⚙️ Install Composer Packages
-        run: composer install --prefer-dist --optimize-autoloader
-
-      - name: ⚙️ Install Node Packages
-        run: npm ci
-
-      - name: 🔎 Lint the code
-        run: npm run lint
-
-      - name: 🏗 Build the code release
-        run: npm run release
-
-      # - name: 🚢 Deploy plugin to InstaWP
-      #   if: ${{ github.event_name == 'push' && success() }}
-      #   uses: easingthemes/ssh-deploy@main
-      #   with:
-      #     SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
-      #     SOURCE: "./plugin/"
-      #     REMOTE_HOST: ${{ secrets.INSTAWP_FTP_HOST }}
-      #     REMOTE_USER: ${{ secrets.INSTAWP_FTP_USER }}
-      #     TARGET: /home/${{ secrets.INSTAWP_FTP_USER }}/web/${{ secrets.INSTAWP_FTP_HOST }}/public_html/wp-content/plugins/lhagenturp/
-
-      # - name: 🚢 Deploy theme to InstaWP
-      #   if: ${{ github.event_name == 'push' && success() }}
-      #   uses: easingthemes/ssh-deploy@main
-      #   with:
-      #     SSH_PRIVATE_KEY: ${{ secrets.INSTAWP_PRIVATE_KEY }}
-      #     SOURCE: "./theme/"
-      #     REMOTE_HOST: ${{ secrets.INSTAWP_FTP_HOST }}
-      #     REMOTE_USER: ${{ secrets.INSTAWP_FTP_USER }}
-      #     TARGET: /home/${{ secrets.INSTAWP_FTP_USER }}/web/${{ secrets.INSTAWP_FTP_HOST }}/public_html/wp-content/themes/lhagenturt/
+          coverage: none
+      - run: npm install -g npm@11.20.0
+      - run: npm ci
+      - run: composer install --prefer-dist --no-interaction
+      - run: composer install --working-dir=theme --prefer-dist --no-interaction
+      - run: composer install --working-dir=plugin --prefer-dist --no-interaction
+      - run: npm run check
+      - run: npm start
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run release
+      - run: npm stop
+        if: always()

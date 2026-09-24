@@ -1,7 +1,4 @@
-# This workflow creates a release based upon the information in our wp-boilerplate repositories.
-# It assumes that `npm install`, `composer install` and `npx grunt release` are valid commands.
-# The action expects a valid zip file in the `./update/` folder and the `slug` key in the
-# `package.json` to be set.
+# Publish verified plugin and theme ZIPs after Release Please creates a release.
 
 name: 🚀 Release Please
 
@@ -25,7 +22,7 @@ jobs:
         with:
           token: ${{ secrets.GH_ADMIN_TOKEN }}
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
         if: ${{ steps.release.outputs.release_created }}
         with:
           fetch-depth: 0
@@ -37,10 +34,10 @@ jobs:
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         if: ${{ steps.release.outputs.release_created }}
         with:
-          node-version: 20
+          node-version: '24.21.0'
       - name: ⚙️ Setup PHP with tools
         if: ${{ steps.release.outputs.release_created }}
         uses: shivammathur/setup-php@v2
@@ -77,19 +74,40 @@ jobs:
 
       - name: ⚙️ Install Composer Packages
         if: ${{ steps.release.outputs.release_created }}
-        run: composer install --prefer-dist
+        run: |
+          composer install --prefer-dist --no-interaction
+          composer install --working-dir=theme --prefer-dist --no-interaction
+          composer install --working-dir=plugin --prefer-dist --no-interaction
 
       - name: ⚙️ Install Node Packages
         if: ${{ steps.release.outputs.release_created }}
-        run: npm ci
+        run: |
+          npm install -g npm@11.20.0
+          npm ci
 
-      - name: 🔎 Lint the code
+      - name: 🔎 Lint and build the code
         if: ${{ steps.release.outputs.release_created }}
-        run: npm run lint
+        run: npm run check
+
+      - name: 🧪 Test the plugin and theme
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          npm start
+          npm test
+
+      - name: 🧭 Test the editor and front end
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:e2e
 
       - name: 🏗 Build the code release
         if: ${{ steps.release.outputs.release_created }}
         run: npm run release
+
+      - name: Stop WordPress test environment
+        if: ${{ always() && steps.release.outputs.release_created }}
+        run: npm stop
 
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}

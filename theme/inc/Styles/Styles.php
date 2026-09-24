@@ -18,10 +18,12 @@ use function _doing_it_wrong;
 use function add_action;
 use function add_editor_style;
 use function apply_filters;
+use function add_filter;
 use function esc_html;
 use function get_theme_file_uri;
 use function remove_action;
 use function wp_enqueue_style;
+use function wp_enqueue_block_style;
 use function wp_print_styles;
 use function wp_register_style;
 use function wp_style_add_data;
@@ -52,6 +54,7 @@ class Styles extends Theme_Component {
 		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_editor_assets' ) );
+		add_action( 'init', array( $this, 'register_editorial_note_style' ) );
 
 		/** Remove WP Emoji */
 		add_action( 'init', array( $this, 'remove_wp_emoji' ) );
@@ -60,7 +63,27 @@ class Styles extends Theme_Component {
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function add_filters() {}
+	protected function add_filters() {
+		add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+	}
+
+	/** Load the plugin's reference block style only where that block is rendered. */
+	public function register_editorial_note_style() {
+		$path = get_theme_file_path( '/dist/css/editorial-note.min.css' );
+		if ( ! file_exists( $path ) ) {
+			return;
+		}
+
+		wp_enqueue_block_style(
+			'lhpbpp/editorial-note',
+			array(
+				'handle' => 'lhpbpt-editorial-note',
+				'src'    => get_theme_file_uri( '/dist/css/editorial-note.min.css' ),
+				'path'   => $path,
+				'ver'    => theme()->get_theme_version(),
+			)
+		);
+	}
 
 	/**
 	 * Retrieves all CSS files for the theme.
