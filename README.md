@@ -1,80 +1,53 @@
 # WordPress Project Boilerplate
 
-[![🧪 Tests](../../actions/workflows/main.yml/badge.svg)](../../actions/workflows/main.yml)
+An agency template for projects that need a classic WordPress theme with selected block-editor features and a companion plugin. The plugin owns functionality and data; the theme owns templates, styles, and presentation. Both ship as separate ZIP files.
 
-This boilerplate serves as a **production-ready template** for Luehrsen // Heinrich agency client projects. It provides a structured foundation for creating **Hybrid WordPress Themes** that combine traditional classic theme features with modern block-based capabilities (Gutenberg). 
+## Requirements
 
-Built with **@wordpress/env**, **webpack**, and **PostCSS**, this template adheres to WordPress best practices by cleanly separating business logic (plugin) from presentation (theme). The boilerplate includes a complete development environment, CI/CD workflows, and automated release management—ready to clone and customize for any client project.
+- Node.js 24.18 or newer within the 24.x line, and npm 11.16 or newer
+- PHP 8.4 and Composer 2
+- Docker for `@wordpress/env` and PHPUnit integration tests
+- `unzip` for release archive verification
 
-Learn more about Hybrid Themes [here](https://gutenbergmarket.com/news/what-are-hybrid-wordpress-themes).
+The local WordPress environment is pinned to WordPress 7.1.2 and PHP 8.4 in `.wp-env.json`. Its default site is `http://localhost` (port 80), with the standard `admin` / `password` development credentials. Set `WP_ENV_PORT` if port 80 is occupied.
 
-![WordPress Project Boilerplate](./.github/boilerplate.jpg)
+## Start a project
 
-## Using This Template
+1. Use this repository as a GitHub template and clone the new repository.
+2. Run `npm run setup` to install all three Composer lockfiles and the npm lockfile, then build assets. Start Docker before the next step.
+3. Run `npm start` to start WordPress; run `npm run watch` in a second terminal while editing.
+4. Follow the [project customization checklist](project-README.md) to replace boilerplate identities and turn that file into the new project's README.
 
-This repository is designed to be cloned as a starting point for new client projects. Follow these steps to set up your project:
+`npm start` starts only WordPress. It never changes dependencies or the lockfiles. `npm run env:init` is an optional demo-content setup that downloads third-party plugins and sample content; it is not required for normal development or tests.
 
-### Prerequisites
+## Structure
 
-Before starting, ensure you have:
-- **Docker** installed and running (required for local development environment)
-- **Node.js 20.x** (LTS) and **npm 10.x**
-- **PHP 8.4+** and **Composer 2.x**
+| Location | Responsibility |
+| --- | --- |
+| `plugin/` | Plugin entry point, dependency container, business logic, REST API, block registration and rendering |
+| `theme/` | Classic PHP templates, `theme.json`, editor supports, styles and frontend assets |
+| `plugin/admin/src/`, `theme/admin/src/`, `theme/src/` | Source assets compiled by webpack into `admin/dist/` or `dist/` |
+| `bin/` | Project setup and release scripts |
+| `.github/workflows/` | CI, release, and dependency automation |
 
-1. **Use as Repository Template**: Click "Use this template" on GitHub to create a new repository for your client project.
-2. **Project Slug**: Choose a unique slug that won't conflict with other projects (recommended: client abbreviation + project type).
-### Step 1: Set Up Project Slug and Names
+This is a **hybrid theme**: classic PHP templates remain the page structure, while `theme.json` and selected editor capabilities enhance block editing. Put content models and reusable behavior in the plugin. Put block appearance in the theme. See [agent workflows](docs/agent-workflows.md) for the current block registration path.
 
-1. **Replace Project Slug**:
-   - Search and replace (case-sensitive):
-     - `lhpbp` with your new project-specific slug.
-     - `LHPBP` with the uppercase version of your slug.
+## Everyday commands
 
-2. **Update Details**:
-   - Modify project information in `package.json`.
-   - Update file headers in `theme/style.css` and `plugin/lhpbpp.php`.
+| Command | Purpose |
+| --- | --- |
+| `npm run setup` | Clean npm install, install root/theme/plugin Composer dependencies, build assets |
+| `npm start` / `npm stop` | Start or stop the pinned WordPress environment |
+| `npm run watch` | Rebuild changed assets |
+| `npm run check` | Lint PHP, JavaScript and CSS; build development assets |
+| `npm test` | Run plugin and theme PHPUnit suites in `wp-env` (Docker required) |
+| `npm run verify` | Lint, test, build production assets, package and verify ZIPs |
+| `npm run release` | Build and verify production ZIPs in `archives/` |
 
-3. **Rename Plugin File**:
-   - Rename the main plugin file from `plugin/lhpbpp.php` to `plugin/<your_project_slug>p.php`.
+`npm run release` installs production Composer dependencies in temporary staging directories. It leaves your development `vendor/` directories intact. The archives contain compiled assets and runtime code, and exclude tests, source assets and dev-only packages.
 
-### Step 2: Run the Development Environment
+## Changes and releases
 
-1. **Start the Environment**:
-   - Run `npm start` to spin up the Docker environment.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for contribution and validation rules. Use Conventional Commits. Release Please updates the project, plugin and theme versions, creates a release PR, and publishes a GitHub release after that PR is merged. The release workflow verifies and uploads ZIPs, then deploys them to the configured update server. It needs the repository's existing release secrets; a template consumer must configure or remove that deployment for their own project.
 
-2. **Access WordPress Admin**:
-   - Open `http://localhost/wp-admin` in your browser.
-   - Use the credentials `admin` (username) and `password` (password) to log in.
-
-### Step 3: Understand the Release Workflow
-
-Releases are automated via **release-please**:
-
-1. **Make Changes**: Commit changes using Conventional Commits format (e.g., `feat:`, `fix:`, `chore:`).
-2. **Automatic Release PR**: When merged to `main`, release-please creates/updates a release PR with changelog and version bumps.
-3. **Merge Release PR**: When the release PR is merged, a GitHub release is created with built artifacts automatically.
-4. **Setup Required**: Ensure `GH_ADMIN_TOKEN` is configured in [GitHub Action secrets](../../settings/secrets/actions).
-
-
-### Step 4: Finalize Documentation
-
-1. **Customize Documentation**:
-   - Edit `project-README.md` with your specific project details.
-
-2. **Organize README Files**:
-   - Delete or rename this `README.md` (current file).
-   - Rename `project-README.md` to `README.md`.
-
-3. **Celebrate 🎉**
-
-## What Are Hybrid Themes?
-
-Hybrid WordPress Themes represent a **middle ground** between traditional Classic Themes and Full Site Editing (FSE) Block Themes. They combine elements of both, allowing users to take advantage of block-based design capabilities while retaining familiar classic theme functionality. Hybrid Themes offer a balanced approach, providing flexibility without requiring a full commitment to FSE.
-
-**Benefits of Hybrid Themes**:
-- **Balanced Editing Experience**: Supports both classic and block editing modes, allowing for flexibility in design and layout.
-- **Enhanced Block Capabilities**: Includes features like block templates, block parts, and custom configurations via `theme.json`.
-- **Greater Design Control**: Allows extensive customization for pages, posts, and archive layouts while keeping traditional editing options.
-- **Compatibility**: Works seamlessly with both classic WordPress setups and Block Editor elements, providing the best of both worlds.
-
-This boilerplate enables you to develop a flexible, scalable Hybrid Theme that leverages the strengths of both classic and block-based features, delivering a future-ready WordPress experience with maximal control and compatibility.
+Repository-specific guidance for coding agents is in [AGENTS.md](AGENTS.md). The existing `add/agent-skills` branch was reviewed; relevant block and plugin practices are distilled in [docs/agent-workflows.md](docs/agent-workflows.md).

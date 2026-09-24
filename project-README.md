@@ -1,48 +1,17 @@
-# [ PROJECT NAME ]
+# Project README template
 
-[![🏗 Build & Deploy](../../actions/workflows/main.yml/badge.svg)](../../actions/workflows/main.yml)
+Replace this file with the new project's README after creating a repository from the boilerplate. Keep the checklist below until every identity has been updated.
 
-[ SHORT PROJECT DESCRIPTION ]
+## Customization checklist
 
-This WordPress project is made with love and brought to you by the folks of [WP Munich](http://www.wp-munich.de) and [Luehrsen // Heinrich](http://www.luehrsen-heinrich.de).
+1. Choose a lowercase project slug without spaces. Search for `lhpbp`, `LHPBP`, `lhpbpp`, `lhpbpt`, `WpMunich` and `wp-project-boilerplate`; update names, namespaces, text domains, constants and package metadata consistently.
+2. Rename `plugin/lhpbpp.php` to `plugin/<slug>p.php`. Check references in the plugin test bootstrap, `phpcs.xml`, `webpack.config.js`, `.wp-env.json`, update URLs and any deployment configuration.
+3. Replace plugin and theme headers, authorship, descriptions and URLs with approved project details. Replace `plugin/readme.txt` with the actual plugin description.
+4. Configure GitHub repository secrets and the release destination, or remove the update-server deployment from `.github/workflows/release.yml`. Update `release-please-config.json` and the release artifact names if the packaging scheme changes.
+5. Refresh the lockfile metadata after renaming: run `npm install --package-lock-only`, then `composer update --lock --no-install --no-scripts` in the root, `theme/` and `plugin/` directories. Commit all four lockfiles with their manifests.
+6. Run `npm run setup`, `npm run check`, `npm start`, `npm test` and `npm run release`. Confirm both ZIP names, extracted top-level directories and plugin/theme activation in WordPress.
+7. Replace this checklist with the project's purpose, setup, architecture, support contacts and deployment procedure. Rename this file to `README.md` after removing the boilerplate README.
 
-## What's in This Project?
+## Architecture to preserve
 
-This project includes two main components:
-
-1. **Hybrid Theme**: A flexible WordPress theme that combines traditional theme features with block-based capabilities, offering compatibility with both the classic editor and the Full Site Editing (FSE) experience. This hybrid approach allows for advanced customization while retaining a familiar editing environment. All styling for custom blocks is stored in the theme, keeping presentation elements within the theme layer.
-
-2. **Plugin for Business Logic**: A companion plugin that encapsulates all business logic, data handling, and custom functionality, ensuring that essential features remain intact even if the theme is changed. Additionally, custom block logic is stored within the plugin, enabling reusable and consistent block functionality independent of the theme.
-
-Together, these components provide a complete WordPress solution that offers both flexibility in design and consistency in functionality.
-
-## Key Terminal Commands
-
-Here are some of the most useful commands available in this boilerplate to assist with setup, development, and release.
-
-### General Commands
-- **`npm start`**: Initializes the Docker-based WordPress development environment using `wp-env`. Runs necessary initial scripts defined in `prestart`.
-- **`npm run stop`**: Stops the `wp-env` Docker environment without deleting data, useful when you want to pause development.
-- **`npm run build`**: Builds the project in development mode using `webpack`.
-- **`npm run release`**: Prepares a production-ready release by running all necessary build steps: `release:build`, `release:version`, and `release:package`.
-
-### Development Workflow
-- **`npm run watch`**: Starts `webpack` in watch mode, automatically rebuilding the project when file changes are detected. Ideal for local development alongside `npm start`.
-- **`npm run dev`**: Runs both `npm start` and `npm run watch`, setting up the development environment and live rebuilding in one step.
-
-### Linting & Fixing
-- **`npm run lint`**: Runs lint checks on PHP, JavaScript, and CSS files.
-### Testing
-- **`npm test`**: Runs all unit tests across plugins and themes.
-
-## Contributing
-
-Every bit of help is highly appreciated. Even if you don't code, you can file an issue to help us find bugs or suggest new features. Please see the [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute.
-
-## License
-
-This plugin is licensed under the [GNU General Public License v2 (or later)](./LICENSE).
-
-## Changelog
-
-Please find the current [changelog here](../../releases).
+The plugin carries functionality and reusable block behavior. The theme is a classic PHP theme enhanced with `theme.json` and block-editor features. Keep this separation while customizing; document any deliberate exception.

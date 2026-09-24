@@ -1,18 +1,23 @@
 {
   "name": "luehrsenheinrich/lhpbpt",
+  "description": "Hybrid theme for the WordPress project boilerplate.",
   "type": "wordpress-theme",
-  "optimize-autoloader": true,
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": "^8.4"
+  },
   "autoload": {
     "psr-4": {
       "WpMunich\\lhpbp\\theme\\": "inc/"
     }
   },
   "config": {
+    "optimize-autoloader": true,
     "allow-plugins": {
       "bamarni/composer-bin-plugin": true
     },
     "platform": {
-      "php": "8.1"
+      "php": "8.4"
     }
   },
   "require-dev": {

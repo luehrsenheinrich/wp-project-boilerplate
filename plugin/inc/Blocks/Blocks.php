@@ -104,7 +104,7 @@ class Blocks extends Plugin_Component {
 
 		wp_enqueue_style(
 			'lhpbpp-admin-components',
-			plugin()->get_plugin_url() . '/admin/dist/css/components.min.css',
+			plugin()->get_plugin_url() . 'admin/dist/css/style.min.css',
 			array(),
 			plugin()->get_plugin_version(),
 			'all'

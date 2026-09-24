@@ -32,9 +32,8 @@ require_once "{$_tests_dir}/includes/functions.php";
  * Manually load the theme & plugin being tested.
  */
 function _manually_load_theme() {
-	switch_theme( 'lhpbpt' );
-	activate_plugin( 'plugin/lhpbpp.php' );
-	activate_plugin( 'lhbasicsp/lhbasicsp.php' );
+		switch_theme( 'theme' );
+		activate_plugin( 'plugin/lhpbpp.php' );
 	require WP_CONTENT_DIR . '/themes/theme/inc/functions.php';
 
 	call_user_func( 'WpMunich\lhpbp\theme\theme' );

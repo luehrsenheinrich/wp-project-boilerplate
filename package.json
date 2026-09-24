@@ -7,21 +7,23 @@
   "scripts": {
     "build": "webpack",
     "release:build": "webpack --mode='production'",
-    "release:version": "node ./bin/updatePluginVersion.js && node ./bin/updateThemeVersion.js",
     "release:package": "node ./bin/archiveProject.js",
-    "release": "npm run release:build && npm run release:version && npm run release:package",
-    "prestart": "npm install && composer install && npm run build",
+    "release:verify": "node ./bin/verifyArchives.js",
+    "release": "npm run release:build && npm run release:package && npm run release:verify",
+    "setup": "npm ci && composer install --prefer-dist --no-interaction && composer install --working-dir=theme --prefer-dist --no-interaction && composer install --working-dir=plugin --prefer-dist --no-interaction && npm run build",
     "start": "npx wp-env start",
     "stop": "npx wp-env stop",
     "watch": "webpack --watch",
     "env:clean": "npx wp-env clean all",
     "env:init": "npx wp-env run cli sh ./lifecycleScripts/initialize.sh",
     "env:reset": "npm run env:clean && npm run env:init",
-    "update:versions": "node bin/updatePluginVersion.js && node bin/updateThemeVersion.js",
     "lint:php": "composer run lint",
     "lint:js": "BROWSERSLIST_IGNORE_OLD_DATA=1 eslint './{theme,plugin}/**/src/js/**/*.js'",
     "lint:css": "stylelint './{theme,plugin}/**/src/css/**/*.css'",
-    "lint": "npm run lint:php && npm run lint:js && npm run lint:css",
+    "lint:tools": "node --check bin/archiveProject.js && node --check bin/verifyArchives.js && node --check webpack.config.js",
+    "lint": "npm run lint:php && npm run lint:js && npm run lint:css && npm run lint:tools",
+    "check": "npm run lint && npm run build",
+    "verify": "npm run lint && npm run test && npm run release",
     "lint:php:fix": "composer run fix",
     "lint:js:fix": "eslint './{theme,plugin}/**/src/js/**/*.js' --fix",
     "lint:css:fix": "stylelint './{theme,plugin}/**/src/css/**/*.css' --fix",
@@ -33,9 +35,7 @@
     "test": "npm run test:unit:env",
     "test:unit:env": "npm run test:unit:env:plugin && npm run test:unit:env:theme",
     "test:unit:env:plugin": "wp-env run --env-cwd='wp-content/plugins/plugin' tests-cli vendor/bin/phpunit -c phpunit.xml",
-    "test:unit:env:theme": "wp-env run --env-cwd='wp-content/themes/theme' tests-cli vendor/bin/phpunit -c phpunit.xml",
-    "preversion": "npm start && npm run test",
-    "version": "npm run release && git add -A"
+    "test:unit:env:theme": "wp-env run --env-cwd='wp-content/themes/theme' tests-cli vendor/bin/phpunit -c phpunit.xml"
   },
   "author": "Luehrsen // Heinrich",
   "authorUrl": "https://www.luehrsen-heinrich.de",
@@ -50,11 +50,11 @@
     "@wordpress/env": "^11.8.0",
     "@wordpress/eslint-plugin": "^25.4.0",
     "@wordpress/stylelint-config": "^23.40.0",
-    "archiver": "^7.0.1",
+    "archiver": "^8.0.0",
     "babel-loader": "^10.1.1",
     "babel-plugin-lodash": "^3.3.4",
     "css-loader": "^7.1.4",
-    "cssnano": "^7.1.8",
+    "cssnano": "^9.0.5",
     "glob": "^13.0.6",
     "ignore": "^7.0.5",
     "lodash": "^4.18.1",
@@ -62,7 +62,7 @@
     "normalize.css": "^8.0.1",
     "null-loader": "^4.0.1",
     "postcss": "^8.5.15",
-    "postcss-import": "^16.1.1",
+    "postcss-import": "^17.0.0",
     "postcss-loader": "^8.2.1",
     "postcss-preset-env": "^11.3.1",
     "prettier": "^3.8.4",
@@ -73,7 +73,12 @@
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "engines": {
-    "node": ">=20.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=24.18 <25",
+    "npm": ">=11.16"
+  },
+  "overrides": {
+    "@wp-playground/cli": {
+      "express": "4.22.3"
+    }
   }
 }
