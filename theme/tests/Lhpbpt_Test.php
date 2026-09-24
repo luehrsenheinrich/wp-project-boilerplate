@@ -57,6 +57,52 @@ class Lhpbpt_Test extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'empty=', $result );
 	}
 
+	/** Pagination identifies its controls and marks the current page. */
+	public function test_pagination_markup() {
+		$this->factory()->post->create_many( 3 );
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'post',
+				'posts_per_page' => 1,
+				'paged'          => 2,
+			)
+		);
+
+		ob_start();
+		get_template_part( 'template-parts/loop/pagination', null, array( 'query' => $query ) );
+		$markup = ob_get_clean();
+
+		$this->assertStringContainsString( 'aria-label="Pagination"', $markup );
+		$this->assertStringContainsString( 'aria-current="page"', $markup );
+		$this->assertStringContainsString( '>Previous</span>', $markup );
+		$this->assertStringContainsString( '>Next</span>', $markup );
+		$this->assertStringContainsString( '>Page 2</span>', $markup );
+	}
+
+	/** Explicit pagination values work without a global main query. */
+	public function test_pagination_without_global_query() {
+		$had_global_query = array_key_exists( 'wp_query', $GLOBALS );
+		$original_query   = $GLOBALS['wp_query'] ?? null;
+		unset( $GLOBALS['wp_query'] );
+
+		try {
+			$helper_markup = theme()->nav_menus()->paginate_links(
+				array(
+					'current' => 2,
+					'total'   => 3,
+				)
+			);
+		} finally {
+			if ( $had_global_query ) {
+				$GLOBALS['wp_query'] = $original_query;
+			} else {
+				unset( $GLOBALS['wp_query'] );
+			}
+		}
+
+		$this->assertStringContainsString( 'aria-current="page">2</span>', $helper_markup );
+	}
+
 	/** Editors can compose with approved layout blocks and plugin blocks. */
 	public function test_curated_editor_allows_layout_and_plugin_blocks() {
 		$allowed = apply_filters( 'allowed_block_types_all', true );

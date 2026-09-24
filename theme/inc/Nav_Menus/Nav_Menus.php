@@ -13,7 +13,10 @@ namespace WpMunich\lhpbp\theme\Nav_Menus;
 
 use WpMunich\lhpbp\theme\Theme_Component;
 
+use function esc_attr;
+use function esc_html;
 use function esc_html__;
+use function esc_url;
 use function get_pagenum_link;
 use function has_nav_menu;
 use function register_nav_menus;
@@ -143,11 +146,18 @@ class Nav_Menus extends Theme_Component {
 	 */
 	public function paginate_links( array $args = array() ) {
 		global $wp_query;
+		$default_current = 1;
+		$default_total   = 1;
+		if ( $wp_query instanceof \WP_Query ) {
+			$default_current = max( 1, (int) $wp_query->get( 'paged' ) );
+			$default_total   = max( 1, (int) $wp_query->max_num_pages );
+		}
+
 		$args = wp_parse_args(
 			$args,
 			array(
-				'current'   => $wp_query->query_vars['paged'] ? (int) $wp_query->query_vars['paged'] : 1,
-				'total'     => isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1,
+				'current' => $default_current,
+				'total'   => $default_total,
 			)
 		);
 
@@ -161,16 +171,16 @@ class Nav_Menus extends Theme_Component {
 				)
 			);
 
-			$list_class = ! empty( $list_classnames ) ? 'class="' . $list_classnames . '"' : '';
+			$list_class = ! empty( $list_classnames ) ? 'class="' . esc_attr( $list_classnames ) . '"' : '';
 
 			$html .= sprintf( '<li %s>', $list_class );
 			if ( $p['current'] ) {
-				$html .= '<span class="page-numbers current">' . $p['page_number'] . '</span>';
+				$html .= '<span class="page-numbers current" aria-current="page">' . esc_html( $p['page_number'] ) . '</span>';
 			} elseif ( $p['dots'] ) {
 				$html .= '<span class="page-numbers dots">...</span>';
 			} else {
-				$html .= sprintf( '<a href="%s" class="page-numbers" data-page-target="%d">', get_pagenum_link( $p['page_number'] ), $p['page_number'] );
-				$html .= $p['page_number'];
+				$html .= sprintf( '<a href="%s" class="page-numbers" data-page-target="%s">', esc_url( get_pagenum_link( $p['page_number'] ) ), esc_attr( $p['page_number'] ) );
+				$html .= esc_html( $p['page_number'] );
 				$html .= '</a>';
 			}
 			$html .= '</li>';
