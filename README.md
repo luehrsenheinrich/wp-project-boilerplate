@@ -36,7 +36,7 @@ The local WordPress environment is pinned to WordPress 7.1.2 and PHP 8.4 in `.wp
 | `bin/` | Project setup and release scripts |
 | `.github/workflows/` | CI, release, and dependency automation |
 
-This is a **hybrid theme**: classic PHP templates remain the page structure, while `theme.json` and selected editor capabilities enhance block editing. Put content models and reusable behavior in the plugin. Put block appearance in the theme. See [agent workflows](docs/agent-workflows.md) for the current block registration path.
+This is a **hybrid theme**: classic PHP templates remain the page structure, while `theme.json` and selected editor capabilities enhance block editing. Put content models and reusable behavior in the plugin. Put block appearance in the theme. See [agent workflows](docs/agent-workflows.md) for the current block registration path and the [content layout and spacing contract](docs/agent-workflows.md#content-layout-and-spacing).
 
 ## Everyday commands
 

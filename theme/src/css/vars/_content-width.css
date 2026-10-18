@@ -4,19 +4,21 @@
 :root {
 
 	/** Content Widths **/
-	--content-xs: calc(100vw - var(--grid-gutter-width) * 2);
+	--content-xs: 100%;
 	--content-sm: calc((var(--bp-sm) * 12 / 12));
 	--content-md: calc((var(--bp-md) * 10 / 12));
 	--content-lg: calc((var(--bp-lg) * 8 / 12));
 
 	/** Define a base variable, that is overwritten by responsive breakpoints **/
 	--content-width: var(--content-xs);
+	--wide-width: 100%;
 }
 
 @media (--sm-query) {
 
 	:root {
 		--content-width: var(--content-sm);
+		--wide-width: var(--bp-sm);
 	}
 }
 
@@ -24,6 +26,7 @@
 
 	:root {
 		--content-width: var(--content-md);
+		--wide-width: var(--bp-md);
 	}
 }
 
@@ -31,5 +34,6 @@
 
 	:root {
 		--content-width: var(--content-lg);
+		--wide-width: var(--bp-lg);
 	}
 }

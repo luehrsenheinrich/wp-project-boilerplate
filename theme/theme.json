@@ -3,6 +3,7 @@
   "version":3,
   "settings":{
      "appearanceTools":false,
+     "useRootPaddingAwareAlignments":true,
      "lightbox":{
         "enabled":false
      },
@@ -14,7 +15,17 @@
         "margin":true,
         "padding":true,
         "customSpacingSize":false,
+        "defaultSpacingSizes":true,
+        "spacingScale":{"steps":0},
         "spacingSizes":[
+           {"slug":"xs","name":"XS","size":"calc(var(--grid-gutter-height) / 2)"},
+           {"slug":"s","name":"S","size":"var(--grid-gutter-height)"},
+           {"slug":"m","name":"M","size":"var(--grid-gutter-width)"},
+           {"slug":"l","name":"L","size":"calc(var(--grid-gutter-height) * 2)"},
+           {"slug":"xl","name":"XL","size":"calc(var(--grid-gutter-height) * 3)"},
+           {"slug":"2xl","name":"2XL","size":"calc(var(--grid-gutter-height) * 4)"},
+           {"slug":"3xl","name":"3XL","size":"calc(var(--grid-gutter-height) * 5)"},
+           {"slug":"4xl","name":"4XL","size":"calc(var(--grid-gutter-height) * 6)"},
            {"slug":"small","name":"Small","size":"0.75rem"},
            {"slug":"medium","name":"Medium","size":"1.5rem"},
            {"slug":"large","name":"Large","size":"3rem"}
@@ -59,7 +70,7 @@
         "allowCustomContentAndWideSize":false,
         "allowEditing":true,
         "contentSize":"var(--content-width)",
-        "wideSize":"var(--last-bp)"
+        "wideSize":"var(--wide-width)"
      },
      "color":{
         "defaultPalette":false,
@@ -184,8 +195,13 @@
      }
   },
   "styles":{
+     "blocks":{
+        "core/group":{"spacing":{"padding":{"top":"var:preset|spacing|s","bottom":"var:preset|spacing|s","left":"var:preset|spacing|m","right":"var:preset|spacing|m"}}},
+        "core/cover":{"spacing":{"padding":{"top":"var:preset|spacing|s","bottom":"var:preset|spacing|s","left":"var:preset|spacing|m","right":"var:preset|spacing|m"}}}
+     },
      "spacing":{
-        "blockGap":"var(--grid-gutter-height)"
+        "blockGap":"var(--grid-gutter-height)",
+        "padding":{"left":"var(--grid-gutter-width)","right":"var(--grid-gutter-width)"}
      },
      "filter":{
         "duotone":{

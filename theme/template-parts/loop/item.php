@@ -25,10 +25,13 @@ $loop_item_class_names = classNames(
 
 ?>
 <article <?php post_class( $loop_item_class_names ); ?> id="post-<?php the_ID(); ?>">
-	<div class="entry-header inner-container">
+	<div class="entry-header is-layout-constrained has-global-padding">
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 	</div>
-	<div class="is-root-container">
-		<?php the_content(); ?>
+	<div class="entry-content is-layout-constrained has-global-padding">
+		<?php
+		the_content();
+		wp_link_pages();
+		?>
 	</div>
 </article>

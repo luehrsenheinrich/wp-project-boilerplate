@@ -1,0 +1,5 @@
+/* Core's 300px minimum must still fit inside a narrow padded container. */
+:root .wp-block-audio audio {
+	min-width: 0;
+	max-width: 100%;
+}
