@@ -21,7 +21,7 @@ test('an editor publishes a theme-styled plugin block', async ({ page }) => {
 	const canvas = page.frameLocator('iframe[name="editor-canvas"]');
 	await canvas.locator('.editor-post-title__input').fill('Editorial note test');
 	await page.getByRole('button', { name: 'Block Inserter' }).click();
-	await page.getByPlaceholder('Search').fill('Editorial Note');
+	await page.getByPlaceholder('Search', { exact: true }).fill('Editorial Note');
 	await page.getByText('Editorial Note', { exact: true }).click();
 	await canvas.locator('.lhpbpp-editorial-note__content[contenteditable="true"]').fill('Context for our readers');
 

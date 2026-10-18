@@ -70,6 +70,7 @@ class Strip_Editor extends Theme_Component {
 		add_filter( 'block_type_metadata', array( $this, 'filter_block_type_metadata' ) );
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_block_types_all' ) );
 		add_filter( 'block_editor_settings_all', array( $this, 'allow_unsynced_pattern_composition' ) );
+		add_filter( 'block_editor_settings_all', array( $this, 'curate_spacing_presets' ), 10, 2 );
 
 		/**
 		 * Sets the inline CSS size limit to zero, preventing large styles from being inlined.
@@ -82,6 +83,36 @@ class Strip_Editor extends Theme_Component {
 		 * This approach helps keep the HTML output minimal and potentially improves caching efficiency.
 		 */
 		add_filter( 'styles_inline_size_limit', '__return_zero' );
+	}
+
+	/**
+	 * Show a short ordered scale while preserving presets used in older content.
+	 * Global CSS variables remain registered for every legacy spacing slug.
+	 *
+	 * @param array                         $settings Editor settings.
+	 * @param \WP_Block_Editor_Context|null $context Current editor context.
+	 * @return array
+	 */
+	public function curate_spacing_presets( $settings, $context = null ) {
+		$visible = array( 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl', '4xl' );
+		if ( isset( $context->post ) ) {
+			preg_match_all( '/(?:var:preset\|spacing\||--wp--preset--spacing--)([a-z0-9-]+)/', wp_json_encode( parse_blocks( $context->post->post_content ) ), $matches );
+			$visible = array_merge( $visible, $matches[1] );
+		}
+		foreach ( array( 'default', 'theme' ) as $origin ) {
+			if ( ! isset( $settings['__experimentalFeatures']['spacing']['spacingSizes'][ $origin ] ) ) {
+				continue;
+			}
+			$settings['__experimentalFeatures']['spacing']['spacingSizes'][ $origin ] = array_values(
+				array_filter(
+					$settings['__experimentalFeatures']['spacing']['spacingSizes'][ $origin ],
+					static function ( $preset ) use ( $visible ) {
+						return in_array( (string) $preset['slug'], $visible, true );
+					}
+				)
+			);
+		}
+		return $settings;
 	}
 
 	/**

@@ -65,6 +65,34 @@ class Styles extends Theme_Component {
 	 */
 	protected function add_filters() {
 		add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+		add_filter( 'block_editor_settings_all', array( $this, 'add_group_layout_defaults_to_editor' ) );
+	}
+
+	/**
+	 * Core layout otherwise only compensates explicit block padding. Generate its
+	 * own rules once for the theme defaults, shared by frontend and editor.
+	 * Explicit block layout rules retain precedence; stored attributes are unchanged.
+	 *
+	 * @return string Core-generated Full-child compensation.
+	 */
+	protected function get_group_layout_defaults_css() {
+		$padding = wp_get_global_styles( array( 'spacing', 'padding' ), array( 'block_name' => 'core/group' ) );
+		return wp_get_layout_style( '.wp-block-group:where(.is-layout-constrained)', array( 'type' => 'constrained' ), false, null, false, '0', array( 'padding' => $padding ) );
+	}
+
+	/**
+	 * Match frontend Full-child compensation in the native editor canvas.
+	 *
+	 * @param array $settings Editor settings.
+	 * @return array
+	 */
+	public function add_group_layout_defaults_to_editor( $settings ) {
+		$settings['styles'][] = array(
+			'css'             => $this->get_group_layout_defaults_css(),
+			'isGlobalStyles'  => true,
+			'__unstableType'  => 'theme',
+		);
+		return $settings;
 	}
 
 	/** Load the plugin's reference block style only where that block is rendered. */
@@ -247,6 +275,7 @@ class Styles extends Theme_Component {
 
 			wp_style_add_data( $handle, 'precache', true );
 		}
+		wp_add_inline_style( 'lhpbpt-base', $this->get_group_layout_defaults_css() );
 	}
 
 	/**

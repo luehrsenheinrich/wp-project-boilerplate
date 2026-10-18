@@ -8,3 +8,8 @@
 figure {
 	margin: calc(var(--grid-gutter-height) / 3) 0;
 }
+
+/* Classic caption shortcodes include an inline pixel width. */
+.wp-caption {
+	max-width: 100%;
+}
