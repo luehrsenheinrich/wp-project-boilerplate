@@ -7,7 +7,7 @@
     "php": "^8.4",
     "cjstroud/classnames-php": "^1.0",
     "php-di/php-di": "^7.0",
-    "yahnis-elsts/plugin-update-checker": "^5.4"
+    "yahnis-elsts/plugin-update-checker": "^6.0"
   },
   "autoload": {
     "psr-4": {
